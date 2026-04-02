@@ -7,7 +7,7 @@ import * as Haptics from 'expo-haptics';
 import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { insertLog, getCatById } from '@/utils/database';
+import { insertLog, getCatById, getTodayLog } from '@/utils/database';
 import type { HydrationLevel, ActivityLevel } from '@/types';
 
 function AppetiteSlider({ value, onChange, haptic }: { value: number; onChange: (v: number) => void; haptic: () => void }) {
@@ -93,11 +93,19 @@ export default function LogScreen() {
   ];
 
   useEffect(() => {
-    if (activeCatId) {
-      getCatById(activeCatId).then((c) => {
-        if (c) setCatName(c.name);
-      });
-    }
+    if (!activeCatId) return;
+    getCatById(activeCatId).then((c) => {
+      if (c) setCatName(c.name);
+    });
+    getTodayLog(activeCatId).then((log) => {
+      if (log) {
+        setLitterVisits(log.litterVisits);
+        setAppetite(log.appetite);
+        setHydration(log.hydration as HydrationLevel);
+        setActivity(log.activity as ActivityLevel);
+        setNotes(log.notes || '');
+      }
+    });
   }, [activeCatId]);
 
   const haptic = () => {
