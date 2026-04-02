@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "Selamat pagi,",
     "todaysHealthLog": "Catatan Kesehatan Hari Ini",
-    "litterVisits": "Kunjungan Kotak Pasir",
+    "litterVisits": "Kunjungan Toilet",
     "appetite": "Nafsu Makan",
     "hydration": "Hidrasi",
     "activity": "Aktivitas",
@@ -81,7 +81,7 @@
   },
   "log": {
     "logFor": "Catatan {{name}}",
-    "litterVisits": "Kunjungan Kotak Pasir",
+    "litterVisits": "Kunjungan Toilet",
     "appetite": "Nafsu Makan",
     "hydration": "Hidrasi",
     "activityLevel": "Tingkat Aktivitas",

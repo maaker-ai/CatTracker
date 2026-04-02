@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "صباح الخير،",
     "todaysHealthLog": "سجل الصحة اليوم",
-    "litterVisits": "زيارات صندوق الرمل",
+    "litterVisits": "مرات الحمام",
     "appetite": "الشهية",
     "hydration": "الترطيب",
     "activity": "النشاط",
@@ -81,7 +81,7 @@
   },
   "log": {
     "logFor": "سجل {{name}}",
-    "litterVisits": "زيارات صندوق الرمل",
+    "litterVisits": "مرات الحمام",
     "appetite": "الشهية",
     "hydration": "الترطيب",
     "activityLevel": "مستوى النشاط",

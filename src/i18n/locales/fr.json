@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "Bonjour,",
     "todaysHealthLog": "Journal de santé du jour",
-    "litterVisits": "Visites litière",
+    "litterVisits": "Passages aux toilettes",
     "appetite": "Appétit",
     "hydration": "Hydratation",
     "activity": "Activité",
@@ -81,7 +81,7 @@
   },
   "log": {
     "logFor": "Journal de {{name}}",
-    "litterVisits": "Visites litière",
+    "litterVisits": "Passages aux toilettes",
     "appetite": "Appétit",
     "hydration": "Hydratation",
     "activityLevel": "Niveau d'activité",

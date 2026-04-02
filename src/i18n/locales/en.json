@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "Good morning,",
     "todaysHealthLog": "Today's Health Log",
-    "litterVisits": "Litter Visits",
+    "litterVisits": "Bathroom Visits",
     "appetite": "Appetite",
     "hydration": "Hydration",
     "activity": "Activity",
@@ -85,7 +85,7 @@
   },
   "log": {
     "logFor": "Log for {{name}}",
-    "litterVisits": "Litter Visits",
+    "litterVisits": "Bathroom Visits",
     "appetite": "Appetite",
     "hydration": "Hydration",
     "activityLevel": "Activity Level",

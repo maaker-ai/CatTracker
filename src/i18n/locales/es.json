@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "Buenos días,",
     "todaysHealthLog": "Registro de salud de hoy",
-    "litterVisits": "Visitas al arenero",
+    "litterVisits": "Visitas al baño",
     "appetite": "Apetito",
     "hydration": "Hidratación",
     "activity": "Actividad",
@@ -81,7 +81,7 @@
   },
   "log": {
     "logFor": "Registro de {{name}}",
-    "litterVisits": "Visitas al arenero",
+    "litterVisits": "Visitas al baño",
     "appetite": "Apetito",
     "hydration": "Hidratación",
     "activityLevel": "Nivel de actividad",

@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "早上好，",
     "todaysHealthLog": "今日健康日志",
-    "litterVisits": "猫砂盆次数",
+    "litterVisits": "如厕次数",
     "appetite": "食欲",
     "hydration": "饮水",
     "activity": "活动量",
@@ -81,7 +81,7 @@
   },
   "log": {
     "logFor": "{{name}} 的记录",
-    "litterVisits": "猫砂盆次数",
+    "litterVisits": "如厕次数",
     "appetite": "食欲",
     "hydration": "饮水",
     "activityLevel": "活动量",

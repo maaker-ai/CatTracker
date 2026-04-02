@@ -22,7 +22,7 @@
   "dashboard": {
     "goodMorning": "Доброе утро,",
     "todaysHealthLog": "Журнал здоровья за сегодня",
-    "litterVisits": "Посещения лотка",
+    "litterVisits": "Походы в туалет",
     "appetite": "Аппетит",
     "hydration": "Водный баланс",
     "activity": "Активность",
@@ -81,7 +81,7 @@
   },
   "log": {
     "logFor": "Запись для {{name}}",
-    "litterVisits": "Посещения лотка",
+    "litterVisits": "Походы в туалет",
     "appetite": "Аппетит",
     "hydration": "Водный баланс",
     "activityLevel": "Уровень активности",
