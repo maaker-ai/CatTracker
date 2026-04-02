@@ -147,7 +147,7 @@ export default function LogScreen() {
         style={{ flex: 1 }}
         onPress={() => router.back()}
       />
-      <View style={{ backgroundColor: Colors.card, borderTopLeftRadius: 20, borderTopRightRadius: 20, maxHeight: '90%' }}>
+      <View style={{ backgroundColor: Colors.card, borderTopLeftRadius: 20, borderTopRightRadius: 20, height: '90%' }}>
       {/* Handle bar */}
       <View
         style={{
