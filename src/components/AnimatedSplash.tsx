@@ -32,12 +32,16 @@ export default function AnimatedSplash({ onFinish }: AnimatedSplashProps) {
     // Fade out the whole splash after display
     containerOpacity.value = withDelay(
       1200,
-      withTiming(0, { duration: 400, easing: Easing.in(Easing.cubic) }, (finished) => {
-        if (finished) {
-          runOnJS(onFinish)();
-        }
+      withTiming(0, { duration: 400, easing: Easing.in(Easing.cubic) }, () => {
+        // Always call onFinish regardless of finished flag —
+        // in Expo Go, reanimated may report finished=false on interruption
+        runOnJS(onFinish)();
       })
     );
+
+    // Fallback: guarantee splash dismisses even if animation never fires
+    const fallback = setTimeout(onFinish, 2500);
+    return () => clearTimeout(fallback);
   }, []);
 
   const logoStyle = useAnimatedStyle(() => ({
@@ -55,6 +59,7 @@ export default function AnimatedSplash({ onFinish }: AnimatedSplashProps) {
 
   return (
     <Animated.View
+      pointerEvents="none"
       style={[
         {
           position: 'absolute',

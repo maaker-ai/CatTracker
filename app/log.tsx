@@ -1,69 +1,71 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { View, Text, ScrollView, Pressable, TextInput, Platform, KeyboardAvoidingView, Keyboard } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, ScrollView, Pressable, TextInput, Platform, KeyboardAvoidingView, Keyboard, PanResponder } from 'react-native';
+import { useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Minus, Plus, X, PawPrint } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
-import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
 import { insertLog, getCatById, getTodayLog } from '@/utils/database';
 import type { HydrationLevel, ActivityLevel } from '@/types';
 
 function AppetiteSlider({ value, onChange, haptic }: { value: number; onChange: (v: number) => void; haptic: () => void }) {
-  const lastValue = useRef(value);
+  const startValue = useRef(value);
+  const currentValue = useRef(value);
 
-  const pan = Gesture.Pan()
-    .onUpdate((e) => {
-      // Each ~50px of horizontal drag = 1 step
-      const delta = Math.round(e.translationX / 50);
-      const newVal = Math.min(5, Math.max(1, lastValue.current + delta));
-      if (newVal !== value) {
-        haptic();
-        onChange(newVal);
-      }
-    })
-    .onEnd(() => {
-      lastValue.current = value;
-    });
-
-  // Keep lastValue in sync when value changes from tap
   useEffect(() => {
-    lastValue.current = value;
+    currentValue.current = value;
   }, [value]);
 
+  const panResponder = useRef(
+    PanResponder.create({
+      onStartShouldSetPanResponder: () => false,
+      onMoveShouldSetPanResponder: (_, g) => Math.abs(g.dx) > 10,
+      onPanResponderGrant: () => {
+        startValue.current = currentValue.current;
+      },
+      onPanResponderMove: (_, g) => {
+        const delta = Math.round(g.dx / 50);
+        const newVal = Math.min(5, Math.max(1, startValue.current + delta));
+        if (newVal !== currentValue.current) {
+          haptic();
+          onChange(newVal);
+        }
+      },
+    })
+  ).current;
+
   return (
-    <GestureDetector gesture={pan}>
-      <View
-        style={{
-          flexDirection: 'row',
-          backgroundColor: Colors.background,
-          borderRadius: 16,
-          paddingVertical: 12,
-          paddingHorizontal: 16,
-          gap: 8,
-          borderWidth: 1,
-          borderColor: Colors.border,
-        }}
-      >
-        {[1, 2, 3, 4, 5].map((i) => (
-          <Pressable
-            key={i}
-            onPress={() => {
-              haptic();
-              onChange(i);
-            }}
-          >
-            <PawPrint
-              size={28}
-              color={Colors.accent}
-              fill={i <= value ? Colors.accent : 'transparent'}
-              style={{ opacity: i <= value ? 1 : 0.3 }}
-            />
-          </Pressable>
-        ))}
-      </View>
-    </GestureDetector>
+    <View
+      {...panResponder.panHandlers}
+      style={{
+        flexDirection: 'row',
+        backgroundColor: Colors.background,
+        borderRadius: 16,
+        paddingVertical: 12,
+        paddingHorizontal: 16,
+        gap: 8,
+        borderWidth: 1,
+        borderColor: Colors.border,
+      }}
+    >
+      {[1, 2, 3, 4, 5].map((i) => (
+        <Pressable
+          key={i}
+          onPress={() => {
+            haptic();
+            onChange(i);
+          }}
+        >
+          <PawPrint
+            size={28}
+            color={Colors.accent}
+            fill={i <= value ? Colors.accent : 'transparent'}
+            style={{ opacity: i <= value ? 1 : 0.3 }}
+          />
+        </Pressable>
+      ))}
+    </View>
   );
 }
 
@@ -92,21 +94,24 @@ export default function LogScreen() {
     { value: 'Hyper', label: t('log.activityHyper') },
   ];
 
-  useEffect(() => {
-    if (!activeCatId) return;
-    getCatById(activeCatId).then((c) => {
-      if (c) setCatName(c.name);
-    });
-    getTodayLog(activeCatId).then((log) => {
-      if (log) {
-        setLitterVisits(log.litterVisits);
-        setAppetite(log.appetite);
-        setHydration(log.hydration as HydrationLevel);
-        setActivity(log.activity as ActivityLevel);
-        setNotes(log.notes || '');
-      }
-    });
-  }, [activeCatId]);
+  // Re-fetch every time modal gains focus (not just on activeCatId change)
+  useFocusEffect(
+    useCallback(() => {
+      if (!activeCatId) return;
+      getCatById(activeCatId).then((c) => {
+        if (c) setCatName(c.name);
+      });
+      getTodayLog(activeCatId).then((log) => {
+        if (log) {
+          setLitterVisits(log.litterVisits);
+          setAppetite(log.appetite);
+          setHydration(log.hydration as HydrationLevel);
+          setActivity(log.activity as ActivityLevel);
+          setNotes(log.notes || '');
+        }
+      });
+    }, [activeCatId])
+  );
 
   const haptic = () => {
     if (Platform.OS === 'ios') {
