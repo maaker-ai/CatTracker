@@ -1,0 +1,20 @@
+{
+  "uploaded_at": "2026-04-02T13:10:00Z",
+  "build_number": "1",
+  "version": "1.0.0",
+  "ipa_path": "build-1775106065544.ipa",
+  "ipa_size_mb": 23.1,
+  "eas_submission_id": "c973a58c-5c92-4b84-b7a7-f3b2943a7449",
+  "eas_submission_url": "https://expo.dev/accounts/maruipp/projects/CatTracker/submissions/c973a58c-5c92-4b84-b7a7-f3b2943a7449",
+  "asc_app_id": "6761513507",
+  "asc_app_name": "CatTracker (0bd4fc)",
+  "testflight_group": "Team (Expo)",
+  "testers": ["maruipp@gmail.com", "maruipeng@qq.com", "tucao.art@gmail.com", "xu.fei127@hotmail.com"],
+  "status": "submitted_processing",
+  "iap_preflight": {
+    "required": true,
+    "apple_product_status": "needs_verification",
+    "revenuecat_current_offering_ready": true,
+    "note": "Apple subscription products need to be created in ASC for app ID 6761513507"
+  }
+}

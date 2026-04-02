@@ -13,6 +13,7 @@
   "submit": {
     "production": {
       "ios": {
+        "ascAppId": "6761513507",
         "ascApiKeyPath": "/Users/martin/.appstoreconnect/private_keys/AuthKey_L57984QZY8.p8",
         "ascApiKeyIssuerId": "69a6de7e-fe42-47e3-e053-5b8c7c11a4d1",
         "ascApiKeyId": "L57984QZY8"
