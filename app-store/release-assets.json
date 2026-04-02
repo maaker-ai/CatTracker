@@ -1,0 +1,19 @@
+{
+  "generated_at": "2026-04-02T10:30:00Z",
+  "icon": {
+    "path": "/Users/martin/OpenSource/CatTracker/assets/icon.png",
+    "format": "png",
+    "size": "1024x1024",
+    "validated": true
+  },
+  "screenshots": {
+    "status": "pending",
+    "display_type": "APP_IPHONE_67",
+    "note": "Screenshots to be generated after design fixes and functional tests pass",
+    "locales": ["en", "zh-Hans", "zh-Hant", "ja", "ko", "de", "fr", "es", "ru", "it", "ar", "id"]
+  },
+  "privacy_policy": {
+    "status": "pending",
+    "note": "Pure local app, no data collection. Need to generate privacy policy page."
+  }
+}

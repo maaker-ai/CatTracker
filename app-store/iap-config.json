@@ -1,0 +1,26 @@
+{
+  "checked_at": "2026-04-02T11:00:00Z",
+  "monetization": "freemium_subscription",
+  "bundle_id": "top.dramavision.cattracker",
+  "apple": {
+    "product_ids": ["cattracker.pro.monthly", "cattracker.pro.yearly"],
+    "status": "needs_verification",
+    "note": "Apple product creation and READY_TO_SUBMIT status must be verified before TestFlight submission"
+  },
+  "revenuecat": {
+    "ios_api_key": "appl_fAyuyQCPeIYprMEauuaNyzAixYV",
+    "android_api_key": "goog_wkyTrMhPGEJeBYsrnvWbwoXLNTu",
+    "test_api_key": "test_qQHCXaEhwzQVXUGavJULVewEETk",
+    "entitlement_id": "pro",
+    "offering_ready": true,
+    "packages": ["$rc_monthly", "$rc_annual"]
+  },
+  "paywall": {
+    "monthly_price": "$3.99",
+    "yearly_price": "$29.99",
+    "yearly_discount": "37%",
+    "cta_text": "Upgrade to Pro",
+    "price_matches_notion": true
+  },
+  "status": "partial"
+}
