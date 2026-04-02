@@ -1,13 +1,71 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import { View, Text, ScrollView, Pressable, TextInput, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Minus, Plus, X, PawPrint } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
+import { Gesture, GestureDetector, GestureHandlerRootView } from 'react-native-gesture-handler';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
 import { insertLog, getCatById } from '@/utils/database';
 import type { HydrationLevel, ActivityLevel } from '@/types';
+
+function AppetiteSlider({ value, onChange, haptic }: { value: number; onChange: (v: number) => void; haptic: () => void }) {
+  const lastValue = useRef(value);
+
+  const pan = Gesture.Pan()
+    .onUpdate((e) => {
+      // Each ~50px of horizontal drag = 1 step
+      const delta = Math.round(e.translationX / 50);
+      const newVal = Math.min(5, Math.max(1, lastValue.current + delta));
+      if (newVal !== value) {
+        haptic();
+        onChange(newVal);
+      }
+    })
+    .onEnd(() => {
+      lastValue.current = value;
+    });
+
+  // Keep lastValue in sync when value changes from tap
+  useEffect(() => {
+    lastValue.current = value;
+  }, [value]);
+
+  return (
+    <GestureDetector gesture={pan}>
+      <View
+        style={{
+          flexDirection: 'row',
+          backgroundColor: Colors.background,
+          borderRadius: 16,
+          paddingVertical: 12,
+          paddingHorizontal: 16,
+          gap: 8,
+          borderWidth: 1,
+          borderColor: Colors.border,
+        }}
+      >
+        {[1, 2, 3, 4, 5].map((i) => (
+          <Pressable
+            key={i}
+            onPress={() => {
+              haptic();
+              onChange(i);
+            }}
+          >
+            <PawPrint
+              size={28}
+              color={Colors.accent}
+              fill={i <= value ? Colors.accent : 'transparent'}
+              style={{ opacity: i <= value ? 1 : 0.3 }}
+            />
+          </Pressable>
+        ))}
+      </View>
+    </GestureDetector>
+  );
+}
 
 export default function LogScreen() {
   const { t } = useTranslation();
@@ -195,40 +253,12 @@ export default function LogScreen() {
           </View>
         </View>
 
-        {/* Appetite */}
+        {/* Appetite — swipe left/right to adjust, tap still works */}
         <View style={{ gap: 12 }}>
           <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
             {t('log.appetite')}
           </Text>
-          <View
-            style={{
-              flexDirection: 'row',
-              backgroundColor: Colors.background,
-              borderRadius: 16,
-              paddingVertical: 12,
-              paddingHorizontal: 16,
-              gap: 8,
-              borderWidth: 1,
-              borderColor: Colors.border,
-            }}
-          >
-            {[1, 2, 3, 4, 5].map((i) => (
-              <Pressable
-                key={i}
-                onPress={() => {
-                  haptic();
-                  setAppetite(i);
-                }}
-              >
-                <PawPrint
-                  size={28}
-                  color={Colors.accent}
-                  fill={i <= appetite ? Colors.accent : 'transparent'}
-                  style={{ opacity: i <= appetite ? 1 : 0.3 }}
-                />
-              </Pressable>
-            ))}
-          </View>
+          <AppetiteSlider value={appetite} onChange={setAppetite} haptic={haptic} />
         </View>
 
         {/* Hydration */}
