@@ -8,14 +8,12 @@
     "scheme": "cattracker",
     "userInterfaceStyle": "light",
     "splash": {
-      "image": "./assets/splash-icon.png",
-      "resizeMode": "contain",
       "backgroundColor": "#FFF8F0"
     },
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "top.dramavision.cattracker",
-      "buildNumber": "3",
+      "buildNumber": "4",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false
       }
