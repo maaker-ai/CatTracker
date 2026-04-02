@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect, useCallback } from 'react';
-import { View, Text, ScrollView, Pressable, TextInput, Platform } from 'react-native';
+import { View, Text, ScrollView, Pressable, TextInput, Platform, KeyboardAvoidingView, Keyboard } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Minus, Plus, X, PawPrint } from 'lucide-react-native';
@@ -195,9 +195,12 @@ export default function LogScreen() {
         </Pressable>
       </View>
 
+      <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={{ flex: 1 }}>
       <ScrollView
         contentContainerStyle={{ paddingHorizontal: 20, paddingBottom: 32, gap: 24, paddingTop: 8 }}
         showsVerticalScrollIndicator={false}
+        keyboardDismissMode="on-drag"
+        keyboardShouldPersistTaps="handled"
       >
         {/* Litter Visits */}
         <View style={{ gap: 12 }}>
@@ -362,7 +365,9 @@ export default function LogScreen() {
             placeholder={t('log.notesPlaceholder')}
             placeholderTextColor={Colors.textTertiary}
             multiline
+            blurOnSubmit
             returnKeyType="done"
+            onSubmitEditing={() => Keyboard.dismiss()}
             style={{
               backgroundColor: Colors.background,
               borderRadius: 14,
@@ -405,6 +410,7 @@ export default function LogScreen() {
           </Text>
         </Pressable>
       </ScrollView>
+      </KeyboardAvoidingView>
       </View>
     </View>
   );
