@@ -37,6 +37,13 @@
       "expo-sqlite",
       "expo-localization",
       "expo-sharing"
-    ]
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "eb82af28-f730-4cd0-abbb-a0c924139702"
+      }
+    },
+    "owner": "maruipp"
   }
 }
