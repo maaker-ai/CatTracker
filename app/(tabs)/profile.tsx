@@ -11,7 +11,7 @@ import { getCatById, updateCat, getWeightRecords, insertWeightRecord } from '@/u
 import type { Cat as CatType, WeightRecord } from '@/types';
 
 export default function ProfileScreen() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const activeCatId = useAppStore((s) => s.activeCatId);
   const [cat, setCat] = useState<CatType | null>(null);
   const [weights, setWeights] = useState<WeightRecord[]>([]);
@@ -354,6 +354,7 @@ export default function ProfileScreen() {
                         value={editBirthday ? new Date(editBirthday + 'T00:00:00') : new Date()}
                         mode="date"
                         display="spinner"
+                        locale={i18n.language}
                         maximumDate={new Date()}
                         onChange={(_event, selectedDate) => {
                           if (Platform.OS === 'android') setShowDatePicker(false);

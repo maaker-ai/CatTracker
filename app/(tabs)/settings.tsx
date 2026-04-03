@@ -36,7 +36,7 @@ function formatReminderDate(date: Date): string {
 }
 
 export default function SettingsScreen() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const router = useRouter();
   const { reminders, toggleReminder, updateReminderDate, isPro, activeCatId } = useAppStore();
   const exportingRef = useRef(false);
@@ -232,6 +232,7 @@ export default function SettingsScreen() {
               value={pickerDate}
               mode="date"
               display="spinner"
+              locale={i18n.language}
               onChange={handleDateChange}
               minimumDate={new Date()}
             />
@@ -255,6 +256,7 @@ export default function SettingsScreen() {
             value={pickerDate}
             mode="date"
             display="default"
+            locale={i18n.language}
             onChange={handleDateChange}
             minimumDate={new Date()}
           />
