@@ -173,17 +173,5 @@ export async function seedDefaultCat(): Promise<number> {
     neutered: true,
   });
 
-  // Add weight records
-  const now = new Date();
-  for (let i = 5; i >= 0; i--) {
-    const d = new Date(now);
-    d.setMonth(d.getMonth() - i);
-    await insertWeightRecord({
-      catId,
-      weight: 3.8 + (5 - i) * 0.08 + (Math.random() * 0.1 - 0.05),
-      date: d.toISOString().slice(0, 10),
-    });
-  }
-
   return catId;
 }
