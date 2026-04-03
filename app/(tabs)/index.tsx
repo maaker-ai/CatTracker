@@ -1,13 +1,14 @@
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useRef, useEffect } from 'react';
 import { View, Text, ScrollView, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Footprints, Heart, Droplets, Zap, Sun, Cat as CatIcon, ClipboardPenLine } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming, withDelay, runOnJS } from 'react-native-reanimated';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { getTodayLog, getCatById, getLogs, getQuickLogCount, getQuickLogAverage, insertQuickLog } from '@/utils/database';
+import { getTodayLog, getCatById, getLogs, getQuickLogCount, getQuickLogAverage, insertQuickLog, deleteQuickLog } from '@/utils/database';
 import type { Cat, DailyLog, ActivityLevel } from '@/types';
 
 const ACTIVITY_I18N: Record<ActivityLevel, string> = {
@@ -44,6 +45,63 @@ export default function DashboardScreen() {
   const [bathroomAvg, setBathroomAvg] = useState(0);
   const [waterAvg, setWaterAvg] = useState(0);
 
+  // Undo toast state
+  const [toastInfo, setToastInfo] = useState<{ id: number; type: 'bathroom' | 'water' } | null>(null);
+  const toastTranslateY = useSharedValue(80);
+  const toastTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const toastAnimatedStyle = useAnimatedStyle(() => ({
+    transform: [{ translateY: toastTranslateY.value }],
+    opacity: toastTranslateY.value < 40 ? 1 : 0,
+  }));
+
+  const dismissToast = useCallback(() => {
+    if (toastTimerRef.current) {
+      clearTimeout(toastTimerRef.current);
+      toastTimerRef.current = null;
+    }
+    toastTranslateY.value = withTiming(80, { duration: 200 }, () => {
+      runOnJS(setToastInfo)(null);
+    });
+  }, [toastTranslateY]);
+
+  const showToast = useCallback((id: number, type: 'bathroom' | 'water') => {
+    // Clear previous timer
+    if (toastTimerRef.current) {
+      clearTimeout(toastTimerRef.current);
+      toastTimerRef.current = null;
+    }
+    // Reset position instantly then animate in
+    toastTranslateY.value = 80;
+    setToastInfo({ id, type });
+    toastTranslateY.value = withTiming(0, { duration: 250 });
+    toastTimerRef.current = setTimeout(() => {
+      dismissToast();
+    }, 3000);
+  }, [toastTranslateY, dismissToast]);
+
+  const handleUndo = useCallback(async () => {
+    if (!toastInfo || !activeCatId) return;
+    const { id, type } = toastInfo;
+    await deleteQuickLog(id);
+    const today = new Date().toISOString().slice(0, 10);
+    if (type === 'bathroom') {
+      const c = await getQuickLogCount(activeCatId, 'bathroom', today);
+      setBathroomCount(c);
+    } else {
+      const c = await getQuickLogCount(activeCatId, 'water', today);
+      setWaterCount(c);
+    }
+    dismissToast();
+  }, [toastInfo, activeCatId, dismissToast]);
+
+  // Cleanup timer on unmount
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) clearTimeout(toastTimerRef.current);
+    };
+  }, []);
+
   const loadData = useCallback(async () => {
     if (!activeCatId) return;
     const c = await getCatById(activeCatId);
@@ -78,7 +136,7 @@ export default function DashboardScreen() {
   const handleQuickLog = async (type: 'bathroom' | 'water') => {
     if (!activeCatId) return;
     haptic();
-    await insertQuickLog(activeCatId, type);
+    const insertedId = await insertQuickLog(activeCatId, type);
     const today = new Date().toISOString().slice(0, 10);
     if (type === 'bathroom') {
       const c = await getQuickLogCount(activeCatId, 'bathroom', today);
@@ -87,6 +145,7 @@ export default function DashboardScreen() {
       const c = await getQuickLogCount(activeCatId, 'water', today);
       setWaterCount(c);
     }
+    showToast(insertedId, type);
   };
 
   const catName = cat?.name ?? t('common.loading');
@@ -477,6 +536,54 @@ export default function DashboardScreen() {
           </Text>
         </Pressable>
       </ScrollView>
+
+      {/* Undo Toast */}
+      {toastInfo && (
+        <Animated.View
+          style={[
+            {
+              position: 'absolute',
+              bottom: 90,
+              left: 20,
+              right: 20,
+              backgroundColor: Colors.textPrimary,
+              borderRadius: 14,
+              paddingVertical: 14,
+              paddingHorizontal: 16,
+              flexDirection: 'row',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.15,
+              shadowRadius: 12,
+              elevation: 6,
+            },
+            toastAnimatedStyle,
+          ]}
+        >
+          <Text
+            style={{
+              fontFamily: 'Inter-Medium',
+              fontSize: 14,
+              color: '#FFFFFF',
+            }}
+          >
+            {toastInfo.type === 'bathroom' ? t('dashboard.bathroomPlus1') : t('dashboard.waterPlus1')}
+          </Text>
+          <Pressable onPress={handleUndo} hitSlop={8}>
+            <Text
+              style={{
+                fontFamily: 'Inter-Bold',
+                fontSize: 14,
+                color: Colors.accent,
+              }}
+            >
+              {t('dashboard.undo')}
+            </Text>
+          </Pressable>
+        </Animated.View>
+      )}
     </SafeAreaView>
   );
 }

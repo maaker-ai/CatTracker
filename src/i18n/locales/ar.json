@@ -35,7 +35,10 @@
     "tapToLog": "انقر للتسجيل",
     "normal": "طبيعي",
     "belowAvg": "أقل من المتوسط",
-    "aboveAvg": "أعلى من المتوسط"
+    "aboveAvg": "أعلى من المتوسط",
+    "bathroomPlus1": "الحمام +1",
+    "waterPlus1": "الماء +1",
+    "undo": "تراجع"
   },
   "timeline": {
     "title": "التاريخ",

@@ -35,7 +35,10 @@
     "tapToLog": "Tap to log",
     "normal": "Normal",
     "belowAvg": "Below avg",
-    "aboveAvg": "Above avg"
+    "aboveAvg": "Above avg",
+    "bathroomPlus1": "Bathroom +1",
+    "waterPlus1": "Water +1",
+    "undo": "Undo"
   },
   "timeline": {
     "title": "Timeline",

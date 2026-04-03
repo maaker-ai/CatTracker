@@ -35,7 +35,10 @@
     "tapToLog": "탭하여 기록",
     "normal": "정상",
     "belowAvg": "평균 이하",
-    "aboveAvg": "평균 이상"
+    "aboveAvg": "평균 이상",
+    "bathroomPlus1": "화장실 +1",
+    "waterPlus1": "음수 +1",
+    "undo": "실행취소"
   },
   "timeline": {
     "title": "타임라인",

@@ -35,7 +35,10 @@
     "tapToLog": "Нажмите для записи",
     "normal": "Норма",
     "belowAvg": "Ниже среднего",
-    "aboveAvg": "Выше среднего"
+    "aboveAvg": "Выше среднего",
+    "bathroomPlus1": "Туалет +1",
+    "waterPlus1": "Вода +1",
+    "undo": "Отменить"
   },
   "timeline": {
     "title": "Хроника",

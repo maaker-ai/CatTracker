@@ -35,7 +35,10 @@
     "tapToLog": "Tippen zum Erfassen",
     "normal": "Normal",
     "belowAvg": "Unter Durchschnitt",
-    "aboveAvg": "Über Durchschnitt"
+    "aboveAvg": "Über Durchschnitt",
+    "bathroomPlus1": "Toilette +1",
+    "waterPlus1": "Wasser +1",
+    "undo": "Rückgängig"
   },
   "timeline": {
     "title": "Verlauf",

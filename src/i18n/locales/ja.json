@@ -35,7 +35,10 @@
     "tapToLog": "タップして記録",
     "normal": "正常",
     "belowAvg": "平均以下",
-    "aboveAvg": "平均以上"
+    "aboveAvg": "平均以上",
+    "bathroomPlus1": "トイレ +1",
+    "waterPlus1": "水分 +1",
+    "undo": "元に戻す"
   },
   "timeline": {
     "title": "タイムライン",

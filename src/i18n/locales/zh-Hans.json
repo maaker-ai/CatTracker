@@ -35,7 +35,10 @@
     "tapToLog": "点击记录",
     "normal": "正常",
     "belowAvg": "低于均值",
-    "aboveAvg": "高于均值"
+    "aboveAvg": "高于均值",
+    "bathroomPlus1": "如厕 +1",
+    "waterPlus1": "饮水 +1",
+    "undo": "撤销"
   },
   "timeline": {
     "title": "时间线",

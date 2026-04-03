@@ -35,7 +35,10 @@
     "tapToLog": "Ketuk untuk mencatat",
     "normal": "Normal",
     "belowAvg": "Di bawah rata-rata",
-    "aboveAvg": "Di atas rata-rata"
+    "aboveAvg": "Di atas rata-rata",
+    "bathroomPlus1": "Toilet +1",
+    "waterPlus1": "Air +1",
+    "undo": "Batalkan"
   },
   "timeline": {
     "title": "Riwayat",

@@ -35,7 +35,10 @@
     "tapToLog": "點擊記錄",
     "normal": "正常",
     "belowAvg": "低於均值",
-    "aboveAvg": "高於均值"
+    "aboveAvg": "高於均值",
+    "bathroomPlus1": "如廁 +1",
+    "waterPlus1": "飲水 +1",
+    "undo": "撤銷"
   },
   "timeline": {
     "title": "時間軸",

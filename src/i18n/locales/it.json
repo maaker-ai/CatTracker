@@ -35,7 +35,10 @@
     "tapToLog": "Tocca per registrare",
     "normal": "Normale",
     "belowAvg": "Sotto la media",
-    "aboveAvg": "Sopra la media"
+    "aboveAvg": "Sopra la media",
+    "bathroomPlus1": "Bagno +1",
+    "waterPlus1": "Acqua +1",
+    "undo": "Annulla"
   },
   "timeline": {
     "title": "Storico",

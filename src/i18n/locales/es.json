@@ -35,7 +35,10 @@
     "tapToLog": "Toca para registrar",
     "normal": "Normal",
     "belowAvg": "Bajo el promedio",
-    "aboveAvg": "Sobre el promedio"
+    "aboveAvg": "Sobre el promedio",
+    "bathroomPlus1": "Baño +1",
+    "waterPlus1": "Agua +1",
+    "undo": "Deshacer"
   },
   "timeline": {
     "title": "Historial",

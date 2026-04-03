@@ -212,6 +212,20 @@ export async function getQuickLogHistory(catId: number, type: 'bathroom' | 'wate
   );
 }
 
+export async function getLatestWeight(catId: number): Promise<number | null> {
+  const database = await getDatabase();
+  const row = await database.getFirstAsync<{ weight: number }>(
+    'SELECT weight FROM weight_records WHERE catId = ? ORDER BY date DESC LIMIT 1',
+    [catId]
+  );
+  return row?.weight ?? null;
+}
+
+export async function deleteQuickLog(id: number): Promise<void> {
+  const database = await getDatabase();
+  await database.runAsync('DELETE FROM quick_logs WHERE id = ?', [id]);
+}
+
 // --- Seed data for first launch ---
 
 export async function seedDefaultCat(): Promise<number> {

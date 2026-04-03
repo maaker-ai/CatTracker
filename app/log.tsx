@@ -6,7 +6,7 @@ import { X, PawPrint, Info } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { insertLog, getCatById, getTodayLog } from '@/utils/database';
+import { insertLog, getCatById, getTodayLog, getLatestWeight } from '@/utils/database';
 import type { ActivityLevel } from '@/types';
 
 function AppetiteSlider({ value, onChange, haptic }: { value: number; onChange: (v: number) => void; haptic: () => void }) {
@@ -78,6 +78,7 @@ export default function LogScreen() {
   const [activity, setActivity] = useState<ActivityLevel>('Active');
   const [weight, setWeight] = useState('');
   const [notes, setNotes] = useState('');
+  const [weightPlaceholder, setWeightPlaceholder] = useState('0.0');
   const savingRef = useRef(false);
 
   const ACTIVITY_OPTIONS: { value: ActivityLevel; label: string }[] = [
@@ -99,6 +100,9 @@ export default function LogScreen() {
           setActivity(log.activity as ActivityLevel);
           setNotes(log.notes || '');
         }
+      });
+      getLatestWeight(activeCatId).then((w) => {
+        if (w !== null) setWeightPlaceholder(w.toFixed(1));
       });
     }, [activeCatId])
   );
@@ -289,7 +293,7 @@ export default function LogScreen() {
             <TextInput
               value={weight}
               onChangeText={setWeight}
-              placeholder="4.2"
+              placeholder={weightPlaceholder}
               placeholderTextColor={Colors.textTertiary}
               keyboardType="decimal-pad"
               returnKeyType="done"

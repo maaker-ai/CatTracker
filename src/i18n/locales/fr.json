@@ -35,7 +35,10 @@
     "tapToLog": "Appuyez pour enregistrer",
     "normal": "Normal",
     "belowAvg": "Sous la moyenne",
-    "aboveAvg": "Au-dessus de la moyenne"
+    "aboveAvg": "Au-dessus de la moyenne",
+    "bathroomPlus1": "Toilettes +1",
+    "waterPlus1": "Eau +1",
+    "undo": "Annuler"
   },
   "timeline": {
     "title": "Chronologie",
