@@ -147,6 +147,10 @@ function check(file, content) {
   }
 }
 
+// --- Rule 7: 有通知/提醒 UI 但没调用通知功能 ---
+let reminderUIFiles = [];  // 有 Switch + reminder 关键词的文件
+let notificationImplFiles = [];  // 引用了通知调度的文件
+
 // 执行检查
 for (const file of files) {
   const absPath = path.isAbsolute(file) ? file : path.resolve(file);
@@ -155,8 +159,33 @@ for (const file of files) {
   try {
     const content = fs.readFileSync(absPath, 'utf-8');
     check(absPath, content);
+
+    // Rule 7: 收集通知相关信息
+    const lower = content.toLowerCase();
+    const hasSwitch = /<Switch[\s\S]*?\/>/g.test(content);
+    const hasReminderKeyword = /reminder|notification|提醒|通知/.test(lower);
+    const hasNotifCode = /schedulenotif|schedulereminder|expo-notifications|cancelnotif|cancelreminder/i.test(content);
+
+    if (hasSwitch && hasReminderKeyword) {
+      reminderUIFiles.push(absPath);
+      if (hasNotifCode) {
+        notificationImplFiles.push(absPath);
+      }
+    }
   } catch (e) {
     // 忽略读取错误
+  }
+}
+
+// Rule 7: 有提醒开关 UI 的文件必须有通知调度代码
+for (const uiFile of reminderUIFiles) {
+  if (!notificationImplFiles.includes(uiFile)) {
+    violations.push({
+      file: uiFile,
+      line: 0,
+      rule: '有提醒/通知开关 UI 但该文件未调用通知调度函数',
+      fix: '开关必须绑定真实通知逻辑（scheduleReminder/cancelReminder），假开关 = 欺骗用户。需要 expo-notifications + 权限请求 + 延迟调度',
+    });
   }
 }
 
