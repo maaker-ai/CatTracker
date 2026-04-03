@@ -144,6 +144,14 @@
     "deworming": "Дегельминтизация",
     "checkup": "Ежегодный осмотр"
   },
+  "notifications": {
+    "vaccineBody": "Пора на вакцинацию для {{name}}",
+    "dewormingBody": "Пора на дегельминтизацию для {{name}}",
+    "checkupBody": "Пора на ежегодный осмотр для {{name}}",
+    "permissionDeniedTitle": "Требуется разрешение на уведомления",
+    "permissionDeniedMessage": "Для напоминаний необходимо разрешение на уведомления. Пожалуйста, включите его в настройках.",
+    "openSettings": "Открыть настройки"
+  },
   "privacy": {
     "lastUpdated": "Последнее обновление: апрель 2026",
     "dataCollectionTitle": "Сбор данных",

@@ -144,6 +144,14 @@
     "deworming": "Obat Cacing",
     "checkup": "Pemeriksaan Tahunan"
   },
+  "notifications": {
+    "vaccineBody": "Waktunya vaksin untuk {{name}}",
+    "dewormingBody": "Waktunya obat cacing untuk {{name}}",
+    "checkupBody": "Waktunya pemeriksaan tahunan untuk {{name}}",
+    "permissionDeniedTitle": "Izin Notifikasi Diperlukan",
+    "permissionDeniedMessage": "Izin notifikasi diperlukan untuk pengingat. Silakan aktifkan di Pengaturan.",
+    "openSettings": "Buka Pengaturan"
+  },
   "privacy": {
     "lastUpdated": "Terakhir diperbarui: April 2026",
     "dataCollectionTitle": "Pengumpulan Data",

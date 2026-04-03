@@ -1,0 +1,197 @@
+{
+  "platform": "ios",
+  "locale": "en-US",
+  "title": "CatTracker - Cat Health Log",
+  "subtitle": "Daily Pet Diary & Weight",
+  "keywords": "pet,diary,weight,food,water,litter,vet,report,reminder,mood,kitten,wellness,care,journal",
+  "promotional_text": "Track your cat's health in seconds. Log meals, water, litter visits, mood & weight -- all stored privately on your device. No account needed.",
+  "description": "Worried you might miss early signs of your cat's health changes? CatTracker makes daily health logging effortless -- just tap, record, done.\n\nWhether it's appetite dips, litter box changes, or weight fluctuations, CatTracker helps you spot patterns before they become problems. Share clear PDF reports with your vet so nothing gets lost in translation.\n\nKEY FEATURES\n• One-Tap Daily Log -- Record bathroom visits, appetite score, hydration level, activity, and mood in under 30 seconds\n• Weight Tracker -- Chart weight trends over time with simple visual graphs\n• Health Timeline -- Scroll through your cat's complete health history at a glance\n• Smart Reminders -- Never miss vaccines, deworming, or annual checkups\n• 100% Private -- All data stays on your device. No account, no cloud, no tracking\n\nPRO FEATURES\n• Multi-Cat Support -- Track every cat in your household\n• PDF Vet Reports -- Export professional health summaries for vet visits\n• Advanced Trend Charts -- Deeper insights into long-term health patterns\n• Custom Reminders -- Set personalized health alerts\n\nBUILT FOR CAT PARENTS WHO CARE\nCatTracker is designed by cat lovers who believe health tracking should be simple, private, and fast. No bloated features, no social feeds -- just the essentials your cat needs.\n\nAvailable in 12 languages including English, Chinese, Japanese, Korean, German, French, Spanish, Russian, Italian, Arabic, and Indonesian.\n\nDownload CatTracker today and give your cat the care diary they deserve.",
+  "whats_new": "• Improved daily log form with pre-filled today's data\n• Fixed keyboard overlap on notes input\n• Better layout for health log modal\n• Bug fixes and performance improvements",
+  "screenshot_captions": [
+    "Track Daily Health in Seconds",
+    "Log Meals, Water & Litter Visits",
+    "See Health Trends Over Time",
+    "Your Cat's Complete Profile",
+    "Reminders & Pro Features"
+  ],
+  "keyword_strategy": {
+    "primary": ["cat health tracker", "cat diary", "pet health log"],
+    "secondary": ["cat weight tracker", "cat food log", "litter tracker", "pet diary", "cat care"],
+    "long_tail": ["cat health journal", "cat vet report", "cat wellness tracker", "kitten health log", "cat litter box tracker"]
+  },
+  "competitor_insights": {
+    "analyzed_count": 10,
+    "keyword_gaps": [
+      "diary (most competitors use 'tracker' or 'log', few use 'diary')",
+      "litter (competitors rarely target litter/bathroom tracking specifically)",
+      "mood (no competitor highlights mood tracking in keywords)",
+      "kitten (underserved segment -- kitten-specific health tracking)",
+      "private/offline (no competitor positions on privacy as a keyword)"
+    ],
+    "positioning": "The fastest, most private cat health diary -- no account, no cloud, just instant daily logging stored 100% on your device."
+  },
+  "validation": {
+    "title_chars": 27,
+    "subtitle_chars": 24,
+    "keywords_chars": 88,
+    "promo_text_chars": 141,
+    "description_chars": 1494,
+    "all_within_limits": true
+  },
+  "localizations": {
+    "zh-Hans": {
+      "title": "CatTracker - 猫咪健康日记",
+      "subtitle": "每日记录·体重追踪",
+      "keywords": "猫,健康,追踪,宠物,日记,体重,喂食,饮水,猫砂,兽医,报告,提醒,心情,小猫",
+      "promotional_text": "秒速记录猫咪每日健康。食量、饮水、如厕、心情、体重一键记录，数据完全本地存储，无需注册账号。",
+      "description": "担心错过猫咪健康变化的早期信号？CatTracker 让每日健康记录变得毫不费力——点一点，记下来，搞定。\n\n无论是食欲下降、如厕异常，还是体重波动，CatTracker 帮你在问题恶化前发现规律。导出清晰的 PDF 报告给兽医，让每次看诊都有据可查。\n\n核心功能\n• 一键日志 - 30秒内记录如厕次数、食欲评分、饮水量、活动量和心情\n• 体重追踪 - 用直观图表查看体重变化趋势\n• 健康时间线 - 一目了然地浏览猫咪完整健康记录\n• 智能提醒 - 不错过疫苗、驱虫和年度体检\n• 100% 隐私 - 所有数据仅存储在你的设备上，无需账号，无云端\n\n专业版功能\n• 多猫支持 - 追踪家中每只猫咪\n• PDF 兽医报告 - 导出专业健康摘要\n• 高级趋势图表 - 更深入的长期健康洞察\n• 自定义提醒 - 设置个性化健康提醒\n\n支持 12 种语言。立即下载，给你的猫咪最好的健康守护。",
+      "screenshot_captions": [
+        "秒速记录每日健康",
+        "饮食·饮水·如厕一键记录",
+        "健康趋势一目了然",
+        "猫咪完整档案",
+        "提醒与专业版功能"
+      ]
+    },
+    "zh-Hant": {
+      "title": "CatTracker - 貓咪健康日記",
+      "subtitle": "每日紀錄·體重追蹤",
+      "keywords": "貓,健康,追蹤,寵物,日記,體重,餵食,飲水,貓砂,獸醫,報告,提醒,心情,小貓",
+      "promotional_text": "秒速紀錄貓咪每日健康。食量、飲水、如廁、心情、體重一鍵紀錄，資料完全本地儲存，無需註冊帳號。",
+      "description": "擔心錯過貓咪健康變化的早期訊號？CatTracker 讓每日健康紀錄輕鬆完成——點一點，記下來，搞定。\n\n無論是食慾下降、如廁異常，還是體重波動，CatTracker 幫你在問題惡化前發現規律。匯出清晰的 PDF 報告給獸醫，讓每次看診都有據可查。\n\n核心功能\n• 一鍵日誌 - 30秒內紀錄如廁次數、食慾評分、飲水量、活動量和心情\n• 體重追蹤 - 用直觀圖表查看體重變化趨勢\n• 健康時間線 - 一目了然地瀏覽貓咪完整健康紀錄\n• 智慧提醒 - 不錯過疫苗、驅蟲和年度體檢\n• 100% 隱私 - 所有資料僅儲存在你的裝置上，無需帳號，無雲端\n\n專業版功能\n• 多貓支援 - 追蹤家中每隻貓咪\n• PDF 獸醫報告 - 匯出專業健康摘要\n• 進階趨勢圖表 - 更深入的長期健康洞察\n• 自訂提醒 - 設定個人化健康提醒\n\n支援 12 種語言。立即下載，給你的貓咪最好的健康守護。",
+      "screenshot_captions": [
+        "秒速紀錄每日健康",
+        "飲食·飲水·如廁一鍵紀錄",
+        "健康趨勢一目了然",
+        "貓咪完整檔案",
+        "提醒與專業版功能"
+      ]
+    },
+    "ja": {
+      "title": "CatTracker - 猫の健康日記",
+      "subtitle": "毎日の記録と体重管理",
+      "keywords": "猫,健康,トラッカー,ペット,日記,体重,食事,水分,トイレ,獣医,レポート,リマインダー,気分,子猫",
+      "promotional_text": "猫の毎日の健康を数秒で記録。食事・水分・トイレ・気分・体重をワンタップで記録、データは完全にデバイス内保存。アカウント不要。",
+      "description": "猫の健康変化の初期サインを見逃していませんか？CatTracker なら毎日の健康記録がとても簡単——タップして、記録して、完了。\n\n食欲の低下、トイレの変化、体重の変動。CatTracker は問題が大きくなる前にパターンを見つけるお手伝いをします。わかりやすい PDF レポートを獣医さんと共有できます。\n\n主な機能\n• ワンタップ日記 - 30秒でトイレ回数・食欲・水分量・活動量・気分を記録\n• 体重トラッカー - グラフで体重の推移を視覚化\n• 健康タイムライン - 猫の健康履歴を一目で確認\n• スマートリマインダー - ワクチン・駆虫・年次健診を逃さない\n• 100% プライバシー - すべてのデータはデバイス内のみ保存\n\nPro 機能\n• 複数猫サポート - すべての猫を一つのアプリで管理\n• PDF 獣医レポート - プロフェッショナルな健康サマリーを出力\n• 高度なトレンドチャート - 長期的な健康の変化を深く分析\n• カスタムリマインダー - 個別の健康アラートを設定\n\n12言語対応。今すぐダウンロードして、愛猫に最高のケア日記を。",
+      "screenshot_captions": [
+        "毎日の健康を数秒で記録",
+        "食事・水分・トイレをワンタップ",
+        "健康トレンドを一目で把握",
+        "猫の完全プロフィール",
+        "リマインダーとPro機能"
+      ]
+    },
+    "ko": {
+      "title": "CatTracker - 고양이 건강일기",
+      "subtitle": "매일 기록·체중 추적",
+      "keywords": "고양이,건강,트래커,반려묘,일기,체중,사료,음수량,화장실,수의사,리포트,알림,기분,아기고양이",
+      "promotional_text": "고양이 매일 건강을 몇 초 만에 기록하세요. 식사·음수·화장실·기분·체중을 원탭으로 기록, 데이터는 기기에만 저장. 계정 불필요.",
+      "description": "고양이 건강 변화의 초기 신호를 놓치고 계신가요? CatTracker로 매일 건강 기록을 간편하게 — 탭하고, 기록하고, 끝.\n\n식욕 저하, 화장실 변화, 체중 변동 등 문제가 커지기 전에 패턴을 발견하세요. 깔끔한 PDF 리포트를 수의사에게 공유할 수 있습니다.\n\n주요 기능\n• 원탭 일지 - 30초 만에 화장실·식욕·음수량·활동량·기분 기록\n• 체중 트래커 - 그래프로 체중 변화 추이 확인\n• 건강 타임라인 - 고양이 전체 건강 기록을 한눈에\n• 스마트 알림 - 백신·구충·연간 검진을 놓치지 않기\n• 100% 프라이버시 - 모든 데이터는 기기에만 저장\n\nPro 기능\n• 다묘 지원 - 모든 고양이를 하나의 앱에서 관리\n• PDF 수의사 리포트 - 전문적인 건강 요약 내보내기\n• 고급 트렌드 차트 - 장기 건강 패턴 심층 분석\n• 맞춤 알림 - 개인화된 건강 알림 설정\n\n12개 언어 지원. 지금 다운로드하고 사랑하는 고양이에게 최고의 건강 일기를.",
+      "screenshot_captions": [
+        "매일 건강을 몇 초 만에 기록",
+        "식사·음수·화장실 원탭 기록",
+        "건강 트렌드를 한눈에",
+        "고양이 완전 프로필",
+        "알림과 Pro 기능"
+      ]
+    },
+    "de": {
+      "title": "CatTracker - Katzen Gesundheit",
+      "subtitle": "Tägliches Tagebuch & Gewicht",
+      "keywords": "Katze,Haustier,Tagebuch,Gewicht,Futter,Wasser,Katzenklo,Tierarzt,Bericht,Erinnerung,Stimmung",
+      "promotional_text": "Erfasse die Gesundheit deiner Katze in Sekunden. Mahlzeiten, Wasser, Toilettenbesuche, Stimmung & Gewicht -- alles privat auf deinem Gerät gespeichert. Kein Konto nötig.",
+      "description": "Sorgen, frühe Anzeichen von Gesundheitsveränderungen bei deiner Katze zu übersehen? CatTracker macht die tägliche Gesundheitserfassung mühelos -- tippen, erfassen, fertig.\n\nOb Appetitveränderungen, Katzenklo-Auffälligkeiten oder Gewichtsschwankungen -- CatTracker hilft dir, Muster zu erkennen, bevor sie zu Problemen werden. Teile übersichtliche PDF-Berichte mit deinem Tierarzt.\n\nHAUPTFUNKTIONEN\n• Ein-Tipp-Tagebuch - Toilettenbesuche, Appetit, Wasseraufnahme, Aktivität und Stimmung in 30 Sekunden erfassen\n• Gewichts-Tracker - Gewichtstrends mit Diagrammen verfolgen\n• Gesundheits-Timeline - Die komplette Gesundheitshistorie auf einen Blick\n• Smarte Erinnerungen - Impfungen, Entwurmung und Jahrescheck nie vergessen\n• 100% Privat - Alle Daten bleiben auf deinem Gerät\n\nPRO FUNKTIONEN\n• Mehrkatzen-Support - Alle Katzen in einer App\n• PDF-Tierarztberichte - Professionelle Gesundheitszusammenfassungen exportieren\n• Erweiterte Trendcharts - Tiefere Einblicke in langfristige Muster\n• Individuelle Erinnerungen - Personalisierte Gesundheitsbenachrichtigungen\n\nIn 12 Sprachen verfügbar. Jetzt herunterladen und deiner Katze das Gesundheitstagebuch geben, das sie verdient.",
+      "screenshot_captions": [
+        "Tägliche Gesundheit in Sekunden",
+        "Futter, Wasser & Klo erfassen",
+        "Gesundheitstrends auf einen Blick",
+        "Das komplette Katzenprofil",
+        "Erinnerungen & Pro-Funktionen"
+      ]
+    },
+    "fr": {
+      "title": "CatTracker - Santé du Chat",
+      "subtitle": "Journal quotidien & poids",
+      "keywords": "chat,santé,animal,journal,poids,nourriture,eau,litière,vétérinaire,rapport,rappel,humeur,chaton",
+      "promotional_text": "Suivez la santé de votre chat en quelques secondes. Repas, eau, litière, humeur & poids -- tout stocké en privé sur votre appareil. Aucun compte nécessaire.",
+      "description": "Peur de manquer les premiers signes de changement de santé de votre chat ? CatTracker rend le suivi quotidien sans effort -- tapez, enregistrez, c'est fait.\n\nBaisse d'appétit, changements de litière ou fluctuations de poids -- CatTracker vous aide à repérer les tendances avant qu'elles ne deviennent des problèmes. Partagez des rapports PDF clairs avec votre vétérinaire.\n\nFONCTIONNALITÉS\n• Journal en un tap - Enregistrez litière, appétit, hydratation, activité et humeur en 30 secondes\n• Suivi du poids - Visualisez les tendances avec des graphiques simples\n• Timeline santé - Parcourez l'historique complet d'un coup d'œil\n• Rappels intelligents - Vaccins, vermifuge et bilans annuels\n• 100% Privé - Toutes les données restent sur votre appareil\n\nFONCTIONS PRO\n• Support multi-chats - Suivez tous vos chats\n• Rapports PDF véto - Exportez des résumés professionnels\n• Graphiques avancés - Analyses approfondies sur le long terme\n• Rappels personnalisés - Alertes santé sur mesure\n\nDisponible en 12 langues. Téléchargez maintenant et offrez à votre chat le journal santé qu'il mérite.",
+      "screenshot_captions": [
+        "Suivi santé quotidien en secondes",
+        "Repas, eau & litière en un tap",
+        "Tendances santé en un coup d'œil",
+        "Le profil complet de votre chat",
+        "Rappels et fonctions Pro"
+      ]
+    },
+    "es": {
+      "title": "CatTracker - Salud del Gato",
+      "subtitle": "Diario diario y peso",
+      "keywords": "gato,salud,mascota,diario,peso,comida,agua,arena,veterinario,informe,recordatorio,humor,gatito",
+      "promotional_text": "Registra la salud de tu gato en segundos. Comidas, agua, arenero, humor y peso -- todo almacenado en privado en tu dispositivo. Sin cuenta necesaria.",
+      "description": "¿Preocupado por no detectar cambios tempranos en la salud de tu gato? CatTracker hace que el registro diario sea sin esfuerzo -- toca, registra, listo.\n\nYa sea baja de apetito, cambios en el arenero o fluctuaciones de peso, CatTracker te ayuda a detectar patrones antes de que se conviertan en problemas. Comparte informes PDF claros con tu veterinario.\n\nCARACTERÍSTICAS\n• Registro en un toque - Registra arenero, apetito, hidratación, actividad y humor en 30 segundos\n• Rastreador de peso - Visualiza tendencias con gráficos simples\n• Timeline de salud - Revisa el historial completo de un vistazo\n• Recordatorios inteligentes - Vacunas, desparasitación y chequeos anuales\n• 100% Privado - Todos los datos permanecen en tu dispositivo\n\nFUNCIONES PRO\n• Soporte multi-gato - Rastrea todos tus gatos en una app\n• Informes PDF veterinarios - Exporta resúmenes profesionales\n• Gráficos avanzados - Análisis profundos de tendencias a largo plazo\n• Recordatorios personalizados - Alertas de salud a medida\n\nDisponible en 12 idiomas. Descarga ahora y dale a tu gato el diario de salud que merece.",
+      "screenshot_captions": [
+        "Registra la salud diaria en segundos",
+        "Comida, agua y arenero en un toque",
+        "Tendencias de salud de un vistazo",
+        "El perfil completo de tu gato",
+        "Recordatorios y funciones Pro"
+      ]
+    },
+    "ru": {
+      "title": "CatTracker - Здоровье Кошки",
+      "subtitle": "Ежедневный дневник и вес",
+      "keywords": "кошка,здоровье,питомец,дневник,вес,корм,вода,лоток,ветеринар,отчёт,напоминание,настроение,котёнок",
+      "promotional_text": "Отслеживайте здоровье кошки за секунды. Еда, вода, лоток, настроение и вес -- всё хранится только на вашем устройстве. Без регистрации.",
+      "description": "Боитесь пропустить ранние признаки изменений в здоровье кошки? CatTracker делает ежедневный учёт здоровья простым -- нажали, записали, готово.\n\nСнижение аппетита, изменения в туалете или колебания веса -- CatTracker помогает заметить закономерности до того, как они станут проблемой. Делитесь понятными PDF-отчётами с ветеринаром.\n\nОСНОВНЫЕ ФУНКЦИИ\n• Запись в одно касание - Лоток, аппетит, вода, активность и настроение за 30 секунд\n• Трекер веса - Графики изменения веса\n• Хронология здоровья - Вся история здоровья одним взглядом\n• Умные напоминания - Прививки, дегельминтизация и ежегодные осмотры\n• 100% Приватность - Все данные только на вашем устройстве\n\nPRO ФУНКЦИИ\n• Несколько кошек - Все кошки в одном приложении\n• PDF-отчёты для ветеринара - Экспорт профессиональных сводок\n• Продвинутые графики - Глубокий анализ долгосрочных тенденций\n• Настраиваемые напоминания - Персональные уведомления о здоровье\n\nДоступно на 12 языках. Скачайте сейчас и подарите вашей кошке дневник здоровья, которого она заслуживает.",
+      "screenshot_captions": [
+        "Записывайте здоровье за секунды",
+        "Еда, вода и лоток одним касанием",
+        "Тренды здоровья с первого взгляда",
+        "Полный профиль вашей кошки",
+        "Напоминания и Pro-функции"
+      ]
+    },
+    "it": {
+      "title": "CatTracker - Salute del Gatto",
+      "subtitle": "Diario quotidiano e peso",
+      "keywords": "gatto,salute,animale,diario,peso,cibo,acqua,lettiera,veterinario,rapporto,promemoria,umore",
+      "promotional_text": "Monitora la salute del tuo gatto in pochi secondi. Pasti, acqua, lettiera, umore e peso -- tutto memorizzato in privato sul tuo dispositivo. Nessun account necessario.",
+      "description": "Paura di non notare i primi segnali di cambiamento nella salute del tuo gatto? CatTracker rende il monitoraggio quotidiano semplicissimo -- tocca, registra, fatto.\n\nCalo di appetito, cambiamenti nella lettiera o variazioni di peso -- CatTracker ti aiuta a individuare i pattern prima che diventino problemi. Condividi report PDF chiari con il tuo veterinario.\n\nFUNZIONALITÀ\n• Diario in un tap - Registra lettiera, appetito, idratazione, attività e umore in 30 secondi\n• Tracker del peso - Visualizza le tendenze con grafici semplici\n• Timeline della salute - Scorri la cronologia completa a colpo d'occhio\n• Promemoria intelligenti - Vaccini, sverminazione e controlli annuali\n• 100% Privato - Tutti i dati restano sul tuo dispositivo\n\nFUNZIONI PRO\n• Supporto multi-gatto - Monitora tutti i tuoi gatti\n• Report PDF veterinari - Esporta riepiloghi professionali\n• Grafici avanzati - Analisi approfondite dei trend a lungo termine\n• Promemoria personalizzati - Avvisi salute su misura\n\nDisponibile in 12 lingue. Scarica ora e regala al tuo gatto il diario della salute che merita.",
+      "screenshot_captions": [
+        "Monitora la salute in pochi secondi",
+        "Cibo, acqua e lettiera in un tap",
+        "Tendenze salute a colpo d'occhio",
+        "Il profilo completo del tuo gatto",
+        "Promemoria e funzioni Pro"
+      ]
+    },
+    "ar": {
+      "title": "CatTracker - صحة القطة",
+      "subtitle": "مذكرة يومية والوزن",
+      "keywords": "قطة,صحة,متتبع,حيوان,مذكرة,وزن,طعام,ماء,صندوق,بيطري,تقرير,تذكير,مزاج,قطيطة",
+      "promotional_text": "تتبع صحة قطتك في ثوانٍ. الوجبات والماء وصندوق الرمل والمزاج والوزن -- كل شيء مخزّن بخصوصية على جهازك. بدون حساب.",
+      "description": "قلق من فقدان العلامات المبكرة لتغيرات صحة قطتك؟ CatTracker يجعل التسجيل اليومي سهلاً -- انقر، سجّل، انتهى.\n\nسواء كان انخفاض الشهية أو تغيرات صندوق الرمل أو تقلبات الوزن، CatTracker يساعدك على اكتشاف الأنماط قبل أن تصبح مشاكل. شارك تقارير PDF واضحة مع طبيبك البيطري.\n\nالمميزات\n• سجل بنقرة واحدة - سجّل صندوق الرمل والشهية والماء والنشاط والمزاج في 30 ثانية\n• متتبع الوزن - تتبع اتجاهات الوزن بالرسوم البيانية\n• جدول زمني صحي - استعرض السجل الصحي الكامل بنظرة\n• تذكيرات ذكية - لا تفوّت التطعيمات والفحوصات السنوية\n• خصوصية 100% - جميع البيانات على جهازك فقط\n\nمميزات Pro\n• دعم قطط متعددة - تتبع كل قططك في تطبيق واحد\n• تقارير PDF بيطرية - تصدير ملخصات صحية احترافية\n• رسوم بيانية متقدمة - تحليل معمّق للاتجاهات طويلة المدى\n• تذكيرات مخصصة - تنبيهات صحية مخصصة\n\nمتوفر بـ 12 لغة. حمّل الآن وامنح قطتك مذكرة الصحة التي تستحقها.",
+      "screenshot_captions": [
+        "تتبع الصحة اليومية في ثوانٍ",
+        "الطعام والماء والصندوق بنقرة واحدة",
+        "اتجاهات الصحة بنظرة واحدة",
+        "الملف الشخصي الكامل لقطتك",
+        "التذكيرات ومميزات Pro"
+      ]
+    },
+    "id": {
+      "title": "CatTracker - Kesehatan Kucing",
+      "subtitle": "Catatan harian & berat badan",
+      "keywords": "kucing,kesehatan,hewan,catatan,berat,makanan,air,pasir,dokter,laporan,pengingat,suasana hati",
+      "promotional_text": "Lacak kesehatan kucing dalam hitungan detik. Makanan, air, kotak pasir, suasana hati & berat badan -- semua tersimpan pribadi di perangkat Anda. Tanpa akun.",
+      "description": "Khawatir melewatkan tanda awal perubahan kesehatan kucing Anda? CatTracker membuat pencatatan kesehatan harian sangat mudah -- ketuk, catat, selesai.\n\nBaik penurunan nafsu makan, perubahan kotak pasir, atau fluktuasi berat badan, CatTracker membantu Anda menemukan pola sebelum menjadi masalah. Bagikan laporan PDF yang jelas kepada dokter hewan.\n\nFITUR UTAMA\n• Catatan Sekali Ketuk - Catat kotak pasir, nafsu makan, hidrasi, aktivitas, dan suasana hati dalam 30 detik\n• Pelacak Berat - Lihat tren berat badan dengan grafik visual\n• Timeline Kesehatan - Telusuri seluruh riwayat kesehatan sekilas\n• Pengingat Pintar - Jangan lewatkan vaksin, cacingan, dan pemeriksaan tahunan\n• 100% Privasi - Semua data hanya di perangkat Anda\n\nFITUR PRO\n• Dukungan Multi-Kucing - Lacak semua kucing dalam satu aplikasi\n• Laporan PDF Dokter Hewan - Ekspor ringkasan kesehatan profesional\n• Grafik Tren Lanjutan - Analisis mendalam pola jangka panjang\n• Pengingat Kustom - Peringatan kesehatan yang dipersonalisasi\n\nTersedia dalam 12 bahasa. Unduh sekarang dan berikan kucing Anda catatan kesehatan yang layak.",
+      "screenshot_captions": [
+        "Lacak kesehatan harian dalam detik",
+        "Makanan, air & pasir sekali ketuk",
+        "Tren kesehatan dalam sekejap",
+        "Profil lengkap kucing Anda",
+        "Pengingat & fitur Pro"
+      ]
+    }
+  }
+}

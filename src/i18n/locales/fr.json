@@ -144,6 +144,14 @@
     "deworming": "Vermifuge",
     "checkup": "Bilan annuel"
   },
+  "notifications": {
+    "vaccineBody": "C'est l'heure du vaccin de {{name}}",
+    "dewormingBody": "C'est l'heure du vermifuge de {{name}}",
+    "checkupBody": "C'est l'heure du bilan annuel de {{name}}",
+    "permissionDeniedTitle": "Autorisation de notification requise",
+    "permissionDeniedMessage": "L'autorisation de notification est nécessaire pour les rappels. Veuillez l'activer dans les réglages.",
+    "openSettings": "Ouvrir les réglages"
+  },
   "privacy": {
     "lastUpdated": "Derniere mise a jour : avril 2026",
     "dataCollectionTitle": "Collecte de donnees",

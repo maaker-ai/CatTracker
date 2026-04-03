@@ -6,8 +6,12 @@ import { Platform } from 'react-native';
 import { seedDefaultCat } from '@/utils/database';
 import { useAppStore } from '@/stores/appStore';
 import { initPurchases, refreshProStatus } from '@/utils/purchases';
+import { setupNotificationHandler } from '@/utils/notifications';
 import AnimatedSplash from '@/components/AnimatedSplash';
 import '@/i18n';
+
+// Set up foreground notification handler early
+setupNotificationHandler();
 
 if (Platform.OS !== 'web') {
   SplashScreen.preventAutoHideAsync();

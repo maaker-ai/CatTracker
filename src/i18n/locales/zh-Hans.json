@@ -144,6 +144,14 @@
     "deworming": "驱虫",
     "checkup": "年度体检"
   },
+  "notifications": {
+    "vaccineBody": "{{name}}的疫苗接种时间到了",
+    "dewormingBody": "{{name}}的驱虫时间到了",
+    "checkupBody": "{{name}}的年度体检时间到了",
+    "permissionDeniedTitle": "需要通知权限",
+    "permissionDeniedMessage": "设置提醒需要通知权限，请在设置中开启。",
+    "openSettings": "打开设置"
+  },
   "privacy": {
     "lastUpdated": "最后更新：2026 年 4 月",
     "dataCollectionTitle": "数据收集",

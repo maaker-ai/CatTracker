@@ -144,6 +144,14 @@
     "deworming": "Desparasitación",
     "checkup": "Revisión anual"
   },
+  "notifications": {
+    "vaccineBody": "Es hora de la vacuna de {{name}}",
+    "dewormingBody": "Es hora de la desparasitación de {{name}}",
+    "checkupBody": "Es hora de la revisión anual de {{name}}",
+    "permissionDeniedTitle": "Se requiere permiso de notificación",
+    "permissionDeniedMessage": "Se necesita permiso de notificación para los recordatorios. Por favor, actívalo en Ajustes.",
+    "openSettings": "Abrir Ajustes"
+  },
   "privacy": {
     "lastUpdated": "Ultima actualizacion: abril de 2026",
     "dataCollectionTitle": "Recopilacion de datos",

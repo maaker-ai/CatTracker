@@ -144,6 +144,14 @@
     "deworming": "구충",
     "checkup": "연간 검진"
   },
+  "notifications": {
+    "vaccineBody": "{{name}}의 백신 접종 시간입니다",
+    "dewormingBody": "{{name}}의 구충 시간입니다",
+    "checkupBody": "{{name}}의 연간 검진 시간입니다",
+    "permissionDeniedTitle": "알림 권한 필요",
+    "permissionDeniedMessage": "알림을 설정하려면 알림 권한이 필요합니다. 설정에서 활성화해 주세요.",
+    "openSettings": "설정 열기"
+  },
   "privacy": {
     "lastUpdated": "최종 업데이트: 2026년 4월",
     "dataCollectionTitle": "데이터 수집",

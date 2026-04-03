@@ -144,6 +144,14 @@
     "deworming": "التخلص من الديدان",
     "checkup": "الفحص السنوي"
   },
+  "notifications": {
+    "vaccineBody": "حان موعد تطعيم {{name}}",
+    "dewormingBody": "حان موعد التخلص من الديدان لـ {{name}}",
+    "checkupBody": "حان موعد الفحص السنوي لـ {{name}}",
+    "permissionDeniedTitle": "إذن الإشعارات مطلوب",
+    "permissionDeniedMessage": "يلزم إذن الإشعارات لضبط التذكيرات. يرجى تفعيله في الإعدادات.",
+    "openSettings": "فتح الإعدادات"
+  },
   "privacy": {
     "lastUpdated": "آخر تحديث: أبريل 2026",
     "dataCollectionTitle": "جمع البيانات",

@@ -17,6 +17,12 @@ import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
 import { restorePurchases } from '@/utils/purchases';
 import { exportPdfReport } from '@/utils/exportPdf';
+import { getCatById } from '@/utils/database';
+import {
+  requestNotificationPermission,
+  scheduleReminder,
+  cancelReminder,
+} from '@/utils/notifications';
 
 const REMINDER_ICONS: Record<string, { Icon: typeof Syringe; bg: string; color: string }> = {
   vaccine: { Icon: Syringe, bg: Colors.accentLight, color: Colors.accent },
@@ -42,6 +48,40 @@ export default function SettingsScreen() {
   const exportingRef = useRef(false);
   const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
   const [pickerDate, setPickerDate] = useState(new Date());
+
+  const scheduleReminderNotification = async (reminderId: string, dateStr: string) => {
+    const catId = activeCatId;
+    let catName = 'your cat';
+    if (catId) {
+      try {
+        const cat = await getCatById(catId);
+        if (cat) catName = cat.name;
+      } catch {
+        // fallback to default name
+      }
+    }
+    const title = t(`reminders.${reminderId}`);
+    const body = t(`notifications.${reminderId}Body`, { name: catName });
+    const date = parseReminderDate(dateStr);
+    await scheduleReminder(reminderId, title, body, date);
+  };
+
+  const handleToggleReminder = async (reminderId: string) => {
+    const reminder = reminders.find((r) => r.id === reminderId);
+    if (!reminder) return;
+
+    if (!reminder.enabled) {
+      // Turning ON — request permission first
+      const granted = await requestNotificationPermission();
+      if (!granted) return; // permission denied, don't toggle
+      toggleReminder(reminderId);
+      await scheduleReminderNotification(reminderId, reminder.date);
+    } else {
+      // Turning OFF — cancel notification
+      toggleReminder(reminderId);
+      await cancelReminder(reminderId);
+    }
+  };
 
   const handleRestore = async () => {
     const restored = await restorePurchases();
@@ -80,7 +120,7 @@ export default function SettingsScreen() {
     setEditingReminderId(reminderId);
   };
 
-  const handleDateChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
+  const handleDateChange = async (_event: DateTimePickerEvent, selectedDate?: Date) => {
     if (Platform.OS === 'android') {
       setEditingReminderId(null);
     }
@@ -88,6 +128,12 @@ export default function SettingsScreen() {
       const formatted = formatReminderDate(selectedDate);
       updateReminderDate(editingReminderId, formatted);
       setPickerDate(selectedDate);
+
+      // If this reminder is enabled, reschedule notification with new date
+      const reminder = reminders.find((r) => r.id === editingReminderId);
+      if (reminder?.enabled) {
+        await scheduleReminderNotification(editingReminderId, formatted);
+      }
     }
   };
 
@@ -198,12 +244,12 @@ export default function SettingsScreen() {
                     </View>
                   </View>
                   <Pressable
-                    onPress={() => toggleReminder(reminder.id)}
+                    onPress={() => handleToggleReminder(reminder.id)}
                     hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
                   >
                     <Switch
                       value={reminder.enabled}
-                      onValueChange={() => toggleReminder(reminder.id)}
+                      onValueChange={() => handleToggleReminder(reminder.id)}
                       trackColor={{ false: Colors.toggleOff, true: Colors.accent }}
                       thumbColor="#FFFFFF"
                     />

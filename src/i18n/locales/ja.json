@@ -144,6 +144,14 @@
     "deworming": "駆虫",
     "checkup": "年次検診"
   },
+  "notifications": {
+    "vaccineBody": "{{name}}のワクチン接種の時間です",
+    "dewormingBody": "{{name}}の駆虫の時間です",
+    "checkupBody": "{{name}}の年次検診の時間です",
+    "permissionDeniedTitle": "通知の許可が必要です",
+    "permissionDeniedMessage": "リマインダーを設定するには通知の許可が必要です。設定で有効にしてください。",
+    "openSettings": "設定を開く"
+  },
   "privacy": {
     "lastUpdated": "最終更新：2026年4月",
     "dataCollectionTitle": "データ収集",

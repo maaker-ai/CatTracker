@@ -144,6 +144,14 @@
     "deworming": "Entwurmung",
     "checkup": "Jahresuntersuchung"
   },
+  "notifications": {
+    "vaccineBody": "Zeit für {{name}}s Impftermin",
+    "dewormingBody": "Zeit für {{name}}s Entwurmung",
+    "checkupBody": "Zeit für {{name}}s jährliche Untersuchung",
+    "permissionDeniedTitle": "Benachrichtigungsberechtigung erforderlich",
+    "permissionDeniedMessage": "Für Erinnerungen wird eine Benachrichtigungsberechtigung benötigt. Bitte in den Einstellungen aktivieren.",
+    "openSettings": "Einstellungen öffnen"
+  },
   "privacy": {
     "lastUpdated": "Zuletzt aktualisiert: April 2026",
     "dataCollectionTitle": "Datenerfassung",

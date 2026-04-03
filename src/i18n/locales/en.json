@@ -149,6 +149,14 @@
     "deworming": "Deworming",
     "checkup": "Annual Checkup"
   },
+  "notifications": {
+    "vaccineBody": "Time for {{name}}'s vaccine appointment",
+    "dewormingBody": "Time for {{name}}'s deworming treatment",
+    "checkupBody": "Time for {{name}}'s annual checkup",
+    "permissionDeniedTitle": "Notification Permission Required",
+    "permissionDeniedMessage": "Notification permission is required to set reminders. Please enable it in Settings.",
+    "openSettings": "Open Settings"
+  },
   "privacy": {
     "lastUpdated": "Last updated: April 2026",
     "dataCollectionTitle": "Data Collection",
