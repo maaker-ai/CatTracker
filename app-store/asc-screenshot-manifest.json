@@ -1,0 +1,92 @@
+{
+  "generated_at": "2026-04-03T01:30:00Z",
+  "display_type": "APP_IPHONE_67",
+  "actual_size": "1290x2796",
+  "count_per_locale": 5,
+  "locales": {
+    "ar": [
+      "screenshots/ar/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/ar/iphone-67/02-log-1290x2796.png",
+      "screenshots/ar/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/ar/iphone-67/04-profile-1290x2796.png",
+      "screenshots/ar/iphone-67/05-settings-1290x2796.png"
+    ],
+    "de": [
+      "screenshots/de/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/de/iphone-67/02-log-1290x2796.png",
+      "screenshots/de/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/de/iphone-67/04-profile-1290x2796.png",
+      "screenshots/de/iphone-67/05-settings-1290x2796.png"
+    ],
+    "en": [
+      "screenshots/en/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/en/iphone-67/02-log-1290x2796.png",
+      "screenshots/en/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/en/iphone-67/04-profile-1290x2796.png",
+      "screenshots/en/iphone-67/05-settings-1290x2796.png"
+    ],
+    "es": [
+      "screenshots/es/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/es/iphone-67/02-log-1290x2796.png",
+      "screenshots/es/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/es/iphone-67/04-profile-1290x2796.png",
+      "screenshots/es/iphone-67/05-settings-1290x2796.png"
+    ],
+    "fr": [
+      "screenshots/fr/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/fr/iphone-67/02-log-1290x2796.png",
+      "screenshots/fr/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/fr/iphone-67/04-profile-1290x2796.png",
+      "screenshots/fr/iphone-67/05-settings-1290x2796.png"
+    ],
+    "id": [
+      "screenshots/id/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/id/iphone-67/02-log-1290x2796.png",
+      "screenshots/id/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/id/iphone-67/04-profile-1290x2796.png",
+      "screenshots/id/iphone-67/05-settings-1290x2796.png"
+    ],
+    "it": [
+      "screenshots/it/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/it/iphone-67/02-log-1290x2796.png",
+      "screenshots/it/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/it/iphone-67/04-profile-1290x2796.png",
+      "screenshots/it/iphone-67/05-settings-1290x2796.png"
+    ],
+    "ja": [
+      "screenshots/ja/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/ja/iphone-67/02-log-1290x2796.png",
+      "screenshots/ja/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/ja/iphone-67/04-profile-1290x2796.png",
+      "screenshots/ja/iphone-67/05-settings-1290x2796.png"
+    ],
+    "ko": [
+      "screenshots/ko/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/ko/iphone-67/02-log-1290x2796.png",
+      "screenshots/ko/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/ko/iphone-67/04-profile-1290x2796.png",
+      "screenshots/ko/iphone-67/05-settings-1290x2796.png"
+    ],
+    "ru": [
+      "screenshots/ru/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/ru/iphone-67/02-log-1290x2796.png",
+      "screenshots/ru/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/ru/iphone-67/04-profile-1290x2796.png",
+      "screenshots/ru/iphone-67/05-settings-1290x2796.png"
+    ],
+    "zh-Hans": [
+      "screenshots/zh-Hans/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/zh-Hans/iphone-67/02-log-1290x2796.png",
+      "screenshots/zh-Hans/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/zh-Hans/iphone-67/04-profile-1290x2796.png",
+      "screenshots/zh-Hans/iphone-67/05-settings-1290x2796.png"
+    ],
+    "zh-Hant": [
+      "screenshots/zh-Hant/iphone-67/01-dashboard-1290x2796.png",
+      "screenshots/zh-Hant/iphone-67/02-log-1290x2796.png",
+      "screenshots/zh-Hant/iphone-67/03-timeline-1290x2796.png",
+      "screenshots/zh-Hant/iphone-67/04-profile-1290x2796.png",
+      "screenshots/zh-Hant/iphone-67/05-settings-1290x2796.png"
+    ]
+  }
+}

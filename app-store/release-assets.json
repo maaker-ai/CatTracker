@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-04-02T10:30:00Z",
+  "generated_at": "2026-04-03T01:30:00Z",
   "icon": {
     "path": "/Users/martin/OpenSource/CatTracker/assets/icon.png",
     "format": "png",
@@ -7,13 +7,16 @@
     "validated": true
   },
   "screenshots": {
-    "status": "pending",
+    "status": "ready",
     "display_type": "APP_IPHONE_67",
-    "note": "Screenshots to be generated after design fixes and functional tests pass",
-    "locales": ["en", "zh-Hans", "zh-Hant", "ja", "ko", "de", "fr", "es", "ru", "it", "ar", "id"]
+    "actual_size": "1290x2796",
+    "count_per_locale": 5,
+    "manifest_path": "/Users/martin/OpenSource/CatTracker/app-store/asc-screenshot-manifest.json",
+    "locales": ["en", "zh-Hans", "zh-Hant", "ja", "ko", "de", "fr", "es", "ru", "it", "ar", "id"],
+    "validated": true
   },
   "privacy_policy": {
-    "status": "pending",
-    "note": "Pure local app, no data collection. Need to generate privacy policy page."
+    "status": "in-app",
+    "note": "Privacy policy implemented as in-app page (app/privacy-policy.tsx), accessible from Settings. Pure local app, no data collection."
   }
 }
