@@ -79,7 +79,9 @@
     "restored": "復元完了！",
     "restoredMessage": "Pro機能が復元されました。",
     "noPurchasesFound": "購入記録なし",
-    "noPurchasesMessage": "以前の購入記録が見つかりませんでした。"
+    "noPurchasesMessage": "以前の購入記録が見つかりませんでした。",
+    "upgradeToPro": "Proにアップグレード",
+    "unlockAllFeatures": "すべてのプレミアム機能をアンロック"
   },
   "log": {
     "logFor": "{{name}} のログ",

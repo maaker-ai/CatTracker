@@ -180,6 +180,47 @@ export default function SettingsScreen() {
           >
             {t('settings.proFeatures')}
           </Text>
+          {!isPro && (
+            <Pressable
+              onPress={() => router.push('/paywall')}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: Colors.accent,
+                borderRadius: 18,
+                paddingVertical: 16,
+                paddingHorizontal: 20,
+                shadowColor: Colors.accent,
+                shadowOffset: { width: 0, height: 6 },
+                shadowOpacity: 0.25,
+                shadowRadius: 16,
+                elevation: 6,
+              }}
+            >
+              <View style={{ gap: 2 }}>
+                <Text
+                  style={{
+                    fontFamily: 'Inter-Bold',
+                    fontSize: 16,
+                    color: '#FFFFFF',
+                  }}
+                >
+                  {t('settings.upgradeToPro')}
+                </Text>
+                <Text
+                  style={{
+                    fontFamily: 'Inter-Regular',
+                    fontSize: 13,
+                    color: 'rgba(255,255,255,0.85)',
+                  }}
+                >
+                  {t('settings.unlockAllFeatures')}
+                </Text>
+              </View>
+              <ChevronRight size={20} color="#FFFFFF" />
+            </Pressable>
+          )}
           <View
             style={{
               backgroundColor: Colors.card,

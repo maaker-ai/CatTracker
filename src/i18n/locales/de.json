@@ -79,7 +79,9 @@
     "restored": "Wiederhergestellt!",
     "restoredMessage": "Ihre Pro-Funktionen wurden wiederhergestellt.",
     "noPurchasesFound": "Keine Käufe gefunden",
-    "noPurchasesMessage": "Es wurden keine früheren Käufe gefunden."
+    "noPurchasesMessage": "Es wurden keine früheren Käufe gefunden.",
+    "upgradeToPro": "Auf Pro upgraden",
+    "unlockAllFeatures": "Alle Premium-Funktionen freischalten"
   },
   "log": {
     "logFor": "Eintrag für {{name}}",

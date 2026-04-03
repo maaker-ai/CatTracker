@@ -11,7 +11,6 @@ import {
   PawPrint,
   CircleCheck,
   CircleHelp,
-  ChevronRight,
 } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
@@ -359,10 +358,28 @@ export default function PaywallScreen() {
                 {t('paywall.monthlyPrice')}
               </Text>
             </View>
-            <ChevronRight
-              size={16}
-              color={selectedPlan === 'monthly' ? '#FFFFFF' : Colors.textTertiary}
-            />
+            <View
+              style={{
+                width: 20,
+                height: 20,
+                borderRadius: 10,
+                borderWidth: 2,
+                borderColor: selectedPlan === 'monthly' ? '#FFFFFF' : Colors.border,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              {selectedPlan === 'monthly' && (
+                <View
+                  style={{
+                    width: 10,
+                    height: 10,
+                    borderRadius: 5,
+                    backgroundColor: '#FFFFFF',
+                  }}
+                />
+              )}
+            </View>
           </Pressable>
         </View>
 

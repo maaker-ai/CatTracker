@@ -79,7 +79,9 @@
     "restored": "已恢复！",
     "restoredMessage": "您的专业版功能已恢复。",
     "noPurchasesFound": "未找到购买记录",
-    "noPurchasesMessage": "未找到之前的购买记录。"
+    "noPurchasesMessage": "未找到之前的购买记录。",
+    "upgradeToPro": "升级到专业版",
+    "unlockAllFeatures": "解锁所有高级功能"
   },
   "log": {
     "logFor": "{{name}} 的记录",

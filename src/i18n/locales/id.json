@@ -79,7 +79,9 @@
     "restored": "Dipulihkan!",
     "restoredMessage": "Fitur Pro Anda telah dipulihkan.",
     "noPurchasesFound": "Pembelian Tidak Ditemukan",
-    "noPurchasesMessage": "Tidak ditemukan pembelian sebelumnya."
+    "noPurchasesMessage": "Tidak ditemukan pembelian sebelumnya.",
+    "upgradeToPro": "Upgrade ke Pro",
+    "unlockAllFeatures": "Buka semua fitur premium"
   },
   "log": {
     "logFor": "Catatan {{name}}",

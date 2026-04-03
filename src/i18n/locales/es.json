@@ -79,7 +79,9 @@
     "restored": "¡Restaurado!",
     "restoredMessage": "Tus funciones Pro han sido restauradas.",
     "noPurchasesFound": "No se encontraron compras",
-    "noPurchasesMessage": "No se encontraron compras anteriores."
+    "noPurchasesMessage": "No se encontraron compras anteriores.",
+    "upgradeToPro": "Actualizar a Pro",
+    "unlockAllFeatures": "Desbloquear todas las funciones premium"
   },
   "log": {
     "logFor": "Registro de {{name}}",

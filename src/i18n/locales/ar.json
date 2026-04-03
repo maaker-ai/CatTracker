@@ -79,7 +79,9 @@
     "restored": "تمت الاستعادة!",
     "restoredMessage": "تم استعادة ميزات Pro.",
     "noPurchasesFound": "لم يتم العثور على مشتريات",
-    "noPurchasesMessage": "لم يتم العثور على مشتريات سابقة."
+    "noPurchasesMessage": "لم يتم العثور على مشتريات سابقة.",
+    "upgradeToPro": "الترقية إلى Pro",
+    "unlockAllFeatures": "فتح جميع الميزات المتقدمة"
   },
   "log": {
     "logFor": "سجل {{name}}",

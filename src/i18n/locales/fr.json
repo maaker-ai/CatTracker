@@ -79,7 +79,9 @@
     "restored": "Restauré !",
     "restoredMessage": "Vos fonctionnalités Pro ont été restaurées.",
     "noPurchasesFound": "Aucun achat trouvé",
-    "noPurchasesMessage": "Aucun achat précédent n'a été trouvé."
+    "noPurchasesMessage": "Aucun achat précédent n'a été trouvé.",
+    "upgradeToPro": "Passer à Pro",
+    "unlockAllFeatures": "Débloquer toutes les fonctionnalités premium"
   },
   "log": {
     "logFor": "Journal de {{name}}",

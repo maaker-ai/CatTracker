@@ -83,7 +83,9 @@
     "restored": "Restored!",
     "restoredMessage": "Your Pro features have been restored.",
     "noPurchasesFound": "No Purchases Found",
-    "noPurchasesMessage": "No previous purchases were found."
+    "noPurchasesMessage": "No previous purchases were found.",
+    "upgradeToPro": "Upgrade to Pro",
+    "unlockAllFeatures": "Unlock all premium features"
   },
   "log": {
     "logFor": "Log for {{name}}",

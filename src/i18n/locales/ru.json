@@ -79,7 +79,9 @@
     "restored": "Восстановлено!",
     "restoredMessage": "Ваши Pro-функции восстановлены.",
     "noPurchasesFound": "Покупки не найдены",
-    "noPurchasesMessage": "Предыдущие покупки не найдены."
+    "noPurchasesMessage": "Предыдущие покупки не найдены.",
+    "upgradeToPro": "Перейти на Pro",
+    "unlockAllFeatures": "Разблокировать все премиум-функции"
   },
   "log": {
     "logFor": "Запись для {{name}}",
