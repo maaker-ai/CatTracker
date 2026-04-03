@@ -543,7 +543,7 @@ export default function DashboardScreen() {
           style={[
             {
               position: 'absolute',
-              bottom: 90,
+              bottom: 58,
               left: 20,
               right: 20,
               backgroundColor: Colors.textPrimary,
