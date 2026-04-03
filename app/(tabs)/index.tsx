@@ -1,25 +1,35 @@
-import { useEffect, useState, useCallback } from 'react';
-import { View, Text, ScrollView, Pressable } from 'react-native';
+import { useState, useCallback } from 'react';
+import { View, Text, ScrollView, Pressable, Platform } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Footprints, Heart, Droplets, Zap, Plus, Sun, Cat as CatIcon } from 'lucide-react-native';
+import { Footprints, Heart, Droplets, Zap, Sun, Cat as CatIcon, ClipboardPenLine } from 'lucide-react-native';
+import * as Haptics from 'expo-haptics';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { getTodayLog, getCatById, getLogs } from '@/utils/database';
-import type { Cat, DailyLog, HydrationLevel, ActivityLevel } from '@/types';
-
-const HYDRATION_I18N: Record<HydrationLevel, string> = {
-  Low: 'log.hydrationLow',
-  Normal: 'log.hydrationNormal',
-  High: 'log.hydrationHigh',
-};
+import { getTodayLog, getCatById, getLogs, getQuickLogCount, getQuickLogAverage, insertQuickLog } from '@/utils/database';
+import type { Cat, DailyLog, ActivityLevel } from '@/types';
 
 const ACTIVITY_I18N: Record<ActivityLevel, string> = {
   Calm: 'log.activityCalm',
   Normal: 'log.activityNormal',
   Active: 'log.activityActive',
   Hyper: 'log.activityHyper',
+};
+
+type StatusLabel = 'normal' | 'belowAvg' | 'aboveAvg';
+
+function getStatusLabel(count: number, avg: number): StatusLabel {
+  if (avg === 0) return 'normal';
+  if (count < avg * 0.7) return 'belowAvg';
+  if (count > avg * 1.3) return 'aboveAvg';
+  return 'normal';
+}
+
+const STATUS_COLORS: Record<StatusLabel, string> = {
+  normal: Colors.success,
+  belowAvg: Colors.warning,
+  aboveAvg: Colors.info,
 };
 
 export default function DashboardScreen() {
@@ -29,6 +39,10 @@ export default function DashboardScreen() {
   const [cat, setCat] = useState<Cat | null>(null);
   const [todayLog, setTodayLog] = useState<DailyLog | null>(null);
   const [recentLogs, setRecentLogs] = useState<DailyLog[]>([]);
+  const [bathroomCount, setBathroomCount] = useState(0);
+  const [waterCount, setWaterCount] = useState(0);
+  const [bathroomAvg, setBathroomAvg] = useState(0);
+  const [waterAvg, setWaterAvg] = useState(0);
 
   const loadData = useCallback(async () => {
     if (!activeCatId) return;
@@ -38,6 +52,15 @@ export default function DashboardScreen() {
     setTodayLog(log);
     const logs = await getLogs(activeCatId, 5);
     setRecentLogs(logs);
+    const today = new Date().toISOString().slice(0, 10);
+    const bc = await getQuickLogCount(activeCatId, 'bathroom', today);
+    const wc = await getQuickLogCount(activeCatId, 'water', today);
+    const ba = await getQuickLogAverage(activeCatId, 'bathroom', 7);
+    const wa = await getQuickLogAverage(activeCatId, 'water', 7);
+    setBathroomCount(bc);
+    setWaterCount(wc);
+    setBathroomAvg(ba);
+    setWaterAvg(wa);
   }, [activeCatId]);
 
   useFocusEffect(
@@ -46,7 +69,29 @@ export default function DashboardScreen() {
     }, [loadData])
   );
 
+  const haptic = () => {
+    if (Platform.OS === 'ios') {
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium);
+    }
+  };
+
+  const handleQuickLog = async (type: 'bathroom' | 'water') => {
+    if (!activeCatId) return;
+    haptic();
+    await insertQuickLog(activeCatId, type);
+    const today = new Date().toISOString().slice(0, 10);
+    if (type === 'bathroom') {
+      const c = await getQuickLogCount(activeCatId, 'bathroom', today);
+      setBathroomCount(c);
+    } else {
+      const c = await getQuickLogCount(activeCatId, 'water', today);
+      setWaterCount(c);
+    }
+  };
+
   const catName = cat?.name ?? t('common.loading');
+  const bathroomStatus = getStatusLabel(bathroomCount, bathroomAvg);
+  const waterStatus = getStatusLabel(waterCount, waterAvg);
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background }}>
@@ -135,14 +180,48 @@ export default function DashboardScreen() {
 
         {/* Stats Cards Grid */}
         <View style={{ gap: 12, marginBottom: 20 }}>
-          {/* Row 1 */}
+          {/* Row 1: Bathroom + Appetite */}
           <View style={{ flexDirection: 'row', gap: 12 }}>
-            <StatCard
-              icon={<Footprints size={24} color={Colors.accent} />}
-              value={todayLog ? String(todayLog.litterVisits) : '--'}
-              label={t('dashboard.litterVisits')}
-              bg={Colors.card}
-            />
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: Colors.card,
+                borderRadius: 18,
+                padding: 16,
+                gap: 6,
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.07,
+                shadowRadius: 12,
+                elevation: 3,
+              }}
+            >
+              <Footprints size={24} color={Colors.accent} />
+              <Text
+                style={{
+                  fontFamily: 'Inter-Bold',
+                  fontSize: 28,
+                  color: Colors.textPrimary,
+                }}
+              >
+                {bathroomCount}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 11,
+                  color: Colors.textSecondary,
+                }}
+              >
+                {t('dashboard.bathroomVisits')}
+              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: STATUS_COLORS[bathroomStatus] }} />
+                <Text style={{ fontFamily: 'Inter-Medium', fontSize: 10, color: STATUS_COLORS[bathroomStatus] }}>
+                  {t(`dashboard.${bathroomStatus}`)}
+                </Text>
+              </View>
+            </View>
             <StatCard
               icon={<Heart size={24} color={Colors.accent} />}
               value={todayLog ? `${todayLog.appetite}/5` : '--'}
@@ -150,15 +229,48 @@ export default function DashboardScreen() {
               bg={Colors.accentLight}
             />
           </View>
-          {/* Row 2 */}
+          {/* Row 2: Water + Activity */}
           <View style={{ flexDirection: 'row', gap: 12 }}>
-            <StatCard
-              icon={<Droplets size={24} color={Colors.info} />}
-              value={todayLog ? t(HYDRATION_I18N[todayLog.hydration]) : '--'}
-              label={t('dashboard.hydration')}
-              bg={Colors.infoLight}
-              smallValue
-            />
+            <View
+              style={{
+                flex: 1,
+                backgroundColor: Colors.infoLight,
+                borderRadius: 18,
+                padding: 16,
+                gap: 6,
+                shadowColor: '#000',
+                shadowOffset: { width: 0, height: 4 },
+                shadowOpacity: 0.07,
+                shadowRadius: 12,
+                elevation: 3,
+              }}
+            >
+              <Droplets size={24} color={Colors.info} />
+              <Text
+                style={{
+                  fontFamily: 'Inter-Bold',
+                  fontSize: 28,
+                  color: Colors.textPrimary,
+                }}
+              >
+                {waterCount}
+              </Text>
+              <Text
+                style={{
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 11,
+                  color: Colors.textSecondary,
+                }}
+              >
+                {t('dashboard.waterIntake')}
+              </Text>
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4, marginTop: 2 }}>
+                <View style={{ width: 6, height: 6, borderRadius: 3, backgroundColor: STATUS_COLORS[waterStatus] }} />
+                <Text style={{ fontFamily: 'Inter-Medium', fontSize: 10, color: STATUS_COLORS[waterStatus] }}>
+                  {t(`dashboard.${waterStatus}`)}
+                </Text>
+              </View>
+            </View>
             <StatCard
               icon={<Zap size={24} color={Colors.success} />}
               value={todayLog ? t(ACTIVITY_I18N[todayLog.activity]) : '--'}
@@ -258,7 +370,81 @@ export default function DashboardScreen() {
           </View>
         )}
 
-        {/* FAB */}
+        {/* Quick-tap buttons */}
+        <View style={{ flexDirection: 'row', gap: 12, marginTop: 20 }}>
+          <Pressable
+            onPress={() => handleQuickLog('bathroom')}
+            style={{
+              flex: 1,
+              backgroundColor: Colors.card,
+              borderRadius: 18,
+              paddingVertical: 16,
+              alignItems: 'center',
+              gap: 6,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.07,
+              shadowRadius: 12,
+              elevation: 3,
+            }}
+          >
+            <View
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 14,
+                backgroundColor: Colors.accentLight,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Footprints size={22} color={Colors.accent} />
+            </View>
+            <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
+              {t('dashboard.bathroom')}
+            </Text>
+            <Text style={{ fontFamily: 'Inter-Regular', fontSize: 11, color: Colors.textTertiary }}>
+              {t('dashboard.tapToLog')}
+            </Text>
+          </Pressable>
+          <Pressable
+            onPress={() => handleQuickLog('water')}
+            style={{
+              flex: 1,
+              backgroundColor: Colors.card,
+              borderRadius: 18,
+              paddingVertical: 16,
+              alignItems: 'center',
+              gap: 6,
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.07,
+              shadowRadius: 12,
+              elevation: 3,
+            }}
+          >
+            <View
+              style={{
+                width: 44,
+                height: 44,
+                borderRadius: 14,
+                backgroundColor: Colors.infoLight,
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <Droplets size={22} color={Colors.info} />
+            </View>
+            <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
+              {t('dashboard.water')}
+            </Text>
+            <Text style={{ fontFamily: 'Inter-Regular', fontSize: 11, color: Colors.textTertiary }}>
+              {t('dashboard.tapToLog')}
+            </Text>
+          </Pressable>
+        </View>
+
+        {/* Log Daily Health button */}
         <Pressable
           onPress={() => router.push('/log')}
           style={{
@@ -270,7 +456,7 @@ export default function DashboardScreen() {
             paddingVertical: 14,
             paddingHorizontal: 24,
             gap: 8,
-            marginTop: 20,
+            marginTop: 16,
             alignSelf: 'flex-start',
             shadowColor: Colors.accent,
             shadowOffset: { width: 0, height: 6 },
@@ -279,7 +465,7 @@ export default function DashboardScreen() {
             elevation: 6,
           }}
         >
-          <Plus size={20} color="#FFFFFF" />
+          <ClipboardPenLine size={20} color="#FFFFFF" />
           <Text
             style={{
               fontFamily: 'Inter-Bold',
@@ -287,7 +473,7 @@ export default function DashboardScreen() {
               color: '#FFFFFF',
             }}
           >
-            {t('dashboard.logToday')}
+            {t('dashboard.logDailyHealth')}
           </Text>
         </Pressable>
       </ScrollView>

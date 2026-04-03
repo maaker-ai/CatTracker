@@ -51,6 +51,14 @@ export async function getDatabase(): Promise<SQLite.SQLiteDatabase> {
       createdAt TEXT NOT NULL,
       FOREIGN KEY (catId) REFERENCES cats(id)
     );
+
+    CREATE TABLE IF NOT EXISTS quick_logs (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      catId INTEGER NOT NULL,
+      type TEXT NOT NULL,
+      timestamp TEXT NOT NULL DEFAULT (datetime('now')),
+      FOREIGN KEY (catId) REFERENCES cats(id)
+    );
   `);
   return db;
 }
@@ -156,6 +164,51 @@ export async function getAppetiteTrend(catId: number, days = 7): Promise<{ date:
   return database.getAllAsync<{ date: string; appetite: number }>(
     'SELECT date, MAX(appetite) as appetite FROM logs WHERE catId = ? AND date >= ? GROUP BY date ORDER BY date ASC',
     [catId, startStr]
+  );
+}
+
+// --- Seed data for first launch ---
+
+// --- Quick Logs (bathroom / water tap tracking) ---
+
+export async function insertQuickLog(catId: number, type: 'bathroom' | 'water'): Promise<number> {
+  const database = await getDatabase();
+  const result = await database.runAsync(
+    'INSERT INTO quick_logs (catId, type, timestamp) VALUES (?, ?, ?)',
+    [catId, type, new Date().toISOString()]
+  );
+  return result.lastInsertRowId;
+}
+
+export async function getQuickLogCount(catId: number, type: 'bathroom' | 'water', date: string): Promise<number> {
+  const database = await getDatabase();
+  const row = await database.getFirstAsync<{ count: number }>(
+    "SELECT COUNT(*) as count FROM quick_logs WHERE catId = ? AND type = ? AND date(timestamp) = ?",
+    [catId, type, date]
+  );
+  return row?.count ?? 0;
+}
+
+export async function getQuickLogAverage(catId: number, type: 'bathroom' | 'water', days = 7): Promise<number> {
+  const database = await getDatabase();
+  const endDate = new Date();
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days);
+  const row = await database.getFirstAsync<{ avg: number | null }>(
+    "SELECT CAST(COUNT(*) AS REAL) / ? as avg FROM quick_logs WHERE catId = ? AND type = ? AND date(timestamp) > ? AND date(timestamp) <= ?",
+    [days, catId, type, startDate.toISOString().slice(0, 10), endDate.toISOString().slice(0, 10)]
+  );
+  return row?.avg ?? 0;
+}
+
+export async function getQuickLogHistory(catId: number, type: 'bathroom' | 'water', days = 7): Promise<{ date: string; count: number }[]> {
+  const database = await getDatabase();
+  const startDate = new Date();
+  startDate.setDate(startDate.getDate() - days + 1);
+  const startStr = startDate.toISOString().slice(0, 10);
+  return database.getAllAsync<{ date: string; count: number }>(
+    "SELECT date(timestamp) as date, COUNT(*) as count FROM quick_logs WHERE catId = ? AND type = ? AND date(timestamp) >= ? GROUP BY date(timestamp) ORDER BY date ASC",
+    [catId, type, startStr]
   );
 }
 

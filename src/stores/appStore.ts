@@ -39,6 +39,7 @@ interface AppState {
   setActiveCatId: (id: number) => void;
   toggleReminder: (id: string) => void;
   setReminders: (reminders: Reminder[]) => void;
+  updateReminderDate: (id: string, date: string) => void;
 }
 
 export const useAppStore = create<AppState>()(
@@ -61,6 +62,12 @@ export const useAppStore = create<AppState>()(
         set({ reminders });
       },
       setReminders: (reminders) => set({ reminders }),
+      updateReminderDate: (id, date) => {
+        const reminders = get().reminders.map((r) =>
+          r.id === id ? { ...r, date } : r
+        );
+        set({ reminders });
+      },
     }),
     {
       name: 'cattracker-app-store',

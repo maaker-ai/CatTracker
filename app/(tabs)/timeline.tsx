@@ -6,27 +6,63 @@ import { useTranslation } from 'react-i18next';
 import { Footprints, Heart, Droplets, AlertTriangle, Clock } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { getLogs, getAppetiteTrend } from '@/utils/database';
-import type { DailyLog, HydrationLevel } from '@/types';
+import { getLogs, getQuickLogHistory, getQuickLogCount, getQuickLogAverage } from '@/utils/database';
+import type { DailyLog } from '@/types';
 
-const HYDRATION_I18N: Record<HydrationLevel, string> = {
-  Low: 'log.hydrationLow',
-  Normal: 'log.hydrationNormal',
-  High: 'log.hydrationHigh',
+type StatusLabel = 'normal' | 'belowAvg' | 'aboveAvg';
+
+function getStatusLabel(count: number, avg: number): StatusLabel {
+  if (avg === 0) return 'normal';
+  if (count < avg * 0.7) return 'belowAvg';
+  if (count > avg * 1.3) return 'aboveAvg';
+  return 'normal';
+}
+
+const STATUS_I18N: Record<StatusLabel, string> = {
+  normal: 'dashboard.normal',
+  belowAvg: 'dashboard.belowAvg',
+  aboveAvg: 'dashboard.aboveAvg',
 };
 
 export default function TimelineScreen() {
   const { t } = useTranslation();
   const activeCatId = useAppStore((s) => s.activeCatId);
   const [logs, setLogs] = useState<DailyLog[]>([]);
-  const [trend, setTrend] = useState<{ date: string; appetite: number }[]>([]);
+  const [visitHistory, setVisitHistory] = useState<{ date: string; count: number }[]>([]);
+  const [avgVisits, setAvgVisits] = useState(0);
+  // Per-date quick log counts
+  const [dateQuickLogs, setDateQuickLogs] = useState<Record<string, { bathroom: number; water: number; bathroomAvg: number; waterAvg: number }>>({});
 
   useFocusEffect(
     useCallback(() => {
       if (!activeCatId) return;
       getLogs(activeCatId, 30).then(setLogs);
-      getAppetiteTrend(activeCatId, 7).then(setTrend);
+      getQuickLogHistory(activeCatId, 'bathroom', 7).then(setVisitHistory);
+      getQuickLogAverage(activeCatId, 'bathroom', 7).then(setAvgVisits);
     }, [activeCatId])
+  );
+
+  // Load quick log counts for each unique date in logs
+  useFocusEffect(
+    useCallback(() => {
+      if (!activeCatId || logs.length === 0) return;
+      const dates = [...new Set(logs.map((l) => l.date))];
+      Promise.all(
+        dates.map(async (date) => {
+          const bc = await getQuickLogCount(activeCatId, 'bathroom', date);
+          const wc = await getQuickLogCount(activeCatId, 'water', date);
+          const ba = await getQuickLogAverage(activeCatId, 'bathroom', 7);
+          const wa = await getQuickLogAverage(activeCatId, 'water', 7);
+          return { date, bathroom: bc, water: wc, bathroomAvg: ba, waterAvg: wa };
+        })
+      ).then((results) => {
+        const map: typeof dateQuickLogs = {};
+        for (const r of results) {
+          map[r.date] = { bathroom: r.bathroom, water: r.water, bathroomAvg: r.bathroomAvg, waterAvg: r.waterAvg };
+        }
+        setDateQuickLogs(map);
+      });
+    }, [activeCatId, logs])
   );
 
   // Group logs by date
@@ -38,12 +74,7 @@ export default function TimelineScreen() {
 
   const sortedDates = Object.keys(groupedLogs).sort((a, b) => b.localeCompare(a));
 
-  const avgAppetite =
-    trend.length > 0
-      ? (trend.reduce((s, item) => s + item.appetite, 0) / trend.length).toFixed(1)
-      : '0';
-
-  const maxAppetite = 5;
+  const maxVisits = visitHistory.length > 0 ? Math.max(...visitHistory.map((h) => h.count), 1) : 1;
 
   const formatDateLabel = (dateStr: string) => {
     const today = new Date().toISOString().slice(0, 10);
@@ -104,7 +135,7 @@ export default function TimelineScreen() {
           </View>
         </View>
 
-        {/* Appetite Trend Card */}
+        {/* Daily Visits Chart */}
         <View
           style={{
             backgroundColor: Colors.card,
@@ -132,11 +163,11 @@ export default function TimelineScreen() {
                 color: Colors.textPrimary,
               }}
             >
-              {t('timeline.appetiteTrend')}
+              {t('timeline.dailyVisits')}
             </Text>
             <View
               style={{
-                backgroundColor: Colors.accentLight,
+                backgroundColor: Colors.infoLight,
                 borderRadius: 10,
                 paddingVertical: 4,
                 paddingHorizontal: 10,
@@ -146,10 +177,10 @@ export default function TimelineScreen() {
                 style={{
                   fontFamily: 'Inter-Medium',
                   fontSize: 11,
-                  color: Colors.accent,
+                  color: Colors.info,
                 }}
               >
-                {t('timeline.daysAvg', { count: 7, value: avgAppetite })}
+                {t('timeline.avgVisitsDay', { value: avgVisits.toFixed(1) })}
               </Text>
             </View>
           </View>
@@ -167,18 +198,18 @@ export default function TimelineScreen() {
               height: 60,
             }}
           >
-            {trend.length > 0 ? (
-              trend.map((item, i) => {
-                const height = (item.appetite / maxAppetite) * 40;
+            {visitHistory.length > 0 ? (
+              visitHistory.map((item, i) => {
+                const height = (item.count / maxVisits) * 40;
                 return (
                   <View
                     key={i}
                     style={{
                       width: 28,
                       height: Math.max(height, 4),
-                      backgroundColor: Colors.accent,
+                      backgroundColor: Colors.info,
                       borderRadius: 4,
-                      opacity: item.appetite < 3 ? 0.5 : 1,
+                      opacity: item.count === 0 ? 0.3 : 1,
                     }}
                   />
                 );
@@ -233,7 +264,11 @@ export default function TimelineScreen() {
               {formatDateLabel(date)}
             </Text>
             {groupedLogs[date].map((log) => (
-              <LogEntry key={log.id} log={log} />
+              <LogEntry
+                key={log.id}
+                log={log}
+                quickLogs={dateQuickLogs[log.date]}
+              />
             ))}
           </View>
         ))}
@@ -242,7 +277,7 @@ export default function TimelineScreen() {
   );
 }
 
-function LogEntry({ log }: { log: DailyLog }) {
+function LogEntry({ log, quickLogs }: { log: DailyLog; quickLogs?: { bathroom: number; water: number; bathroomAvg: number; waterAvg: number } }) {
   const { t } = useTranslation();
   const hasWarning = log.tags.includes('Hiding') || log.appetite <= 2;
   const badgeLabel = hasWarning
@@ -250,6 +285,11 @@ function LogEntry({ log }: { log: DailyLog }) {
     : t('timeline.allGood');
   const badgeColor = hasWarning ? Colors.warning : Colors.success;
   const badgeBg = hasWarning ? Colors.warningLight : Colors.successLight;
+
+  const bathroomCount = quickLogs?.bathroom ?? 0;
+  const waterCount = quickLogs?.water ?? 0;
+  const bathroomStatus = getStatusLabel(bathroomCount, quickLogs?.bathroomAvg ?? 0);
+  const waterStatus = getStatusLabel(waterCount, quickLogs?.waterAvg ?? 0);
 
   return (
     <View
@@ -305,7 +345,7 @@ function LogEntry({ log }: { log: DailyLog }) {
         </View>
       </View>
 
-      <View style={{ flexDirection: 'row', gap: 16 }}>
+      <View style={{ flexDirection: 'row', gap: 16, flexWrap: 'wrap' }}>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
           <Footprints size={14} color={Colors.textTertiary} />
           <Text
@@ -315,7 +355,7 @@ function LogEntry({ log }: { log: DailyLog }) {
               color: Colors.textBody,
             }}
           >
-            {t('timeline.xLitter', { count: log.litterVisits })}
+            {t('timeline.xVisits', { count: bathroomCount })} · {t(STATUS_I18N[bathroomStatus])}
           </Text>
         </View>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
@@ -330,20 +370,18 @@ function LogEntry({ log }: { log: DailyLog }) {
             {t('timeline.appetiteScore', { score: log.appetite })}
           </Text>
         </View>
-        {log.hydration && (
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <Droplets size={14} color={Colors.textTertiary} />
-            <Text
-              style={{
-                fontFamily: 'Inter-Regular',
-                fontSize: 12,
-                color: Colors.textBody,
-              }}
-            >
-              {t(HYDRATION_I18N[log.hydration])}
-            </Text>
-          </View>
-        )}
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+          <Droplets size={14} color={Colors.textTertiary} />
+          <Text
+            style={{
+              fontFamily: 'Inter-Regular',
+              fontSize: 12,
+              color: Colors.textBody,
+            }}
+          >
+            {t('timeline.xDrinks', { count: waterCount })} · {t(STATUS_I18N[waterStatus])}
+          </Text>
+        </View>
       </View>
     </View>
   );

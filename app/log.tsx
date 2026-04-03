@@ -2,12 +2,12 @@ import { useState, useRef, useEffect, useCallback } from 'react';
 import { View, Text, ScrollView, Pressable, TextInput, Platform, KeyboardAvoidingView, Keyboard, PanResponder } from 'react-native';
 import { useRouter, useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Minus, Plus, X, PawPrint } from 'lucide-react-native';
+import { X, PawPrint, Info } from 'lucide-react-native';
 import * as Haptics from 'expo-haptics';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
 import { insertLog, getCatById, getTodayLog } from '@/utils/database';
-import type { HydrationLevel, ActivityLevel } from '@/types';
+import type { ActivityLevel } from '@/types';
 
 function AppetiteSlider({ value, onChange, haptic }: { value: number; onChange: (v: number) => void; haptic: () => void }) {
   const startValue = useRef(value);
@@ -74,18 +74,11 @@ export default function LogScreen() {
   const router = useRouter();
   const activeCatId = useAppStore((s) => s.activeCatId);
   const [catName, setCatName] = useState('Mochi');
-  const [litterVisits, setLitterVisits] = useState(3);
   const [appetite, setAppetite] = useState(4);
-  const [hydration, setHydration] = useState<HydrationLevel>('Normal');
   const [activity, setActivity] = useState<ActivityLevel>('Active');
+  const [weight, setWeight] = useState('');
   const [notes, setNotes] = useState('');
   const savingRef = useRef(false);
-
-  const HYDRATION_OPTIONS: { value: HydrationLevel; label: string }[] = [
-    { value: 'Low', label: t('log.hydrationLow') },
-    { value: 'Normal', label: t('log.hydrationNormal') },
-    { value: 'High', label: t('log.hydrationHigh') },
-  ];
 
   const ACTIVITY_OPTIONS: { value: ActivityLevel; label: string }[] = [
     { value: 'Calm', label: t('log.activityCalm') },
@@ -94,7 +87,6 @@ export default function LogScreen() {
     { value: 'Hyper', label: t('log.activityHyper') },
   ];
 
-  // Re-fetch every time modal gains focus (not just on activeCatId change)
   useFocusEffect(
     useCallback(() => {
       if (!activeCatId) return;
@@ -103,9 +95,7 @@ export default function LogScreen() {
       });
       getTodayLog(activeCatId).then((log) => {
         if (log) {
-          setLitterVisits(log.litterVisits);
           setAppetite(log.appetite);
-          setHydration(log.hydration as HydrationLevel);
           setActivity(log.activity as ActivityLevel);
           setNotes(log.notes || '');
         }
@@ -129,9 +119,9 @@ export default function LogScreen() {
       catId: activeCatId,
       date: now.toISOString().slice(0, 10),
       time: now.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }),
-      litterVisits,
+      litterVisits: 0,
       appetite,
-      hydration,
+      hydration: 'Normal',
       activity,
       notes,
       tags: '',
@@ -207,115 +197,36 @@ export default function LogScreen() {
         keyboardDismissMode="on-drag"
         keyboardShouldPersistTaps="handled"
       >
-        {/* Litter Visits */}
-        <View style={{ gap: 12 }}>
-          <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
-            {t('log.litterVisits')}
-          </Text>
-          <View
+        {/* Quick-tap hint banner */}
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            backgroundColor: '#EDF7ED',
+            borderRadius: 12,
+            padding: 14,
+            gap: 10,
+          }}
+        >
+          <Info size={18} color={Colors.success} />
+          <Text
             style={{
-              flexDirection: 'row',
-              alignItems: 'center',
-              justifyContent: 'space-between',
-              backgroundColor: Colors.background,
-              borderRadius: 16,
-              padding: 12,
-              paddingHorizontal: 16,
-              borderWidth: 1,
-              borderColor: Colors.border,
+              flex: 1,
+              fontFamily: 'Inter-Regular',
+              fontSize: 13,
+              color: Colors.success,
             }}
           >
-            <Pressable
-              onPress={() => {
-                haptic();
-                setLitterVisits(Math.max(0, litterVisits - 1));
-              }}
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                backgroundColor: Colors.accent,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Minus size={18} color="#FFFFFF" />
-            </Pressable>
-            <Text
-              style={{
-                fontFamily: 'Inter-Bold',
-                fontSize: 28,
-                color: Colors.textPrimary,
-              }}
-            >
-              {litterVisits}
-            </Text>
-            <Pressable
-              onPress={() => {
-                haptic();
-                setLitterVisits(litterVisits + 1);
-              }}
-              style={{
-                width: 40,
-                height: 40,
-                borderRadius: 20,
-                backgroundColor: Colors.accent,
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
-            >
-              <Plus size={18} color="#FFFFFF" />
-            </Pressable>
-          </View>
+            {t('log.quickTapHint')}
+          </Text>
         </View>
 
-        {/* Appetite — swipe left/right to adjust, tap still works */}
+        {/* Appetite */}
         <View style={{ gap: 12 }}>
           <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
             {t('log.appetite')}
           </Text>
           <AppetiteSlider value={appetite} onChange={setAppetite} haptic={haptic} />
-        </View>
-
-        {/* Hydration */}
-        <View style={{ gap: 10 }}>
-          <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
-            {t('log.hydration')}
-          </Text>
-          <View style={{ flexDirection: 'row', gap: 8 }}>
-            {HYDRATION_OPTIONS.map((opt) => {
-              const isActive = hydration === opt.value;
-              return (
-                <Pressable
-                  key={opt.value}
-                  onPress={() => {
-                    haptic();
-                    setHydration(opt.value);
-                  }}
-                  style={{
-                    flex: 1,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    paddingVertical: 10,
-                    borderRadius: 12,
-                    backgroundColor: isActive ? Colors.accent : Colors.inputBg,
-                    borderWidth: isActive ? 0 : 1,
-                    borderColor: Colors.handleBar,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-SemiBold',
-                      fontSize: 13,
-                      color: isActive ? '#FFFFFF' : Colors.textSecondary,
-                    }}
-                  >
-                    {opt.label}
-                  </Text>
-                </Pressable>
-              );
-            })}
-          </View>
         </View>
 
         {/* Activity Level */}
@@ -356,6 +267,44 @@ export default function LogScreen() {
                 </Pressable>
               );
             })}
+          </View>
+        </View>
+
+        {/* Weight (optional) */}
+        <View style={{ gap: 10 }}>
+          <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.textPrimary }}>
+            {t('log.weightOptional')}
+          </Text>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              backgroundColor: Colors.background,
+              borderRadius: 14,
+              paddingHorizontal: 14,
+              borderWidth: 1,
+              borderColor: Colors.border,
+            }}
+          >
+            <TextInput
+              value={weight}
+              onChangeText={setWeight}
+              placeholder="4.2"
+              placeholderTextColor={Colors.textTertiary}
+              keyboardType="decimal-pad"
+              returnKeyType="done"
+              onSubmitEditing={() => Keyboard.dismiss()}
+              style={{
+                flex: 1,
+                fontFamily: 'Inter-Bold',
+                fontSize: 18,
+                color: Colors.textPrimary,
+                paddingVertical: 14,
+              }}
+            />
+            <Text style={{ fontFamily: 'Inter-Regular', fontSize: 13, color: Colors.textSecondary }}>
+              kg
+            </Text>
           </View>
         </View>
 

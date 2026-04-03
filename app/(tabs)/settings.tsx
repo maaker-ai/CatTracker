@@ -1,8 +1,9 @@
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { View, Text, ScrollView, Pressable, Switch, Platform, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
+import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import {
   Syringe,
   Bug,
@@ -23,11 +24,24 @@ const REMINDER_ICONS: Record<string, { Icon: typeof Syringe; bg: string; color: 
   checkup: { Icon: Stethoscope, bg: Colors.infoLight, color: Colors.info },
 };
 
+function parseReminderDate(dateStr: string): Date {
+  // Parse formats like "Apr 15, 2026" or "Jun 1, 2026"
+  const d = new Date(dateStr);
+  if (!isNaN(d.getTime())) return d;
+  return new Date();
+}
+
+function formatReminderDate(date: Date): string {
+  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+
 export default function SettingsScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { reminders, toggleReminder, isPro, activeCatId } = useAppStore();
+  const { reminders, toggleReminder, updateReminderDate, isPro, activeCatId } = useAppStore();
   const exportingRef = useRef(false);
+  const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
+  const [pickerDate, setPickerDate] = useState(new Date());
 
   const handleRestore = async () => {
     const restored = await restorePurchases();
@@ -59,6 +73,26 @@ export default function SettingsScreen() {
     } else {
       router.push('/paywall');
     }
+  };
+
+  const handleDatePress = (reminderId: string, currentDateStr: string) => {
+    setPickerDate(parseReminderDate(currentDateStr));
+    setEditingReminderId(reminderId);
+  };
+
+  const handleDateChange = (_event: DateTimePickerEvent, selectedDate?: Date) => {
+    if (Platform.OS === 'android') {
+      setEditingReminderId(null);
+    }
+    if (selectedDate && editingReminderId) {
+      const formatted = formatReminderDate(selectedDate);
+      updateReminderDate(editingReminderId, formatted);
+      setPickerDate(selectedDate);
+    }
+  };
+
+  const handleDateDone = () => {
+    setEditingReminderId(null);
   };
 
   return (
@@ -140,15 +174,27 @@ export default function SettingsScreen() {
                       >
                         {t(`reminders.${reminder.id}`, { defaultValue: reminder.title })}
                       </Text>
-                      <Text
-                        style={{
-                          fontFamily: 'Inter-Regular',
-                          fontSize: 12,
-                          color: Colors.textTertiary,
-                        }}
-                      >
-                        {reminder.date}
-                      </Text>
+                      <Pressable onPress={() => handleDatePress(reminder.id, reminder.date)}>
+                        <Text
+                          style={{
+                            fontFamily: 'Inter-Regular',
+                            fontSize: 12,
+                            color: Colors.accent,
+                          }}
+                        >
+                          {reminder.date}
+                        </Text>
+                        <Text
+                          style={{
+                            fontFamily: 'Inter-Regular',
+                            fontSize: 10,
+                            color: Colors.success,
+                            marginTop: 1,
+                          }}
+                        >
+                          {t('settings.tapToChange')}
+                        </Text>
+                      </Pressable>
                     </View>
                   </View>
                   <Pressable
@@ -167,6 +213,52 @@ export default function SettingsScreen() {
             })}
           </View>
         </View>
+
+        {/* Date Picker (iOS inline, Android dialog) */}
+        {editingReminderId && Platform.OS === 'ios' && (
+          <View
+            style={{
+              backgroundColor: Colors.card,
+              borderRadius: 18,
+              overflow: 'hidden',
+              shadowColor: '#000',
+              shadowOffset: { width: 0, height: 4 },
+              shadowOpacity: 0.06,
+              shadowRadius: 12,
+              elevation: 3,
+            }}
+          >
+            <DateTimePicker
+              value={pickerDate}
+              mode="date"
+              display="spinner"
+              onChange={handleDateChange}
+              minimumDate={new Date()}
+            />
+            <Pressable
+              onPress={handleDateDone}
+              style={{
+                alignItems: 'center',
+                paddingVertical: 12,
+                borderTopWidth: 1,
+                borderTopColor: Colors.divider,
+              }}
+            >
+              <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.accent }}>
+                {t('common.done')}
+              </Text>
+            </Pressable>
+          </View>
+        )}
+        {editingReminderId && Platform.OS === 'android' && (
+          <DateTimePicker
+            value={pickerDate}
+            mode="date"
+            display="default"
+            onChange={handleDateChange}
+            minimumDate={new Date()}
+          />
+        )}
 
         {/* Pro Features Section */}
         <View style={{ gap: 8 }}>
