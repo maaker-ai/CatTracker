@@ -8,7 +8,8 @@
     "noData": "暫無資料",
     "today": "今天",
     "yesterday": "昨天",
-    "version": "版本 {{version}}"
+    "version": "版本 {{version}}",
+    "done": "完成"
   },
   "splash": {
     "appName": "CatTracker"
@@ -61,7 +62,8 @@
     "yes": "是",
     "no": "否",
     "weightKg": "目前體重（kg）",
-    "yearsOld_other": "{{count}} 歲"
+    "yearsOld_other": "{{count}} 歲",
+    "selectBirthday": "點擊選擇生日"
   },
   "settings": {
     "title": "設定",

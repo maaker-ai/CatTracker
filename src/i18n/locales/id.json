@@ -8,7 +8,8 @@
     "noData": "Tidak ada data",
     "today": "Hari ini",
     "yesterday": "Kemarin",
-    "version": "Versi {{version}}"
+    "version": "Versi {{version}}",
+    "done": "Selesai"
   },
   "splash": {
     "appName": "CatTracker"
@@ -61,7 +62,8 @@
     "yes": "Ya",
     "no": "Tidak",
     "weightKg": "Berat Saat Ini (kg)",
-    "yearsOld_other": "{{count}} tahun"
+    "yearsOld_other": "{{count}} tahun",
+    "selectBirthday": "Ketuk untuk memilih tanggal lahir"
   },
   "settings": {
     "title": "Pengaturan",

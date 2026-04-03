@@ -8,7 +8,8 @@
     "noData": "Aucune donnée",
     "today": "Aujourd'hui",
     "yesterday": "Hier",
-    "version": "Version {{version}}"
+    "version": "Version {{version}}",
+    "done": "Terminé"
   },
   "splash": {
     "appName": "CatTracker"
@@ -61,7 +62,8 @@
     "yes": "Oui",
     "no": "Non",
     "weightKg": "Poids actuel (kg)",
-    "yearsOld_other": "{{count}} ans"
+    "yearsOld_other": "{{count}} ans",
+    "selectBirthday": "Appuyez pour sélectionner la date de naissance"
   },
   "settings": {
     "title": "Réglages",

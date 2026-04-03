@@ -8,7 +8,8 @@
     "noData": "لا توجد بيانات",
     "today": "اليوم",
     "yesterday": "أمس",
-    "version": "الإصدار {{version}}"
+    "version": "الإصدار {{version}}",
+    "done": "تم"
   },
   "splash": {
     "appName": "CatTracker"
@@ -61,7 +62,8 @@
     "yes": "نعم",
     "no": "لا",
     "weightKg": "الوزن الحالي (كغ)",
-    "yearsOld_other": "{{count}} سنوات"
+    "yearsOld_other": "{{count}} سنوات",
+    "selectBirthday": "اضغط لتحديد تاريخ الميلاد"
   },
   "settings": {
     "title": "الإعدادات",

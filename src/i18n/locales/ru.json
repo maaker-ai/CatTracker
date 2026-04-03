@@ -8,7 +8,8 @@
     "noData": "Нет данных",
     "today": "Сегодня",
     "yesterday": "Вчера",
-    "version": "Версия {{version}}"
+    "version": "Версия {{version}}",
+    "done": "Готово"
   },
   "splash": {
     "appName": "CatTracker"
@@ -61,7 +62,8 @@
     "yes": "Да",
     "no": "Нет",
     "weightKg": "Текущий вес (кг)",
-    "yearsOld_other": "{{count}} лет"
+    "yearsOld_other": "{{count}} лет",
+    "selectBirthday": "Нажмите, чтобы выбрать дату рождения"
   },
   "settings": {
     "title": "Настройки",

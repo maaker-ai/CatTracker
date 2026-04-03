@@ -8,7 +8,8 @@
     "noData": "데이터 없음",
     "today": "오늘",
     "yesterday": "어제",
-    "version": "버전 {{version}}"
+    "version": "버전 {{version}}",
+    "done": "완료"
   },
   "splash": {
     "appName": "CatTracker"
@@ -61,7 +62,8 @@
     "yes": "예",
     "no": "아니오",
     "weightKg": "현재 체중 (kg)",
-    "yearsOld_other": "{{count}}살"
+    "yearsOld_other": "{{count}}살",
+    "selectBirthday": "탭하여 생일 선택"
   },
   "settings": {
     "title": "설정",
