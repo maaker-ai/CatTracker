@@ -1,12 +1,9 @@
 import { useRef } from 'react';
-import { View, Text, ScrollView, Pressable, Switch, Platform, Alert } from 'react-native';
+import { View, Text, ScrollView, Pressable, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import {
-  Syringe,
-  Bug,
-  Stethoscope,
   FileText,
   Cat,
   ChevronRight,
@@ -17,16 +14,10 @@ import { useAppStore } from '@/stores/appStore';
 import { restorePurchases } from '@/utils/purchases';
 import { exportPdfReport } from '@/utils/exportPdf';
 
-const REMINDER_ICONS: Record<string, { Icon: typeof Syringe; bg: string; color: string }> = {
-  vaccine: { Icon: Syringe, bg: Colors.accentLight, color: Colors.accent },
-  deworming: { Icon: Bug, bg: Colors.successLight, color: Colors.success },
-  checkup: { Icon: Stethoscope, bg: Colors.infoLight, color: Colors.info },
-};
-
 export default function SettingsScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { reminders, toggleReminder, isPro, activeCatId } = useAppStore();
+  const { isPro, activeCatId } = useAppStore();
   const exportingRef = useRef(false);
 
   const handleRestore = async () => {
@@ -77,96 +68,6 @@ export default function SettingsScreen() {
         >
           {t('settings.title')}
         </Text>
-
-        {/* Reminders Section */}
-        <View style={{ gap: 8 }}>
-          <Text
-            style={{
-              fontFamily: 'Inter-SemiBold',
-              fontSize: 11,
-              color: Colors.textTertiary,
-              letterSpacing: 0.8,
-            }}
-          >
-            {t('settings.reminders')}
-          </Text>
-          <View
-            style={{
-              backgroundColor: Colors.card,
-              borderRadius: 18,
-              overflow: 'hidden',
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 4 },
-              shadowOpacity: 0.06,
-              shadowRadius: 12,
-              elevation: 3,
-            }}
-          >
-            {reminders.map((reminder, index) => {
-              const config = REMINDER_ICONS[reminder.id] ?? REMINDER_ICONS.vaccine;
-              return (
-                <View
-                  key={reminder.id}
-                  style={{
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between',
-                    paddingVertical: 14,
-                    paddingHorizontal: 16,
-                    borderBottomWidth: index < reminders.length - 1 ? 1 : 0,
-                    borderBottomColor: Colors.divider,
-                  }}
-                >
-                  <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                    <View
-                      style={{
-                        width: 36,
-                        height: 36,
-                        borderRadius: 10,
-                        backgroundColor: config.bg,
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                      }}
-                    >
-                      <config.Icon size={18} color={config.color} />
-                    </View>
-                    <View style={{ gap: 2 }}>
-                      <Text
-                        style={{
-                          fontFamily: 'Inter-Medium',
-                          fontSize: 14,
-                          color: Colors.textPrimary,
-                        }}
-                      >
-                        {t(`reminders.${reminder.id}`, { defaultValue: reminder.title })}
-                      </Text>
-                      <Text
-                        style={{
-                          fontFamily: 'Inter-Regular',
-                          fontSize: 12,
-                          color: Colors.textTertiary,
-                        }}
-                      >
-                        {reminder.date}
-                      </Text>
-                    </View>
-                  </View>
-                  <Pressable
-                    onPress={() => toggleReminder(reminder.id)}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                  >
-                    <Switch
-                      value={reminder.enabled}
-                      onValueChange={() => toggleReminder(reminder.id)}
-                      trackColor={{ false: Colors.toggleOff, true: Colors.accent }}
-                      thumbColor="#FFFFFF"
-                    />
-                  </Pressable>
-                </View>
-              );
-            })}
-          </View>
-        </View>
 
         {/* Pro Features Section */}
         <View style={{ gap: 8 }}>
