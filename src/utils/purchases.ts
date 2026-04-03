@@ -35,12 +35,18 @@ export async function refreshProStatus(): Promise<boolean> {
 export async function getOfferings(): Promise<PurchasesPackage[]> {
   try {
     const offerings = await Purchases.getOfferings();
+    // TEMP: diagnostic logging
+    console.log('[RC] offerings.current:', offerings.current?.identifier ?? 'null');
+    console.log('[RC] all offering keys:', Object.keys(offerings.all));
+    if (offerings.current) {
+      console.log('[RC] available packages:', offerings.current.availablePackages.map(p => p.identifier));
+    }
     if (offerings.current && offerings.current.availablePackages.length > 0) {
       return offerings.current.availablePackages;
     }
     return [];
   } catch (e) {
-    console.warn('Failed to get offerings:', e);
+    console.warn('[RC] Failed to get offerings:', e);
     return [];
   }
 }

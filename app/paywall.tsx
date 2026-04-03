@@ -66,7 +66,14 @@ export default function PaywallScreen() {
   ];
 
   useEffect(() => {
-    getOfferings().then(setPackages);
+    getOfferings().then((pkgs) => {
+      setPackages(pkgs);
+      // TEMP: diagnostic - remove after debugging
+      if (__DEV__ || pkgs.length === 0) {
+        const info = pkgs.map(p => `${p.identifier}: ${p.product?.priceString ?? 'no price'}`).join('\n') || 'No packages returned';
+        Alert.alert('Offerings Debug', info);
+      }
+    });
   }, []);
 
   const handlePurchase = async () => {
