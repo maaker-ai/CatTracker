@@ -28,7 +28,7 @@
     "activity": "활동량",
     "recentNotes": "최근 메모",
     "noNotesYet": "아직 메모가 없습니다. \"+ 오늘 기록\"을 눌러 추가하세요.",
-    "logToday": "+ 오늘 기록"
+    "logToday": "오늘 기록"
   },
   "timeline": {
     "title": "타임라인",

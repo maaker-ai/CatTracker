@@ -28,7 +28,7 @@
     "activity": "Activity",
     "recentNotes": "Recent Notes",
     "noNotesYet": "No notes yet. Tap \"+ Log Today\" to add one.",
-    "logToday": "+ Log Today"
+    "logToday": "Log Today"
   },
   "timeline": {
     "title": "Timeline",
@@ -43,8 +43,8 @@
     "xLitter_one": "{{count}}x litter",
     "xLitter_other": "{{count}}x litter",
     "appetiteScore": "{{score}}/5 appetite",
-    "todayDate": "Today \u2014 {{date}}",
-    "yesterdayDate": "Yesterday \u2014 {{date}}"
+    "todayDate": "Today — {{date}}",
+    "yesterdayDate": "Yesterday — {{date}}"
   },
   "profile": {
     "editProfile": "Edit Profile",
@@ -54,7 +54,7 @@
     "currentWeight": "Current Weight",
     "weightHistory": "Weight History",
     "noWeightRecords": "No weight records",
-    "currentWeightSummary": "Current: {{weight}} kg \u00B7 {{diff}} kg from last month",
+    "currentWeightSummary": "Current: {{weight}} kg · {{diff}} kg from last month",
     "addWeightHint": "Add weight records in Edit Profile",
     "name": "Name",
     "breed": "Breed",
@@ -119,7 +119,7 @@
     "savePercent": "Save 37%",
     "upgradeToPro": "Upgrade to Pro",
     "restorePurchase": "Restore Purchase",
-    "cancelAnytime": "Cancel anytime \u00B7 Auto-renews annually",
+    "cancelAnytime": "Cancel anytime · Auto-renews annually",
     "packageNotAvailable": "Package not available. Please try again later.",
     "purchaseFailed": "Purchase Failed",
     "restored": "Restored!",

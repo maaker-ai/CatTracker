@@ -28,7 +28,7 @@
     "activity": "活动量",
     "recentNotes": "最近备注",
     "noNotesYet": "暂无备注。点击\"+ 今日记录\"添加。",
-    "logToday": "+ 今日记录"
+    "logToday": "今日记录"
   },
   "timeline": {
     "title": "时间线",
@@ -40,8 +40,8 @@
     "lowAppetite": "食欲低下",
     "xLitter_other": "{{count}}次猫砂",
     "appetiteScore": "食欲 {{score}}/5",
-    "todayDate": "今天 \u2014 {{date}}",
-    "yesterdayDate": "昨天 \u2014 {{date}}"
+    "todayDate": "今天 — {{date}}",
+    "yesterdayDate": "昨天 — {{date}}"
   },
   "profile": {
     "editProfile": "编辑档案",
@@ -51,7 +51,7 @@
     "currentWeight": "当前体重",
     "weightHistory": "体重记录",
     "noWeightRecords": "暂无体重记录",
-    "currentWeightSummary": "当前：{{weight}} kg \u00B7 较上月 {{diff}} kg",
+    "currentWeightSummary": "当前：{{weight}} kg · 较上月 {{diff}} kg",
     "addWeightHint": "在编辑档案中添加体重记录",
     "name": "名字",
     "breed": "品种",
@@ -115,7 +115,7 @@
     "savePercent": "省 37%",
     "upgradeToPro": "升级到专业版",
     "restorePurchase": "恢复购买",
-    "cancelAnytime": "随时取消 \u00B7 自动按年续费",
+    "cancelAnytime": "随时取消 · 自动按年续费",
     "packageNotAvailable": "套餐暂不可用，请稍后再试。",
     "purchaseFailed": "购买失败",
     "restored": "已恢复！",
