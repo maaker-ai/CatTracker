@@ -1,20 +1,20 @@
 {
-  "uploaded_at": "2026-04-02T14:00:00Z",
-  "build_number": "2",
+  "uploaded_at": "2026-04-07T14:02:00Z",
+  "build_number": "13",
   "version": "1.0.0",
-  "ipa_path": "build-1775106065544.ipa",
-  "ipa_size_mb": 23.1,
-  "eas_submission_id": "350d9ef5-32fe-4843-a7b6-d13dede69309",
-  "eas_submission_url": "https://expo.dev/accounts/maruipp/projects/CatTracker/submissions/350d9ef5-32fe-4843-a7b6-d13dede69309",
+  "ipa_path": "build-1775541367207.ipa",
+  "ipa_size_mb": 22.9,
+  "eas_submission_id": "c2219304-da0c-47e6-865f-6c985105c1cb",
+  "eas_submission_url": "https://expo.dev/accounts/maruipp/projects/CatTracker/submissions/c2219304-da0c-47e6-865f-6c985105c1cb",
   "asc_app_id": "6761513507",
-  "asc_app_name": "CatTracker (0bd4fc)",
+  "asc_build_id": "63e87c84-9962-496d-92e4-ac065113cf04",
   "testflight_group": "Team (Expo)",
   "testers": ["maruipp@gmail.com", "maruipeng@qq.com", "tucao.art@gmail.com", "xu.fei127@hotmail.com"],
   "status": "submitted",
-  "iap_preflight": {
-    "required": true,
-    "apple_product_status": "needs_verification",
-    "revenuecat_current_offering_ready": true,
-    "note": "Apple subscription products need to be created in ASC for app ID 6761513507"
-  }
+  "build_method": "eas-local",
+  "changes": [
+    "Set supportsTablet to false (iPhone only)",
+    "Remove diagnostic debug code",
+    "Add privacy policy HTML for GitHub Pages"
+  ]
 }
