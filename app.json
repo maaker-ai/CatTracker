@@ -11,7 +11,7 @@
       "backgroundColor": "#FFF8F0"
     },
     "ios": {
-      "supportsTablet": true,
+      "supportsTablet": false,
       "bundleIdentifier": "top.dramavision.cattracker",
       "buildNumber": "12",
       "infoPlist": {
