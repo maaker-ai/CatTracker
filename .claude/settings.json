@@ -2,11 +2,13 @@
   "hooks": {
     "PostToolUse": [
       {
-        "matcher": {
-          "tool_name": "edit_file",
-          "file_paths": ["*.tsx", "*.ts"]
-        },
-        "command": "node .claude/validators/expo-conventions.js $CLAUDE_FILE_PATHS"
+        "matcher": "Edit|Write",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "node .claude/validators/expo-conventions.js $CLAUDE_FILE_PATHS"
+          }
+        ]
       }
     ]
   }
