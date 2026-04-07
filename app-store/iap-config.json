@@ -1,19 +1,43 @@
 {
-  "checked_at": "2026-04-02T11:00:00Z",
+  "checked_at": "2026-04-07T12:00:00Z",
   "monetization": "freemium_subscription",
   "bundle_id": "top.dramavision.cattracker",
   "apple": {
-    "product_ids": ["cattracker.pro.monthly", "cattracker.pro.yearly"],
-    "status": "needs_verification",
-    "note": "Apple product creation and READY_TO_SUBMIT status must be verified before TestFlight submission"
+    "app_id": "6761513507",
+    "subscription_group_id": "22011101",
+    "subscription_group_name": "CatTracker Pro",
+    "products": [
+      {
+        "product_id": "cattracker.pro.monthly",
+        "asc_id": "6761586093",
+        "period": "ONE_MONTH",
+        "state": "READY_TO_SUBMIT",
+        "review_screenshot": "uploaded",
+        "prices_configured": true
+      },
+      {
+        "product_id": "cattracker.pro.yearly",
+        "asc_id": "6761586033",
+        "period": "ONE_YEAR",
+        "state": "READY_TO_SUBMIT",
+        "review_screenshot": "uploaded",
+        "prices_configured": true
+      }
+    ]
   },
   "revenuecat": {
+    "project_id": "projd2b2b9d8",
+    "ios_app_id": "appfb13b19d36",
     "ios_api_key": "appl_fAyuyQCPeIYprMEauuaNyzAixYV",
     "android_api_key": "goog_wkyTrMhPGEJeBYsrnvWbwoXLNTu",
     "test_api_key": "test_qQHCXaEhwzQVXUGavJULVewEETk",
     "entitlement_id": "pro",
     "offering_ready": true,
-    "packages": ["$rc_monthly", "$rc_annual"]
+    "packages": ["$rc_monthly", "$rc_annual"],
+    "app_store_connect_api_key_configured": true,
+    "subscription_key_configured": true,
+    "entitlement_products_fixed": true,
+    "note": "Attached cattracker.pro.* products to entitlement (were missing, only top.dramavision.cattracker.pro.* were attached)"
   },
   "paywall": {
     "monthly_price": "$3.99",
@@ -22,5 +46,5 @@
     "cta_text": "Upgrade to Pro",
     "price_matches_notion": true
   },
-  "status": "partial"
+  "status": "pass"
 }
