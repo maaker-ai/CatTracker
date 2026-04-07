@@ -16,7 +16,9 @@
     "validated": true
   },
   "privacy_policy": {
-    "status": "in-app",
-    "note": "Privacy policy implemented as in-app page (app/privacy-policy.tsx), accessible from Settings. Pure local app, no data collection."
+    "status": "ready",
+    "url": "https://maaker-ai.github.io/CatTracker/privacy-policy.html",
+    "in_app_page": "app/privacy-policy.tsx",
+    "note": "Privacy policy hosted on GitHub Pages and available in-app. Pure local app, no data collection."
   }
 }
