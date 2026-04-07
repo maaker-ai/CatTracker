@@ -12,6 +12,7 @@ import {
   Cat,
   ChevronRight,
   CircleCheck,
+  ShieldCheck,
 } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
@@ -360,6 +361,44 @@ export default function SettingsScreen() {
               </View>
               <ChevronRight size={20} color="#FFFFFF" />
             </Pressable>
+          )}
+          {isPro && (
+            <View
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                backgroundColor: '#EDF7EF',
+                borderRadius: 18,
+                paddingVertical: 16,
+                paddingHorizontal: 20,
+              }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <ShieldCheck size={22} color="#2D6B3A" />
+                <View style={{ gap: 2 }}>
+                  <Text
+                    style={{
+                      fontFamily: 'Inter-Bold',
+                      fontSize: 16,
+                      color: '#2D6B3A',
+                    }}
+                  >
+                    {t('settings.proPlanActive')}
+                  </Text>
+                  <Text
+                    style={{
+                      fontFamily: 'Inter-Regular',
+                      fontSize: 13,
+                      color: 'rgba(45,107,58,0.7)',
+                    }}
+                  >
+                    {t('settings.allFeaturesUnlocked')}
+                  </Text>
+                </View>
+              </View>
+              <CircleCheck size={20} color="#2D6B3A" />
+            </View>
           )}
           <View
             style={{
