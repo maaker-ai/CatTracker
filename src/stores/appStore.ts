@@ -70,12 +70,24 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'cattracker-app-store',
+      version: 1,
       storage: createJSONStorage(() => getSafeStorage()),
       partialize: (state) => ({
         isPro: state.isPro,
         activeCatId: state.activeCatId,
         reminders: state.reminders,
       }),
+      migrate: (persisted: unknown, version: number) => {
+        const state = persisted as Record<string, unknown>;
+        if (version === 0) {
+          // v0 → v1: replace vaccine/deworming/checkup reminders with feeding/waterChange
+          state.reminders = [
+            { id: 'feeding', title: 'Feeding Reminder', date: '', enabled: true },
+            { id: 'waterChange', title: 'Water Change Reminder', date: '', enabled: false },
+          ];
+        }
+        return state as unknown as AppState;
+      },
     }
   )
 );
