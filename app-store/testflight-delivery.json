@@ -1,19 +1,34 @@
 {
-  "uploaded_at": "2026-04-08T00:10:00Z",
-  "build_number": "14",
+  "uploaded_at": "2026-04-08T12:10:00Z",
+  "build_number": "15",
   "version": "1.0.0",
-  "ipa_path": "build-1775578272778.ipa",
+  "ipa_path": "build-1775621829589.ipa",
   "ipa_size_mb": 23.5,
-  "eas_submission_id": "9a4b86db-857d-43de-9c19-a62230ecb240",
+  "eas_submission_id": "4225f313-cf26-404e-ac49-7552ffc97b95",
   "asc_app_id": "6761513507",
-  "asc_build_id": "f961cfb9-ed0a-43d2-a1d0-6361cb5334b8",
-  "testflight_group": "Team (Expo)",
+  "testflight_url": "https://appstoreconnect.apple.com/apps/6761513507/testflight/ios",
   "status": "submitted",
   "build_method": "eas-local",
+  "internal_group_id": "pending-apple-processing",
+  "tester_email": "maruipp@gmail.com",
   "changes": [
-    "supportsTablet: false (iPhone only)",
-    "Add Pro Plan Active banner in settings for Pro users",
-    "Fix icon.png: convert from JPEG to real PNG",
-    "Remove diagnostic debug code"
-  ]
+    "Tab Bar: 3rd tab changed from Profile/User icon to Cats/Cat icon",
+    "Settings: Reminders updated from vaccine/deworming/checkup to feeding/water-change",
+    "Settings: Added Rate App and Contact Support in MORE section",
+    "Timeline: Chart changed from bathroom visits (blue) to appetite trend (orange)",
+    "Timeline: 7-days pill icon changed from Clock to CircleHelp",
+    "Home: Log button moved above quick-tap cards, no longer hidden by Tab Bar",
+    "Paywall: Close button now orange circle with white X",
+    "Paywall: Paw icon without circle background",
+    "Paywall: CTA text changed to Start Free Trial",
+    "Paywall: Added loading spinners on purchase and restore buttons",
+    "Store migration v0->v1 for reminder data",
+    "Updated Expo SDK 55 dependencies to latest patch versions"
+  ],
+  "iap_preflight": {
+    "required": true,
+    "apple_product_exists": true,
+    "revenuecat_current_offering_ready": true,
+    "note": "IAP verified in Build 14, no IAP code changes in Build 15"
+  }
 }
