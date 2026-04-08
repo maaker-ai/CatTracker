@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { View, Text, ScrollView, Pressable, Platform, Alert } from 'react-native';
+import { View, Text, ScrollView, Pressable, Platform, Alert, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import {
@@ -28,6 +28,8 @@ export default function PaywallScreen() {
   const router = useRouter();
   const [selectedPlan, setSelectedPlan] = useState<PlanType>('yearly');
   const [packages, setPackages] = useState<PurchasesPackage[]>([]);
+  const [purchasing, setPurchasing] = useState(false);
+  const [restoring, setRestoring] = useState(false);
   const purchasingRef = useRef(false);
 
   const FEATURES = [
@@ -72,6 +74,7 @@ export default function PaywallScreen() {
   const handlePurchase = async () => {
     if (purchasingRef.current) return;
     purchasingRef.current = true;
+    setPurchasing(true);
 
     const targetId = selectedPlan === 'yearly' ? '$rc_annual' : '$rc_monthly';
     const pkg = packages.find((p) => p.identifier === targetId);
@@ -79,11 +82,13 @@ export default function PaywallScreen() {
     if (!pkg) {
       Alert.alert(t('common.error'), t('paywall.packageNotAvailable'));
       purchasingRef.current = false;
+      setPurchasing(false);
       return;
     }
 
     const result = await purchasePackage(pkg);
     purchasingRef.current = false;
+    setPurchasing(false);
 
     if (result.status === 'success') {
       router.back();
@@ -94,7 +99,9 @@ export default function PaywallScreen() {
   };
 
   const handleRestore = async () => {
+    setRestoring(true);
     const restored = await restorePurchases();
+    setRestoring(false);
     if (restored) {
       Alert.alert(t('paywall.restored'), t('paywall.restoredMessage'));
       router.back();
@@ -385,27 +392,35 @@ export default function PaywallScreen() {
               elevation: 6,
             }}
           >
-            <Text
-              style={{
-                fontFamily: 'Inter-Bold',
-                fontSize: 16,
-                color: '#FFFFFF',
-              }}
-            >
-              {t('paywall.startFreeTrial')}
-            </Text>
+            {purchasing ? (
+              <ActivityIndicator color="#FFFFFF" />
+            ) : (
+              <Text
+                style={{
+                  fontFamily: 'Inter-Bold',
+                  fontSize: 16,
+                  color: '#FFFFFF',
+                }}
+              >
+                {t('paywall.startFreeTrial')}
+              </Text>
+            )}
           </Pressable>
-          <Pressable onPress={handleRestore}>
-            <Text
-              style={{
-                fontFamily: 'Inter-Regular',
-                fontSize: 13,
-                color: Colors.textTertiary,
-                textAlign: 'center',
-              }}
-            >
-              {t('paywall.restorePurchase')}
-            </Text>
+          <Pressable onPress={handleRestore} disabled={restoring}>
+            {restoring ? (
+              <ActivityIndicator size="small" color={Colors.textTertiary} />
+            ) : (
+              <Text
+                style={{
+                  fontFamily: 'Inter-Regular',
+                  fontSize: 13,
+                  color: Colors.textTertiary,
+                  textAlign: 'center',
+                }}
+              >
+                {t('paywall.restorePurchase')}
+              </Text>
+            )}
           </Pressable>
           <Text
             style={{
