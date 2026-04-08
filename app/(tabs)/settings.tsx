@@ -1,71 +1,38 @@
-import { useRef, useState } from 'react';
-import { View, Text, ScrollView, Pressable, Switch, Platform, Alert } from 'react-native';
+import { useRef } from 'react';
+import { View, Text, ScrollView, Pressable, Switch, Platform, Alert, Linking } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import DateTimePicker, { type DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import {
-  Syringe,
-  Bug,
-  Stethoscope,
+  UtensilsCrossed,
+  Droplets,
   FileText,
   Cat,
   ChevronRight,
   CircleCheck,
   ShieldCheck,
+  Star,
+  MessageCircle,
 } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
 import { restorePurchases } from '@/utils/purchases';
 import { exportPdfReport } from '@/utils/exportPdf';
-import { getCatById } from '@/utils/database';
 import {
   requestNotificationPermission,
-  scheduleReminder,
   cancelReminder,
 } from '@/utils/notifications';
 
-const REMINDER_ICONS: Record<string, { Icon: typeof Syringe; bg: string; color: string }> = {
-  vaccine: { Icon: Syringe, bg: Colors.accentLight, color: Colors.accent },
-  deworming: { Icon: Bug, bg: Colors.successLight, color: Colors.success },
-  checkup: { Icon: Stethoscope, bg: Colors.infoLight, color: Colors.info },
+const REMINDER_ICONS: Record<string, { Icon: typeof UtensilsCrossed; bg: string; color: string }> = {
+  feeding: { Icon: UtensilsCrossed, bg: Colors.accentLight, color: Colors.accent },
+  waterChange: { Icon: Droplets, bg: Colors.successLight, color: Colors.success },
 };
 
-function parseReminderDate(dateStr: string): Date {
-  // Parse formats like "Apr 15, 2026" or "Jun 1, 2026"
-  const d = new Date(dateStr);
-  if (!isNaN(d.getTime())) return d;
-  return new Date();
-}
-
-function formatReminderDate(date: Date): string {
-  return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
-}
-
 export default function SettingsScreen() {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const router = useRouter();
-  const { reminders, toggleReminder, updateReminderDate, isPro, activeCatId } = useAppStore();
+  const { reminders, toggleReminder, isPro, activeCatId } = useAppStore();
   const exportingRef = useRef(false);
-  const [editingReminderId, setEditingReminderId] = useState<string | null>(null);
-  const [pickerDate, setPickerDate] = useState(new Date());
-
-  const scheduleReminderNotification = async (reminderId: string, dateStr: string) => {
-    const catId = activeCatId;
-    let catName = 'your cat';
-    if (catId) {
-      try {
-        const cat = await getCatById(catId);
-        if (cat) catName = cat.name;
-      } catch {
-        // fallback to default name
-      }
-    }
-    const title = t(`reminders.${reminderId}`);
-    const body = t(`notifications.${reminderId}Body`, { name: catName });
-    const date = parseReminderDate(dateStr);
-    await scheduleReminder(reminderId, title, body, date);
-  };
 
   const handleToggleReminder = async (reminderId: string) => {
     const reminder = reminders.find((r) => r.id === reminderId);
@@ -76,7 +43,6 @@ export default function SettingsScreen() {
       const granted = await requestNotificationPermission();
       if (!granted) return; // permission denied, don't toggle
       toggleReminder(reminderId);
-      await scheduleReminderNotification(reminderId, reminder.date);
     } else {
       // Turning OFF — cancel notification
       toggleReminder(reminderId);
@@ -116,30 +82,14 @@ export default function SettingsScreen() {
     }
   };
 
-  const handleDatePress = (reminderId: string, currentDateStr: string) => {
-    setPickerDate(parseReminderDate(currentDateStr));
-    setEditingReminderId(reminderId);
-  };
-
-  const handleDateChange = async (_event: DateTimePickerEvent, selectedDate?: Date) => {
-    if (Platform.OS === 'android') {
-      setEditingReminderId(null);
-    }
-    if (selectedDate && editingReminderId) {
-      const formatted = formatReminderDate(selectedDate);
-      updateReminderDate(editingReminderId, formatted);
-      setPickerDate(selectedDate);
-
-      // If this reminder is enabled, reschedule notification with new date
-      const reminder = reminders.find((r) => r.id === editingReminderId);
-      if (reminder?.enabled) {
-        await scheduleReminderNotification(editingReminderId, formatted);
-      }
+  const handleRateApp = () => {
+    if (Platform.OS === 'ios') {
+      Linking.openURL('https://apps.apple.com/app/id6744227268?action=write-review');
     }
   };
 
-  const handleDateDone = () => {
-    setEditingReminderId(null);
+  const handleContactSupport = () => {
+    Linking.openURL('mailto:support@maaker.ai');
   };
 
   return (
@@ -184,7 +134,7 @@ export default function SettingsScreen() {
             }}
           >
             {reminders.map((reminder, index) => {
-              const config = REMINDER_ICONS[reminder.id] ?? REMINDER_ICONS.vaccine;
+              const config = REMINDER_ICONS[reminder.id] ?? REMINDER_ICONS.feeding;
               return (
                 <View
                   key={reminder.id}
@@ -211,103 +161,27 @@ export default function SettingsScreen() {
                     >
                       <config.Icon size={18} color={config.color} />
                     </View>
-                    <View style={{ gap: 2 }}>
-                      <Text
-                        style={{
-                          fontFamily: 'Inter-Medium',
-                          fontSize: 14,
-                          color: Colors.textPrimary,
-                        }}
-                      >
-                        {t(`reminders.${reminder.id}`, { defaultValue: reminder.title })}
-                      </Text>
-                      <Pressable onPress={() => handleDatePress(reminder.id, reminder.date)}>
-                        <Text
-                          style={{
-                            fontFamily: 'Inter-Regular',
-                            fontSize: 12,
-                            color: Colors.accent,
-                          }}
-                        >
-                          {reminder.date}
-                        </Text>
-                        <Text
-                          style={{
-                            fontFamily: 'Inter-Regular',
-                            fontSize: 10,
-                            color: Colors.success,
-                            marginTop: 1,
-                          }}
-                        >
-                          {t('settings.tapToChange')}
-                        </Text>
-                      </Pressable>
-                    </View>
+                    <Text
+                      style={{
+                        fontFamily: 'Inter-Medium',
+                        fontSize: 14,
+                        color: Colors.textPrimary,
+                      }}
+                    >
+                      {t(`reminders.${reminder.id}`, { defaultValue: reminder.title })}
+                    </Text>
                   </View>
-                  <Pressable
-                    onPress={() => handleToggleReminder(reminder.id)}
-                    hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
-                  >
-                    <Switch
-                      value={reminder.enabled}
-                      onValueChange={() => handleToggleReminder(reminder.id)}
-                      trackColor={{ false: Colors.toggleOff, true: Colors.accent }}
-                      thumbColor="#FFFFFF"
-                    />
-                  </Pressable>
+                  <Switch
+                    value={reminder.enabled}
+                    onValueChange={() => handleToggleReminder(reminder.id)}
+                    trackColor={{ false: Colors.toggleOff, true: Colors.accent }}
+                    thumbColor="#FFFFFF"
+                  />
                 </View>
               );
             })}
           </View>
         </View>
-
-        {/* Date Picker (iOS inline, Android dialog) */}
-        {editingReminderId && Platform.OS === 'ios' && (
-          <View
-            style={{
-              backgroundColor: Colors.card,
-              borderRadius: 18,
-              overflow: 'hidden',
-              shadowColor: '#000',
-              shadowOffset: { width: 0, height: 4 },
-              shadowOpacity: 0.06,
-              shadowRadius: 12,
-              elevation: 3,
-            }}
-          >
-            <DateTimePicker
-              value={pickerDate}
-              mode="date"
-              display="spinner"
-              locale={i18n.language}
-              onChange={handleDateChange}
-              minimumDate={new Date()}
-            />
-            <Pressable
-              onPress={handleDateDone}
-              style={{
-                alignItems: 'center',
-                paddingVertical: 12,
-                borderTopWidth: 1,
-                borderTopColor: Colors.divider,
-              }}
-            >
-              <Text style={{ fontFamily: 'Inter-SemiBold', fontSize: 14, color: Colors.accent }}>
-                {t('common.done')}
-              </Text>
-            </Pressable>
-          </View>
-        )}
-        {editingReminderId && Platform.OS === 'android' && (
-          <DateTimePicker
-            value={pickerDate}
-            mode="date"
-            display="default"
-            locale={i18n.language}
-            onChange={handleDateChange}
-            minimumDate={new Date()}
-          />
-        )}
 
         {/* Pro Features Section */}
         <View style={{ gap: 8 }}>
@@ -595,6 +469,80 @@ export default function SettingsScreen() {
               elevation: 3,
             }}
           >
+            <Pressable
+              onPress={handleRateApp}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingVertical: 14,
+                paddingHorizontal: 16,
+                borderBottomWidth: 1,
+                borderBottomColor: Colors.divider,
+              }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <View
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    backgroundColor: Colors.accentLight,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <Star size={18} color={Colors.accent} />
+                </View>
+                <Text
+                  style={{
+                    fontFamily: 'Inter-Medium',
+                    fontSize: 14,
+                    color: Colors.textPrimary,
+                  }}
+                >
+                  {t('settings.rateApp')}
+                </Text>
+              </View>
+              <ChevronRight size={16} color={Colors.textTertiary} />
+            </Pressable>
+            <Pressable
+              onPress={handleContactSupport}
+              style={{
+                flexDirection: 'row',
+                alignItems: 'center',
+                justifyContent: 'space-between',
+                paddingVertical: 14,
+                paddingHorizontal: 16,
+                borderBottomWidth: 1,
+                borderBottomColor: Colors.divider,
+              }}
+            >
+              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+                <View
+                  style={{
+                    width: 36,
+                    height: 36,
+                    borderRadius: 10,
+                    backgroundColor: Colors.infoLight,
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                  }}
+                >
+                  <MessageCircle size={18} color={Colors.info} />
+                </View>
+                <Text
+                  style={{
+                    fontFamily: 'Inter-Medium',
+                    fontSize: 14,
+                    color: Colors.textPrimary,
+                  }}
+                >
+                  {t('settings.contactSupport')}
+                </Text>
+              </View>
+              <ChevronRight size={16} color={Colors.textTertiary} />
+            </Pressable>
             <Pressable
               onPress={handleRestore}
               style={{

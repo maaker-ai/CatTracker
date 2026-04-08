@@ -3,10 +3,10 @@ import { View, Text, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useFocusEffect } from 'expo-router';
 import { useTranslation } from 'react-i18next';
-import { Footprints, Heart, Droplets, AlertTriangle, Clock } from 'lucide-react-native';
+import { Footprints, Heart, Droplets, AlertTriangle, CircleHelp } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { getLogs, getQuickLogHistory, getQuickLogCount, getQuickLogAverage } from '@/utils/database';
+import { getLogs, getQuickLogCount, getQuickLogAverage } from '@/utils/database';
 import type { DailyLog } from '@/types';
 
 type StatusLabel = 'normal' | 'belowAvg' | 'aboveAvg';
@@ -28,17 +28,38 @@ export default function TimelineScreen() {
   const { t } = useTranslation();
   const activeCatId = useAppStore((s) => s.activeCatId);
   const [logs, setLogs] = useState<DailyLog[]>([]);
-  const [visitHistory, setVisitHistory] = useState<{ date: string; count: number }[]>([]);
-  const [avgVisits, setAvgVisits] = useState(0);
+  const [appetiteHistory, setAppetiteHistory] = useState<{ date: string; score: number }[]>([]);
+  const [avgAppetite, setAvgAppetite] = useState(0);
   // Per-date quick log counts
   const [dateQuickLogs, setDateQuickLogs] = useState<Record<string, { bathroom: number; water: number; bathroomAvg: number; waterAvg: number }>>({});
 
   useFocusEffect(
     useCallback(() => {
       if (!activeCatId) return;
-      getLogs(activeCatId, 30).then(setLogs);
-      getQuickLogHistory(activeCatId, 'bathroom', 7).then(setVisitHistory);
-      getQuickLogAverage(activeCatId, 'bathroom', 7).then(setAvgVisits);
+      getLogs(activeCatId, 30).then((allLogs) => {
+        setLogs(allLogs);
+        // Build appetite history for the last 7 days
+        const today = new Date();
+        const days: { date: string; score: number }[] = [];
+        let totalScore = 0;
+        let totalDays = 0;
+        for (let i = 6; i >= 0; i--) {
+          const d = new Date(today);
+          d.setDate(d.getDate() - i);
+          const dateStr = d.toISOString().slice(0, 10);
+          const dayLogs = allLogs.filter((l) => l.date === dateStr);
+          if (dayLogs.length > 0) {
+            const avg = dayLogs.reduce((sum, l) => sum + l.appetite, 0) / dayLogs.length;
+            days.push({ date: dateStr, score: avg });
+            totalScore += avg;
+            totalDays++;
+          } else {
+            days.push({ date: dateStr, score: 0 });
+          }
+        }
+        setAppetiteHistory(days);
+        setAvgAppetite(totalDays > 0 ? totalScore / totalDays : 0);
+      });
     }, [activeCatId])
   );
 
@@ -74,7 +95,7 @@ export default function TimelineScreen() {
 
   const sortedDates = Object.keys(groupedLogs).sort((a, b) => b.localeCompare(a));
 
-  const maxVisits = visitHistory.length > 0 ? Math.max(...visitHistory.map((h) => h.count), 1) : 1;
+  const maxAppetite = 5; // Appetite is always 1-5 scale
 
   const formatDateLabel = (dateStr: string) => {
     const today = new Date().toISOString().slice(0, 10);
@@ -122,7 +143,7 @@ export default function TimelineScreen() {
               paddingHorizontal: 14,
             }}
           >
-            <Clock size={14} color={Colors.textSecondary} />
+            <CircleHelp size={14} color={Colors.textSecondary} />
             <Text
               style={{
                 fontFamily: 'Inter-Medium',
@@ -163,11 +184,11 @@ export default function TimelineScreen() {
                 color: Colors.textPrimary,
               }}
             >
-              {t('timeline.dailyVisits')}
+              {t('timeline.appetiteTrend')}
             </Text>
             <View
               style={{
-                backgroundColor: Colors.infoLight,
+                backgroundColor: Colors.accentLight,
                 borderRadius: 10,
                 paddingVertical: 4,
                 paddingHorizontal: 10,
@@ -177,10 +198,10 @@ export default function TimelineScreen() {
                 style={{
                   fontFamily: 'Inter-Medium',
                   fontSize: 11,
-                  color: Colors.info,
+                  color: Colors.accent,
                 }}
               >
-                {t('timeline.avgVisitsDay', { value: avgVisits.toFixed(1) })}
+                {t('timeline.avgAppetite', { value: avgAppetite.toFixed(1) })}
               </Text>
             </View>
           </View>
@@ -198,18 +219,18 @@ export default function TimelineScreen() {
               height: 60,
             }}
           >
-            {visitHistory.length > 0 ? (
-              visitHistory.map((item, i) => {
-                const height = (item.count / maxVisits) * 40;
+            {appetiteHistory.length > 0 ? (
+              appetiteHistory.map((item, i) => {
+                const height = (item.score / maxAppetite) * 40;
                 return (
                   <View
                     key={i}
                     style={{
                       width: 28,
                       height: Math.max(height, 4),
-                      backgroundColor: Colors.info,
+                      backgroundColor: Colors.accent,
                       borderRadius: 4,
-                      opacity: item.count === 0 ? 0.3 : 1,
+                      opacity: item.score === 0 ? 0.3 : 1,
                     }}
                   />
                 );

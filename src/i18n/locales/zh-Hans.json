@@ -17,7 +17,7 @@
   "tabs": {
     "home": "首页",
     "timeline": "时间线",
-    "profile": "档案",
+    "cats": "猫咪",
     "settings": "设置"
   },
   "dashboard": {
@@ -43,8 +43,8 @@
   "timeline": {
     "title": "时间线",
     "days_other": "{{count}} 天",
-    "dailyVisits": "每日如厕次数（7天）",
-    "avgVisitsDay": "日均 {{value}} 次",
+    "appetiteTrend": "食欲趋势",
+    "avgAppetite": "7天均值: {{value}}",
     "xVisits_other": "{{count}} 次如厕",
     "xDrinks_other": "{{count}} 次饮水",
     "noLogsYet": "暂无记录。开始追踪吧！",
@@ -87,6 +87,8 @@
     "proActive": "已激活",
     "proPlanActive": "Pro 已激活",
     "allFeaturesUnlocked": "所有功能已解锁",
+    "rateApp": "评价应用",
+    "contactSupport": "联系客服",
     "restorePurchase": "恢复购买",
     "privacyPolicy": "隐私政策",
     "restored": "已恢复！",
@@ -132,6 +134,7 @@
     "bestValue": "最划算",
     "savePercent": "省 37%",
     "upgradeToPro": "升级到专业版",
+    "startFreeTrial": "开始免费试用",
     "restorePurchase": "恢复购买",
     "cancelAnytime": "随时取消 · 自动按年续费",
     "packageNotAvailable": "套餐暂不可用，请稍后再试。",
@@ -142,14 +145,12 @@
     "noPurchasesMessage": "未找到之前的购买记录。"
   },
   "reminders": {
-    "vaccine": "疫苗提醒",
-    "deworming": "驱虫",
-    "checkup": "年度体检"
+    "feeding": "喂食提醒",
+    "waterChange": "换水提醒"
   },
   "notifications": {
-    "vaccineBody": "{{name}}的疫苗接种时间到了",
-    "dewormingBody": "{{name}}的驱虫时间到了",
-    "checkupBody": "{{name}}的年度体检时间到了",
+    "feedingBody": "该给{{name}}喂食了",
+    "waterChangeBody": "该给{{name}}换水了",
     "permissionDeniedTitle": "需要通知权限",
     "permissionDeniedMessage": "设置提醒需要通知权限，请在设置中开启。",
     "openSettings": "打开设置"

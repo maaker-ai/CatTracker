@@ -17,7 +17,7 @@
   "tabs": {
     "home": "HOME",
     "timeline": "TIMELINE",
-    "profile": "PROFILE",
+    "cats": "CATS",
     "settings": "SETTINGS"
   },
   "dashboard": {
@@ -44,8 +44,8 @@
     "title": "Timeline",
     "days_one": "{{count}} day",
     "days_other": "{{count}} days",
-    "dailyVisits": "Daily Visits (7 days)",
-    "avgVisitsDay": "avg {{value}} visits/day",
+    "appetiteTrend": "Appetite Trend",
+    "avgAppetite": "7 days avg: {{value}}",
     "xVisits_one": "{{count}} visit",
     "xVisits_other": "{{count}} visits",
     "xDrinks_one": "{{count}} drink",
@@ -92,6 +92,8 @@
     "proActive": "Active",
     "proPlanActive": "Pro Plan Active",
     "allFeaturesUnlocked": "All features unlocked",
+    "rateApp": "Rate App",
+    "contactSupport": "Contact Support",
     "restorePurchase": "Restore Purchase",
     "privacyPolicy": "Privacy Policy",
     "restored": "Restored!",
@@ -137,6 +139,7 @@
     "bestValue": "BEST VALUE",
     "savePercent": "Save 37%",
     "upgradeToPro": "Upgrade to Pro",
+    "startFreeTrial": "Start Free Trial",
     "restorePurchase": "Restore Purchase",
     "cancelAnytime": "Cancel anytime · Auto-renews annually",
     "packageNotAvailable": "Package not available. Please try again later.",
@@ -147,14 +150,12 @@
     "noPurchasesMessage": "No previous purchases were found."
   },
   "reminders": {
-    "vaccine": "Vaccine Reminder",
-    "deworming": "Deworming",
-    "checkup": "Annual Checkup"
+    "feeding": "Feeding Reminder",
+    "waterChange": "Water Change Reminder"
   },
   "notifications": {
-    "vaccineBody": "Time for {{name}}'s vaccine appointment",
-    "dewormingBody": "Time for {{name}}'s deworming treatment",
-    "checkupBody": "Time for {{name}}'s annual checkup",
+    "feedingBody": "Time to feed {{name}}",
+    "waterChangeBody": "Time to change {{name}}'s water",
     "permissionDeniedTitle": "Notification Permission Required",
     "permissionDeniedMessage": "Notification permission is required to set reminders. Please enable it in Settings.",
     "openSettings": "Open Settings"

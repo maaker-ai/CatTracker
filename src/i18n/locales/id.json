@@ -17,8 +17,8 @@
   "tabs": {
     "home": "BERANDA",
     "timeline": "RIWAYAT",
-    "profile": "PROFIL",
-    "settings": "PENGATURAN"
+    "settings": "PENGATURAN",
+    "cats": "KUCING"
   },
   "dashboard": {
     "goodMorning": "Selamat pagi,",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "Riwayat",
     "days_other": "{{count}} hari",
-    "dailyVisits": "Kunjungan Harian (7 hari)",
-    "avgVisitsDay": "rata-rata {{value}} kunjungan/hari",
     "xVisits_other": "{{count}} kunjungan",
     "xDrinks_other": "{{count}} minum",
     "noLogsYet": "Belum ada catatan. Mulai mencatat!",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}x kotak pasir",
     "appetiteScore": "{{score}}/5 nafsu makan",
     "todayDate": "Hari ini — {{date}}",
-    "yesterdayDate": "Kemarin — {{date}}"
+    "yesterdayDate": "Kemarin — {{date}}",
+    "appetiteTrend": "Tren Nafsu Makan",
+    "avgAppetite": "Rata-rata 7 hari: {{value}}"
   },
   "profile": {
     "editProfile": "Edit Profil",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "Tidak ditemukan pembelian sebelumnya.",
     "upgradeToPro": "Upgrade ke Pro",
     "unlockAllFeatures": "Buka semua fitur premium",
-    "tapToChange": "ketuk untuk mengubah"
+    "tapToChange": "ketuk untuk mengubah",
+    "rateApp": "Nilai Aplikasi",
+    "contactSupport": "Hubungi Dukungan"
   },
   "log": {
     "logFor": "Catatan {{name}}",
@@ -139,20 +141,19 @@
     "restored": "Dipulihkan!",
     "restoredMessage": "Fitur Pro Anda telah dipulihkan.",
     "noPurchasesFound": "Pembelian Tidak Ditemukan",
-    "noPurchasesMessage": "Tidak ditemukan pembelian sebelumnya."
+    "noPurchasesMessage": "Tidak ditemukan pembelian sebelumnya.",
+    "startFreeTrial": "Mulai Uji Coba Gratis"
   },
   "reminders": {
-    "vaccine": "Vaksin",
-    "deworming": "Obat Cacing",
-    "checkup": "Pemeriksaan Tahunan"
+    "feeding": "Pengingat Makan",
+    "waterChange": "Pengingat Ganti Air"
   },
   "notifications": {
-    "vaccineBody": "Waktunya vaksin untuk {{name}}",
-    "dewormingBody": "Waktunya obat cacing untuk {{name}}",
-    "checkupBody": "Waktunya pemeriksaan tahunan untuk {{name}}",
     "permissionDeniedTitle": "Izin Notifikasi Diperlukan",
     "permissionDeniedMessage": "Izin notifikasi diperlukan untuk pengingat. Silakan aktifkan di Pengaturan.",
-    "openSettings": "Buka Pengaturan"
+    "openSettings": "Buka Pengaturan",
+    "feedingBody": "Waktunya memberi makan {{name}}",
+    "waterChangeBody": "Waktunya mengganti air {{name}}"
   },
   "privacy": {
     "lastUpdated": "Terakhir diperbarui: April 2026",

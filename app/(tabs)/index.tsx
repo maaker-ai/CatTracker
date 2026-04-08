@@ -155,7 +155,7 @@ export default function DashboardScreen() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: Colors.background }}>
       <ScrollView
-        contentContainerStyle={{ padding: 20, paddingBottom: 40 }}
+        contentContainerStyle={{ padding: 20, paddingBottom: 120 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Header */}
@@ -429,6 +429,39 @@ export default function DashboardScreen() {
           </View>
         )}
 
+        {/* Log Daily Health button */}
+        <Pressable
+          onPress={() => router.push('/log')}
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: Colors.accent,
+            borderRadius: 32,
+            paddingVertical: 14,
+            paddingHorizontal: 24,
+            gap: 8,
+            marginTop: 16,
+            alignSelf: 'center',
+            shadowColor: Colors.accent,
+            shadowOffset: { width: 0, height: 6 },
+            shadowOpacity: 0.25,
+            shadowRadius: 20,
+            elevation: 6,
+          }}
+        >
+          <ClipboardPenLine size={20} color="#FFFFFF" />
+          <Text
+            style={{
+              fontFamily: 'Inter-Bold',
+              fontSize: 15,
+              color: '#FFFFFF',
+            }}
+          >
+            {t('dashboard.logDailyHealth')}
+          </Text>
+        </Pressable>
+
         {/* Quick-tap buttons */}
         <View style={{ flexDirection: 'row', gap: 12, marginTop: 20 }}>
           <Pressable
@@ -503,38 +536,6 @@ export default function DashboardScreen() {
           </Pressable>
         </View>
 
-        {/* Log Daily Health button */}
-        <Pressable
-          onPress={() => router.push('/log')}
-          style={{
-            flexDirection: 'row',
-            alignItems: 'center',
-            justifyContent: 'center',
-            backgroundColor: Colors.accent,
-            borderRadius: 32,
-            paddingVertical: 14,
-            paddingHorizontal: 24,
-            gap: 8,
-            marginTop: 16,
-            alignSelf: 'flex-start',
-            shadowColor: Colors.accent,
-            shadowOffset: { width: 0, height: 6 },
-            shadowOpacity: 0.25,
-            shadowRadius: 20,
-            elevation: 6,
-          }}
-        >
-          <ClipboardPenLine size={20} color="#FFFFFF" />
-          <Text
-            style={{
-              fontFamily: 'Inter-Bold',
-              fontSize: 15,
-              color: '#FFFFFF',
-            }}
-          >
-            {t('dashboard.logDailyHealth')}
-          </Text>
-        </Pressable>
       </ScrollView>
 
       {/* Undo Toast */}

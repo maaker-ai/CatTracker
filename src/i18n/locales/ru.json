@@ -17,8 +17,8 @@
   "tabs": {
     "home": "ГЛАВНАЯ",
     "timeline": "ХРОНИКА",
-    "profile": "ПРОФИЛЬ",
-    "settings": "НАСТР."
+    "settings": "НАСТР.",
+    "cats": "КОШКИ"
   },
   "dashboard": {
     "goodMorning": "Доброе утро,",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "Хроника",
     "days_other": "{{count}} дней",
-    "dailyVisits": "Ежедневные визиты (7 дней)",
-    "avgVisitsDay": "ср. {{value}} визитов/день",
     "xVisits_other": "{{count}} визитов",
     "xDrinks_other": "{{count}} приёмов воды",
     "noLogsYet": "Записей пока нет. Начните отслеживание!",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}x лоток",
     "appetiteScore": "{{score}}/5 аппетит",
     "todayDate": "Сегодня — {{date}}",
-    "yesterdayDate": "Вчера — {{date}}"
+    "yesterdayDate": "Вчера — {{date}}",
+    "appetiteTrend": "Тренд аппетита",
+    "avgAppetite": "Ср. за 7 дней: {{value}}"
   },
   "profile": {
     "editProfile": "Редактировать профиль",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "Предыдущие покупки не найдены.",
     "upgradeToPro": "Перейти на Pro",
     "unlockAllFeatures": "Разблокировать все премиум-функции",
-    "tapToChange": "нажмите для изменения"
+    "tapToChange": "нажмите для изменения",
+    "rateApp": "Оценить приложение",
+    "contactSupport": "Связаться с поддержкой"
   },
   "log": {
     "logFor": "Запись для {{name}}",
@@ -139,20 +141,19 @@
     "restored": "Восстановлено!",
     "restoredMessage": "Ваши Pro-функции восстановлены.",
     "noPurchasesFound": "Покупки не найдены",
-    "noPurchasesMessage": "Предыдущие покупки не найдены."
+    "noPurchasesMessage": "Предыдущие покупки не найдены.",
+    "startFreeTrial": "Начать бесплатно"
   },
   "reminders": {
-    "vaccine": "Вакцинация",
-    "deworming": "Дегельминтизация",
-    "checkup": "Ежегодный осмотр"
+    "feeding": "Напоминание о кормлении",
+    "waterChange": "Напоминание о смене воды"
   },
   "notifications": {
-    "vaccineBody": "Пора на вакцинацию для {{name}}",
-    "dewormingBody": "Пора на дегельминтизацию для {{name}}",
-    "checkupBody": "Пора на ежегодный осмотр для {{name}}",
     "permissionDeniedTitle": "Требуется разрешение на уведомления",
     "permissionDeniedMessage": "Для напоминаний необходимо разрешение на уведомления. Пожалуйста, включите его в настройках.",
-    "openSettings": "Открыть настройки"
+    "openSettings": "Открыть настройки",
+    "feedingBody": "Пора покормить {{name}}",
+    "waterChangeBody": "Пора сменить воду для {{name}}"
   },
   "privacy": {
     "lastUpdated": "Последнее обновление: апрель 2026",

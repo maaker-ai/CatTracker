@@ -17,8 +17,8 @@
   "tabs": {
     "home": "START",
     "timeline": "VERLAUF",
-    "profile": "PROFIL",
-    "settings": "EINST."
+    "settings": "EINST.",
+    "cats": "KATZEN"
   },
   "dashboard": {
     "goodMorning": "Guten Morgen,",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "Verlauf",
     "days_other": "{{count}} Tage",
-    "dailyVisits": "Tägliche Besuche (7 Tage)",
-    "avgVisitsDay": "Durchschnitt {{value}} Besuche/Tag",
     "xVisits_other": "{{count}} Besuche",
     "xDrinks_other": "{{count}} Mal getrunken",
     "noLogsYet": "Noch keine Einträge. Starte die Erfassung!",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}x Toilette",
     "appetiteScore": "{{score}}/5 Appetit",
     "todayDate": "Heute — {{date}}",
-    "yesterdayDate": "Gestern — {{date}}"
+    "yesterdayDate": "Gestern — {{date}}",
+    "appetiteTrend": "Appetit-Trend",
+    "avgAppetite": "7 Tage Ø: {{value}}"
   },
   "profile": {
     "editProfile": "Profil bearbeiten",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "Es wurden keine früheren Käufe gefunden.",
     "upgradeToPro": "Auf Pro upgraden",
     "unlockAllFeatures": "Alle Premium-Funktionen freischalten",
-    "tapToChange": "Tippen zum Ändern"
+    "tapToChange": "Tippen zum Ändern",
+    "rateApp": "App bewerten",
+    "contactSupport": "Support kontaktieren"
   },
   "log": {
     "logFor": "Eintrag für {{name}}",
@@ -139,20 +141,19 @@
     "restored": "Wiederhergestellt!",
     "restoredMessage": "Ihre Pro-Funktionen wurden wiederhergestellt.",
     "noPurchasesFound": "Keine Käufe gefunden",
-    "noPurchasesMessage": "Es wurden keine früheren Käufe gefunden."
+    "noPurchasesMessage": "Es wurden keine früheren Käufe gefunden.",
+    "startFreeTrial": "Kostenlos testen"
   },
   "reminders": {
-    "vaccine": "Impfung",
-    "deworming": "Entwurmung",
-    "checkup": "Jahresuntersuchung"
+    "feeding": "Fütterungserinnerung",
+    "waterChange": "Wasserwechsel-Erinnerung"
   },
   "notifications": {
-    "vaccineBody": "Zeit für {{name}}s Impftermin",
-    "dewormingBody": "Zeit für {{name}}s Entwurmung",
-    "checkupBody": "Zeit für {{name}}s jährliche Untersuchung",
     "permissionDeniedTitle": "Benachrichtigungsberechtigung erforderlich",
     "permissionDeniedMessage": "Für Erinnerungen wird eine Benachrichtigungsberechtigung benötigt. Bitte in den Einstellungen aktivieren.",
-    "openSettings": "Einstellungen öffnen"
+    "openSettings": "Einstellungen öffnen",
+    "feedingBody": "Zeit, {{name}} zu füttern",
+    "waterChangeBody": "Zeit, {{name}}s Wasser zu wechseln"
   },
   "privacy": {
     "lastUpdated": "Zuletzt aktualisiert: April 2026",

@@ -17,8 +17,8 @@
   "tabs": {
     "home": "首頁",
     "timeline": "時間軸",
-    "profile": "檔案",
-    "settings": "設定"
+    "settings": "設定",
+    "cats": "貓咪"
   },
   "dashboard": {
     "goodMorning": "早安，",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "時間軸",
     "days_other": "{{count}} 天",
-    "dailyVisits": "每日如廁次數（7天）",
-    "avgVisitsDay": "日均 {{value}} 次",
     "xVisits_other": "{{count}} 次如廁",
     "xDrinks_other": "{{count}} 次飲水",
     "noLogsYet": "暫無記錄。開始追蹤吧！",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}次貓砂",
     "appetiteScore": "食慾 {{score}}/5",
     "todayDate": "今天 — {{date}}",
-    "yesterdayDate": "昨天 — {{date}}"
+    "yesterdayDate": "昨天 — {{date}}",
+    "appetiteTrend": "食慾趨勢",
+    "avgAppetite": "7天均值: {{value}}"
   },
   "profile": {
     "editProfile": "編輯檔案",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "未找到之前的購買紀錄。",
     "upgradeToPro": "升級到專業版",
     "unlockAllFeatures": "解鎖所有進階功能",
-    "tapToChange": "點擊更改"
+    "tapToChange": "點擊更改",
+    "rateApp": "評價應用",
+    "contactSupport": "聯繫客服"
   },
   "log": {
     "logFor": "{{name}} 的紀錄",
@@ -139,20 +141,19 @@
     "restored": "已恢復！",
     "restoredMessage": "您的專業版功能已恢復。",
     "noPurchasesFound": "未找到購買紀錄",
-    "noPurchasesMessage": "未找到之前的購買紀錄。"
+    "noPurchasesMessage": "未找到之前的購買紀錄。",
+    "startFreeTrial": "開始免費試用"
   },
   "reminders": {
-    "vaccine": "疫苗提醒",
-    "deworming": "驅蟲",
-    "checkup": "年度體檢"
+    "feeding": "餵食提醒",
+    "waterChange": "換水提醒"
   },
   "notifications": {
-    "vaccineBody": "{{name}}的疫苗接種時間到了",
-    "dewormingBody": "{{name}}的驅蟲時間到了",
-    "checkupBody": "{{name}}的年度體檢時間到了",
     "permissionDeniedTitle": "需要通知權限",
     "permissionDeniedMessage": "設定提醒需要通知權限，請在設定中開啟。",
-    "openSettings": "打開設定"
+    "openSettings": "打開設定",
+    "feedingBody": "該給{{name}}餵食了",
+    "waterChangeBody": "該給{{name}}換水了"
   },
   "privacy": {
     "lastUpdated": "最後更新：2026 年 4 月",

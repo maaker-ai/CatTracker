@@ -48,9 +48,8 @@ export const useAppStore = create<AppState>()(
       isPro: false,
       activeCatId: null,
       reminders: [
-        { id: 'vaccine', title: 'Vaccine Reminder', date: 'Apr 15, 2026', enabled: false },
-        { id: 'deworming', title: 'Deworming', date: 'Jun 1, 2026', enabled: false },
-        { id: 'checkup', title: 'Annual Checkup', date: 'Aug 20, 2026', enabled: false },
+        { id: 'feeding', title: 'Feeding Reminder', date: '', enabled: true },
+        { id: 'waterChange', title: 'Water Change Reminder', date: '', enabled: false },
       ],
 
       setIsPro: (val) => set({ isPro: val }),

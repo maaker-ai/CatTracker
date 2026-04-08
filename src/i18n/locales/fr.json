@@ -17,8 +17,8 @@
   "tabs": {
     "home": "ACCUEIL",
     "timeline": "CHRONO",
-    "profile": "PROFIL",
-    "settings": "RÉGLAGES"
+    "settings": "RÉGLAGES",
+    "cats": "CHATS"
   },
   "dashboard": {
     "goodMorning": "Bonjour,",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "Chronologie",
     "days_other": "{{count}} jours",
-    "dailyVisits": "Visites quotidiennes (7 jours)",
-    "avgVisitsDay": "moy. {{value}} visites/jour",
     "xVisits_other": "{{count}} visites",
     "xDrinks_other": "{{count}} boissons",
     "noLogsYet": "Aucun enregistrement. Commencez le suivi !",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}x litière",
     "appetiteScore": "{{score}}/5 appétit",
     "todayDate": "Aujourd'hui — {{date}}",
-    "yesterdayDate": "Hier — {{date}}"
+    "yesterdayDate": "Hier — {{date}}",
+    "appetiteTrend": "Tendance appétit",
+    "avgAppetite": "Moy. 7 jours: {{value}}"
   },
   "profile": {
     "editProfile": "Modifier le profil",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "Aucun achat précédent n'a été trouvé.",
     "upgradeToPro": "Passer à Pro",
     "unlockAllFeatures": "Débloquer toutes les fonctionnalités premium",
-    "tapToChange": "appuyez pour modifier"
+    "tapToChange": "appuyez pour modifier",
+    "rateApp": "Évaluer l'app",
+    "contactSupport": "Contacter le support"
   },
   "log": {
     "logFor": "Journal de {{name}}",
@@ -139,20 +141,19 @@
     "restored": "Restauré !",
     "restoredMessage": "Vos fonctionnalités Pro ont été restaurées.",
     "noPurchasesFound": "Aucun achat trouvé",
-    "noPurchasesMessage": "Aucun achat précédent n'a été trouvé."
+    "noPurchasesMessage": "Aucun achat précédent n'a été trouvé.",
+    "startFreeTrial": "Essai gratuit"
   },
   "reminders": {
-    "vaccine": "Vaccin",
-    "deworming": "Vermifuge",
-    "checkup": "Bilan annuel"
+    "feeding": "Rappel repas",
+    "waterChange": "Rappel changement d'eau"
   },
   "notifications": {
-    "vaccineBody": "C'est l'heure du vaccin de {{name}}",
-    "dewormingBody": "C'est l'heure du vermifuge de {{name}}",
-    "checkupBody": "C'est l'heure du bilan annuel de {{name}}",
     "permissionDeniedTitle": "Autorisation de notification requise",
     "permissionDeniedMessage": "L'autorisation de notification est nécessaire pour les rappels. Veuillez l'activer dans les réglages.",
-    "openSettings": "Ouvrir les réglages"
+    "openSettings": "Ouvrir les réglages",
+    "feedingBody": "C'est l'heure de nourrir {{name}}",
+    "waterChangeBody": "C'est l'heure de changer l'eau de {{name}}"
   },
   "privacy": {
     "lastUpdated": "Derniere mise a jour : avril 2026",

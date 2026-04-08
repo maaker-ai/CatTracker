@@ -17,8 +17,8 @@
   "tabs": {
     "home": "HOME",
     "timeline": "STORICO",
-    "profile": "PROFILO",
-    "settings": "IMPOST."
+    "settings": "IMPOST.",
+    "cats": "GATTI"
   },
   "dashboard": {
     "goodMorning": "Buongiorno,",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "Storico",
     "days_other": "{{count}} giorni",
-    "dailyVisits": "Visite giornaliere (7 giorni)",
-    "avgVisitsDay": "media {{value}} visite/giorno",
     "xVisits_other": "{{count}} visite",
     "xDrinks_other": "{{count}} bevute",
     "noLogsYet": "Nessun registro. Inizia il monitoraggio!",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}x lettiera",
     "appetiteScore": "{{score}}/5 appetito",
     "todayDate": "Oggi — {{date}}",
-    "yesterdayDate": "Ieri — {{date}}"
+    "yesterdayDate": "Ieri — {{date}}",
+    "appetiteTrend": "Tendenza appetito",
+    "avgAppetite": "Media 7 giorni: {{value}}"
   },
   "profile": {
     "editProfile": "Modifica profilo",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "Non sono stati trovati acquisti precedenti.",
     "upgradeToPro": "Passa a Pro",
     "unlockAllFeatures": "Sblocca tutte le funzionalità premium",
-    "tapToChange": "tocca per modificare"
+    "tapToChange": "tocca per modificare",
+    "rateApp": "Valuta l'app",
+    "contactSupport": "Contatta il supporto"
   },
   "log": {
     "logFor": "Registro di {{name}}",
@@ -139,20 +141,19 @@
     "restored": "Ripristinato!",
     "restoredMessage": "Le funzionalità Pro sono state ripristinate.",
     "noPurchasesFound": "Nessun acquisto trovato",
-    "noPurchasesMessage": "Non sono stati trovati acquisti precedenti."
+    "noPurchasesMessage": "Non sono stati trovati acquisti precedenti.",
+    "startFreeTrial": "Prova gratuita"
   },
   "reminders": {
-    "vaccine": "Vaccino",
-    "deworming": "Sverminazione",
-    "checkup": "Controllo annuale"
+    "feeding": "Promemoria pasti",
+    "waterChange": "Promemoria cambio acqua"
   },
   "notifications": {
-    "vaccineBody": "È ora del vaccino di {{name}}",
-    "dewormingBody": "È ora della sverminazione di {{name}}",
-    "checkupBody": "È ora del controllo annuale di {{name}}",
     "permissionDeniedTitle": "Autorizzazione notifiche richiesta",
     "permissionDeniedMessage": "L'autorizzazione alle notifiche è necessaria per i promemoria. Attivala nelle Impostazioni.",
-    "openSettings": "Apri Impostazioni"
+    "openSettings": "Apri Impostazioni",
+    "feedingBody": "È ora di dare da mangiare a {{name}}",
+    "waterChangeBody": "È ora di cambiare l'acqua di {{name}}"
   },
   "privacy": {
     "lastUpdated": "Ultimo aggiornamento: aprile 2026",

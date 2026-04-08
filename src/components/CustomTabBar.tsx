@@ -1,14 +1,14 @@
 import { View, Text, Pressable } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import { useTranslation } from 'react-i18next';
-import { Home, List, User, Settings } from 'lucide-react-native';
+import { Home, List, Cat, Settings } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import type { BottomTabBarProps } from '@react-navigation/bottom-tabs';
 
 const TAB_CONFIG = [
   { name: 'index', labelKey: 'tabs.home', Icon: Home },
   { name: 'timeline', labelKey: 'tabs.timeline', Icon: List },
-  { name: 'profile', labelKey: 'tabs.profile', Icon: User },
+  { name: 'profile', labelKey: 'tabs.cats', Icon: Cat },
   { name: 'settings', labelKey: 'tabs.settings', Icon: Settings },
 ];
 

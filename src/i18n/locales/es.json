@@ -17,8 +17,8 @@
   "tabs": {
     "home": "INICIO",
     "timeline": "HISTORIAL",
-    "profile": "PERFIL",
-    "settings": "AJUSTES"
+    "settings": "AJUSTES",
+    "cats": "GATOS"
   },
   "dashboard": {
     "goodMorning": "Buenos días,",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "Historial",
     "days_other": "{{count}} días",
-    "dailyVisits": "Visitas diarias (7 días)",
-    "avgVisitsDay": "prom. {{value}} visitas/día",
     "xVisits_other": "{{count}} visitas",
     "xDrinks_other": "{{count}} bebidas",
     "noLogsYet": "Aún no hay registros. ¡Empieza a registrar!",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}x arenero",
     "appetiteScore": "{{score}}/5 apetito",
     "todayDate": "Hoy — {{date}}",
-    "yesterdayDate": "Ayer — {{date}}"
+    "yesterdayDate": "Ayer — {{date}}",
+    "appetiteTrend": "Tendencia de apetito",
+    "avgAppetite": "Prom. 7 días: {{value}}"
   },
   "profile": {
     "editProfile": "Editar perfil",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "No se encontraron compras anteriores.",
     "upgradeToPro": "Actualizar a Pro",
     "unlockAllFeatures": "Desbloquear todas las funciones premium",
-    "tapToChange": "toca para cambiar"
+    "tapToChange": "toca para cambiar",
+    "rateApp": "Valorar app",
+    "contactSupport": "Contactar soporte"
   },
   "log": {
     "logFor": "Registro de {{name}}",
@@ -139,20 +141,19 @@
     "restored": "¡Restaurado!",
     "restoredMessage": "Tus funciones Pro han sido restauradas.",
     "noPurchasesFound": "No se encontraron compras",
-    "noPurchasesMessage": "No se encontraron compras anteriores."
+    "noPurchasesMessage": "No se encontraron compras anteriores.",
+    "startFreeTrial": "Prueba gratis"
   },
   "reminders": {
-    "vaccine": "Vacuna",
-    "deworming": "Desparasitación",
-    "checkup": "Revisión anual"
+    "feeding": "Recordatorio de comida",
+    "waterChange": "Recordatorio de cambio de agua"
   },
   "notifications": {
-    "vaccineBody": "Es hora de la vacuna de {{name}}",
-    "dewormingBody": "Es hora de la desparasitación de {{name}}",
-    "checkupBody": "Es hora de la revisión anual de {{name}}",
     "permissionDeniedTitle": "Se requiere permiso de notificación",
     "permissionDeniedMessage": "Se necesita permiso de notificación para los recordatorios. Por favor, actívalo en Ajustes.",
-    "openSettings": "Abrir Ajustes"
+    "openSettings": "Abrir Ajustes",
+    "feedingBody": "Es hora de alimentar a {{name}}",
+    "waterChangeBody": "Es hora de cambiar el agua de {{name}}"
   },
   "privacy": {
     "lastUpdated": "Ultima actualizacion: abril de 2026",

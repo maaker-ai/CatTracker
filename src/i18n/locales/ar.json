@@ -17,8 +17,8 @@
   "tabs": {
     "home": "الرئيسية",
     "timeline": "التاريخ",
-    "profile": "الملف",
-    "settings": "الإعدادات"
+    "settings": "الإعدادات",
+    "cats": "القطط"
   },
   "dashboard": {
     "goodMorning": "صباح الخير،",
@@ -43,8 +43,6 @@
   "timeline": {
     "title": "التاريخ",
     "days_other": "{{count}} أيام",
-    "dailyVisits": "الزيارات اليومية (7 أيام)",
-    "avgVisitsDay": "متوسط {{value}} زيارة/يوم",
     "xVisits_other": "{{count}} زيارة",
     "xDrinks_other": "{{count}} شربة",
     "noLogsYet": "لا توجد سجلات. ابدأ التتبع!",
@@ -53,7 +51,9 @@
     "xLitter_other": "{{count}}مرة صندوق رمل",
     "appetiteScore": "{{score}}/5 شهية",
     "todayDate": "اليوم — {{date}}",
-    "yesterdayDate": "أمس — {{date}}"
+    "yesterdayDate": "أمس — {{date}}",
+    "appetiteTrend": "اتجاه الشهية",
+    "avgAppetite": "متوسط 7 أيام: {{value}}"
   },
   "profile": {
     "editProfile": "تعديل الملف",
@@ -95,7 +95,9 @@
     "noPurchasesMessage": "لم يتم العثور على مشتريات سابقة.",
     "upgradeToPro": "الترقية إلى Pro",
     "unlockAllFeatures": "فتح جميع الميزات المتقدمة",
-    "tapToChange": "انقر للتغيير"
+    "tapToChange": "انقر للتغيير",
+    "rateApp": "قيّم التطبيق",
+    "contactSupport": "تواصل مع الدعم"
   },
   "log": {
     "logFor": "سجل {{name}}",
@@ -139,20 +141,19 @@
     "restored": "تمت الاستعادة!",
     "restoredMessage": "تم استعادة ميزات Pro.",
     "noPurchasesFound": "لم يتم العثور على مشتريات",
-    "noPurchasesMessage": "لم يتم العثور على مشتريات سابقة."
+    "noPurchasesMessage": "لم يتم العثور على مشتريات سابقة.",
+    "startFreeTrial": "ابدأ تجربة مجانية"
   },
   "reminders": {
-    "vaccine": "التطعيم",
-    "deworming": "التخلص من الديدان",
-    "checkup": "الفحص السنوي"
+    "feeding": "تذكير الإطعام",
+    "waterChange": "تذكير تغيير الماء"
   },
   "notifications": {
-    "vaccineBody": "حان موعد تطعيم {{name}}",
-    "dewormingBody": "حان موعد التخلص من الديدان لـ {{name}}",
-    "checkupBody": "حان موعد الفحص السنوي لـ {{name}}",
     "permissionDeniedTitle": "إذن الإشعارات مطلوب",
     "permissionDeniedMessage": "يلزم إذن الإشعارات لضبط التذكيرات. يرجى تفعيله في الإعدادات.",
-    "openSettings": "فتح الإعدادات"
+    "openSettings": "فتح الإعدادات",
+    "feedingBody": "حان وقت إطعام {{name}}",
+    "waterChangeBody": "حان وقت تغيير ماء {{name}}"
   },
   "privacy": {
     "lastUpdated": "آخر تحديث: أبريل 2026",

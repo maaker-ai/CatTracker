@@ -124,34 +124,18 @@ export default function PaywallScreen() {
               width: 32,
               height: 32,
               borderRadius: 16,
-              backgroundColor: Colors.inputBg,
+              backgroundColor: Colors.accent,
               alignItems: 'center',
               justifyContent: 'center',
             }}
           >
-            <X size={16} color={Colors.textSecondary} />
+            <X size={16} color="#FFFFFF" />
           </Pressable>
         </View>
 
         {/* Hero */}
         <View style={{ alignItems: 'center', paddingVertical: 16, gap: 12 }}>
-          <View
-            style={{
-              width: 72,
-              height: 72,
-              borderRadius: 36,
-              backgroundColor: Colors.accent,
-              alignItems: 'center',
-              justifyContent: 'center',
-              shadowColor: Colors.accent,
-              shadowOffset: { width: 0, height: 8 },
-              shadowOpacity: 0.25,
-              shadowRadius: 24,
-              elevation: 8,
-            }}
-          >
-            <PawPrint size={36} color="#FFFFFF" />
-          </View>
+          <PawPrint size={52} color={Colors.accent} />
           <Text
             style={{
               fontFamily: 'Inter-Bold',
@@ -408,7 +392,7 @@ export default function PaywallScreen() {
                 color: '#FFFFFF',
               }}
             >
-              {t('paywall.upgradeToPro')}
+              {t('paywall.startFreeTrial')}
             </Text>
           </Pressable>
           <Pressable onPress={handleRestore}>
