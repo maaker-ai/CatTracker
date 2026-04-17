@@ -230,15 +230,139 @@ export async function deleteQuickLog(id: number): Promise<void> {
 
 export async function seedDefaultCat(): Promise<number> {
   const cats = await getCats();
-  if (cats.length > 0) return cats[0].id;
+  if (cats.length > 0) {
+    // Already seeded; just return the first cat id
+    return cats[0].id;
+  }
+
+  // If demo seed flag is set (build-time env), populate full demo dataset
+  if (process.env.EXPO_PUBLIC_SEED_DEMO === '1') {
+    const demoCatId = await seedDemoData();
+    return demoCatId;
+  }
 
   const catId = await insertCat({
     name: 'Mochi',
-    breed: 'Scottish Fold',
+    breed: 'Orange Tabby',
     birthday: '2022-05-12',
     gender: 'Female',
     neutered: true,
   });
 
   return catId;
+}
+
+// Seed comprehensive demo dataset for screenshots / App Store listing
+async function seedDemoData(): Promise<number> {
+  const database = await getDatabase();
+
+  // Helper: seeded-ish pseudo-random so runs are stable-ish
+  let seed = 42;
+  const rand = () => {
+    seed = (seed * 9301 + 49297) % 233280;
+    return seed / 233280;
+  };
+  const pick = <T,>(arr: T[]): T => arr[Math.floor(rand() * arr.length)];
+  const chance = (p: number) => rand() < p;
+
+  // --- Two cats ---
+  const mochiId = await insertCat({
+    name: 'Mochi',
+    breed: 'Orange Tabby',
+    birthday: '2023-05-12',
+    gender: 'Female',
+    neutered: true,
+  });
+
+  const lunaId = await insertCat({
+    name: 'Luna',
+    breed: 'British Shorthair',
+    birthday: '2024-02-08',
+    gender: 'Male',
+    neutered: true,
+  });
+
+  // --- Weight history (monthly, last 6 months) ---
+  const today = new Date();
+  const mochiWeights = [4.0, 4.1, 4.1, 4.2, 4.2, 4.2];
+  const lunaWeights = [3.5, 3.6, 3.7, 3.8, 3.8, 3.8];
+
+  for (let i = 5; i >= 0; i--) {
+    const d = new Date(today);
+    d.setMonth(d.getMonth() - i);
+    const dateStr = d.toISOString().slice(0, 10);
+    const idx = 5 - i;
+
+    await insertWeightRecord({ catId: mochiId, weight: mochiWeights[idx], date: dateStr });
+    await insertWeightRecord({ catId: lunaId, weight: lunaWeights[idx], date: dateStr });
+  }
+
+  // --- 30 days of daily logs for each cat ---
+  const hydrationRoll = (): 'Low' | 'Normal' | 'High' => {
+    const r = rand();
+    if (r < 0.05) return 'Low';
+    if (r < 0.20) return 'High';
+    return 'Normal';
+  };
+  const activityRoll = (): 'Calm' | 'Normal' | 'Active' => {
+    const r = rand();
+    if (r < 0.10) return 'Calm';
+    if (r < 0.30) return 'Active';
+    return 'Normal';
+  };
+  const bathroomRoll = (): number => {
+    const r = rand();
+    if (r < 0.10) return 1;
+    if (r < 0.85) return pick([2, 3]);
+    return 4;
+  };
+  const appetiteRoll = (): number => {
+    const r = rand();
+    if (r < 0.15) return 3;
+    return pick([4, 5]);
+  };
+
+  for (const catId of [mochiId, lunaId]) {
+    for (let daysAgo = 29; daysAgo >= 0; daysAgo--) {
+      const d = new Date(today);
+      d.setDate(d.getDate() - daysAgo);
+      const dateStr = d.toISOString().slice(0, 10);
+      const hh = String(18 + Math.floor(rand() * 4)).padStart(2, '0');
+      const mm = String(Math.floor(rand() * 60)).padStart(2, '0');
+      const timeStr = `${hh}:${mm}`;
+
+      // No notes in seed data — let i18n placeholder show in Recent Notes
+      // (avoids hardcoded English on non-English locales).
+      const notes = '';
+
+      // Create per-day createdAt at the log's time
+      const createdAt = new Date(d);
+      createdAt.setHours(parseInt(hh, 10), parseInt(mm, 10), 0, 0);
+
+      await insertLog({
+        catId,
+        date: dateStr,
+        time: timeStr,
+        litterVisits: bathroomRoll(),
+        appetite: appetiteRoll(),
+        hydration: hydrationRoll(),
+        activity: activityRoll(),
+        notes,
+        tags: '',
+        createdAt: createdAt.toISOString(),
+      });
+    }
+  }
+
+  // --- Today's quick logs (so Dashboard shows non-zero counts) ---
+  for (const catId of [mochiId, lunaId]) {
+    const bathroomCount = 3; // Dashboard hero number
+    for (let i = 0; i < bathroomCount; i++) {
+      await insertQuickLog(catId, 'bathroom');
+      // Small jitter between inserts
+      if (chance(0.5)) await insertQuickLog(catId, 'water');
+    }
+  }
+
+  return mochiId;
 }

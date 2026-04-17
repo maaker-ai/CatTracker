@@ -7,16 +7,12 @@ import {
   UtensilsCrossed,
   Droplets,
   FileText,
-  Cat,
   ChevronRight,
-  CircleCheck,
-  ShieldCheck,
   Star,
   MessageCircle,
 } from 'lucide-react-native';
 import { Colors } from '@/constants/colors';
 import { useAppStore } from '@/stores/appStore';
-import { restorePurchases } from '@/utils/purchases';
 import { exportPdfReport } from '@/utils/exportPdf';
 import {
   requestNotificationPermission,
@@ -31,7 +27,7 @@ const REMINDER_ICONS: Record<string, { Icon: typeof UtensilsCrossed; bg: string;
 export default function SettingsScreen() {
   const { t } = useTranslation();
   const router = useRouter();
-  const { reminders, toggleReminder, isPro, activeCatId } = useAppStore();
+  const { reminders, toggleReminder, activeCatId } = useAppStore();
   const exportingRef = useRef(false);
 
   const handleToggleReminder = async (reminderId: string) => {
@@ -50,16 +46,6 @@ export default function SettingsScreen() {
     }
   };
 
-  const handleRestore = async () => {
-    const restored = await restorePurchases();
-    Alert.alert(
-      restored ? t('settings.restored') : t('settings.noPurchasesFound'),
-      restored
-        ? t('settings.restoredMessage')
-        : t('settings.noPurchasesMessage')
-    );
-  };
-
   const handleExportPdf = async () => {
     if (exportingRef.current) return;
     exportingRef.current = true;
@@ -74,17 +60,9 @@ export default function SettingsScreen() {
     }
   };
 
-  const handleProFeaturePress = (action?: () => void) => {
-    if (isPro) {
-      action?.();
-    } else {
-      router.push('/paywall');
-    }
-  };
-
   const handleRateApp = () => {
     if (Platform.OS === 'ios') {
-      Linking.openURL('https://apps.apple.com/app/id6744227268?action=write-review');
+      Linking.openURL('https://apps.apple.com/app/id6761513507?action=write-review');
     }
   };
 
@@ -183,7 +161,7 @@ export default function SettingsScreen() {
           </View>
         </View>
 
-        {/* Pro Features Section */}
+        {/* Tools Section */}
         <View style={{ gap: 8 }}>
           <Text
             style={{
@@ -193,87 +171,8 @@ export default function SettingsScreen() {
               letterSpacing: 0.8,
             }}
           >
-            {t('settings.proFeatures')}
+            {t('settings.tools')}
           </Text>
-          {!isPro && (
-            <Pressable
-              onPress={() => router.push('/paywall')}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                backgroundColor: Colors.accent,
-                borderRadius: 18,
-                paddingVertical: 16,
-                paddingHorizontal: 20,
-                shadowColor: Colors.accent,
-                shadowOffset: { width: 0, height: 6 },
-                shadowOpacity: 0.25,
-                shadowRadius: 16,
-                elevation: 6,
-              }}
-            >
-              <View style={{ gap: 2 }}>
-                <Text
-                  style={{
-                    fontFamily: 'Inter-Bold',
-                    fontSize: 16,
-                    color: '#FFFFFF',
-                  }}
-                >
-                  {t('settings.upgradeToPro')}
-                </Text>
-                <Text
-                  style={{
-                    fontFamily: 'Inter-Regular',
-                    fontSize: 13,
-                    color: 'rgba(255,255,255,0.85)',
-                  }}
-                >
-                  {t('settings.unlockAllFeatures')}
-                </Text>
-              </View>
-              <ChevronRight size={20} color="#FFFFFF" />
-            </Pressable>
-          )}
-          {isPro && (
-            <View
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                backgroundColor: '#EDF7EF',
-                borderRadius: 18,
-                paddingVertical: 16,
-                paddingHorizontal: 20,
-              }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <ShieldCheck size={22} color="#2D6B3A" />
-                <View style={{ gap: 2 }}>
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 16,
-                      color: '#2D6B3A',
-                    }}
-                  >
-                    {t('settings.proPlanActive')}
-                  </Text>
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-Regular',
-                      fontSize: 13,
-                      color: 'rgba(45,107,58,0.7)',
-                    }}
-                  >
-                    {t('settings.allFeaturesUnlocked')}
-                  </Text>
-                </View>
-              </View>
-              <CircleCheck size={20} color="#2D6B3A" />
-            </View>
-          )}
           <View
             style={{
               backgroundColor: Colors.card,
@@ -287,15 +186,13 @@ export default function SettingsScreen() {
             }}
           >
             <Pressable
-              onPress={() => handleProFeaturePress(handleExportPdf)}
+              onPress={handleExportPdf}
               style={{
                 flexDirection: 'row',
                 alignItems: 'center',
                 justifyContent: 'space-between',
                 paddingVertical: 14,
                 paddingHorizontal: 16,
-                borderBottomWidth: 1,
-                borderBottomColor: Colors.divider,
               }}
             >
               <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
@@ -321,126 +218,7 @@ export default function SettingsScreen() {
                   {t('settings.exportPdfReport')}
                 </Text>
               </View>
-              {isPro ? (
-                <View
-                  style={{
-                    backgroundColor: Colors.successLight,
-                    borderRadius: 8,
-                    paddingVertical: 4,
-                    paddingHorizontal: 8,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 4,
-                  }}
-                >
-                  <CircleCheck size={12} color={Colors.success} />
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 10,
-                      color: Colors.success,
-                    }}
-                  >
-                    {t('settings.proActive')}
-                  </Text>
-                </View>
-              ) : (
-                <View
-                  style={{
-                    backgroundColor: Colors.accent,
-                    borderRadius: 8,
-                    paddingVertical: 4,
-                    paddingHorizontal: 8,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 10,
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    {t('settings.pro')}
-                  </Text>
-                </View>
-              )}
-            </Pressable>
-            <Pressable
-              onPress={() => handleProFeaturePress()}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingVertical: 14,
-                paddingHorizontal: 16,
-              }}
-            >
-              <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
-                <View
-                  style={{
-                    width: 36,
-                    height: 36,
-                    borderRadius: 10,
-                    backgroundColor: Colors.infoLight,
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                  }}
-                >
-                  <Cat size={18} color={Colors.info} />
-                </View>
-                <Text
-                  style={{
-                    fontFamily: 'Inter-Medium',
-                    fontSize: 14,
-                    color: Colors.textPrimary,
-                  }}
-                >
-                  {t('settings.addMoreCats')}
-                </Text>
-              </View>
-              {isPro ? (
-                <View
-                  style={{
-                    backgroundColor: Colors.successLight,
-                    borderRadius: 8,
-                    paddingVertical: 4,
-                    paddingHorizontal: 8,
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    gap: 4,
-                  }}
-                >
-                  <CircleCheck size={12} color={Colors.success} />
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 10,
-                      color: Colors.success,
-                    }}
-                  >
-                    {t('settings.proActive')}
-                  </Text>
-                </View>
-              ) : (
-                <View
-                  style={{
-                    backgroundColor: Colors.accent,
-                    borderRadius: 8,
-                    paddingVertical: 4,
-                    paddingHorizontal: 8,
-                  }}
-                >
-                  <Text
-                    style={{
-                      fontFamily: 'Inter-Bold',
-                      fontSize: 10,
-                      color: '#FFFFFF',
-                    }}
-                  >
-                    {t('settings.pro')}
-                  </Text>
-                </View>
-              )}
+              <ChevronRight size={16} color={Colors.textTertiary} />
             </Pressable>
           </View>
         </View>
@@ -541,29 +319,6 @@ export default function SettingsScreen() {
                   {t('settings.contactSupport')}
                 </Text>
               </View>
-              <ChevronRight size={16} color={Colors.textTertiary} />
-            </Pressable>
-            <Pressable
-              onPress={handleRestore}
-              style={{
-                flexDirection: 'row',
-                alignItems: 'center',
-                justifyContent: 'space-between',
-                paddingVertical: 14,
-                paddingHorizontal: 16,
-                borderBottomWidth: 1,
-                borderBottomColor: Colors.divider,
-              }}
-            >
-              <Text
-                style={{
-                  fontFamily: 'Inter-Medium',
-                  fontSize: 14,
-                  color: Colors.textPrimary,
-                }}
-              >
-                {t('settings.restorePurchase')}
-              </Text>
               <ChevronRight size={16} color={Colors.textTertiary} />
             </Pressable>
             <Pressable

@@ -13,99 +13,164 @@ type SlideText = {
   caption: string;
 };
 
+// Narrative arc: 痛点 → 速度 → 价值 → 专业 → 规模
 const LOCALIZED_SLIDES: Record<string, SlideText[]> = {
   en: [
-    { tagline: "Your Cat's", subtitle: "Health Diary", caption: "Track meals, hydration, mood\nand bathroom visits daily" },
-    { tagline: "Log in", subtitle: "Seconds", caption: "Quick entry with smart defaults\nPre-filled with today's data" },
-    { tagline: "Spot Trends", subtitle: "Early", caption: "Weekly health insights\nCatch changes before they matter" },
-    { tagline: "Know Your", subtitle: "Cat Better", caption: "Complete health profile\nWeight history at a glance" },
-    { tagline: "Unlock", subtitle: "Everything", caption: "Multi-cat support, PDF reports\nCustom reminders & more" },
+    { tagline: "Is your cat", subtitle: "acting off?", caption: "Spot health changes in\n10 seconds a day" },
+    { tagline: "Log in", subtitle: "10 seconds", caption: "Smart defaults.\nNo typing needed." },
+    { tagline: "Catch patterns", subtitle: "early", caption: "Weight, appetite, mood —\nall visualized" },
+    { tagline: "Share reports", subtitle: "with your vet", caption: "One-tap PDF export.\nNo login needed." },
+    { tagline: "One app,", subtitle: "all your cats", caption: "Multi-cat support.\nVaccine reminders." },
   ],
   "zh-Hans": [
-    { tagline: "猫咪的", subtitle: "健康日记", caption: "每日记录饮食、饮水、心情\n和如厕情况" },
-    { tagline: "秒速", subtitle: "记录", caption: "智能默认值快速录入\n自动预填今日数据" },
-    { tagline: "及早发现", subtitle: "趋势变化", caption: "每周健康洞察\n在问题出现前捕捉变化" },
-    { tagline: "更了解", subtitle: "你的猫", caption: "完整健康档案\n体重变化一目了然" },
-    { tagline: "解锁", subtitle: "全部功能", caption: "多猫支持、PDF 报告\n自定义提醒等更多功能" },
+    { tagline: "你家猫最近", subtitle: "怪怪的？", caption: "每天 10 秒\n发现健康异常" },
+    { tagline: "10 秒", subtitle: "完成记录", caption: "智能默认值\n无需打字" },
+    { tagline: "趋势变化", subtitle: "早发现", caption: "体重、食欲、情绪\n一图看懂" },
+    { tagline: "一键导出", subtitle: "给兽医", caption: "PDF 报告\n无需注册账号" },
+    { tagline: "一个 App", subtitle: "管所有猫", caption: "多猫支持\n疫苗提醒" },
   ],
   "zh-Hant": [
-    { tagline: "貓咪的", subtitle: "健康日記", caption: "每日記錄飲食、飲水、心情\n和如廁情況" },
-    { tagline: "秒速", subtitle: "記錄", caption: "智慧預設值快速錄入\n自動預填今日資料" },
-    { tagline: "及早發現", subtitle: "趨勢變化", caption: "每週健康洞察\n在問題出現前捕捉變化" },
-    { tagline: "更了解", subtitle: "你的貓", caption: "完整健康檔案\n體重變化一目了然" },
-    { tagline: "解鎖", subtitle: "全部功能", caption: "多貓支援、PDF 報告\n自訂提醒等更多功能" },
+    { tagline: "你家貓最近", subtitle: "怪怪的？", caption: "每天 10 秒\n發現健康異常" },
+    { tagline: "10 秒", subtitle: "完成記錄", caption: "智慧預設值\n無需打字" },
+    { tagline: "趨勢變化", subtitle: "早發現", caption: "體重、食慾、情緒\n一圖看懂" },
+    { tagline: "一鍵匯出", subtitle: "給獸醫", caption: "PDF 報告\n無需註冊帳號" },
+    { tagline: "一個 App", subtitle: "管所有貓", caption: "多貓支援\n疫苗提醒" },
   ],
   ja: [
-    { tagline: "愛猫の", subtitle: "健康日記", caption: "食事・水分・気分・トイレを\n毎日かんたん記録" },
-    { tagline: "数秒で", subtitle: "記録完了", caption: "スマートな初期値で素早く入力\n今日のデータを自動入力" },
-    { tagline: "変化を", subtitle: "早期発見", caption: "週間ヘルスレポート\n問題になる前に気づく" },
-    { tagline: "もっと", subtitle: "猫を知る", caption: "完全な健康プロフィール\n体重推移をひと目で確認" },
-    { tagline: "すべてを", subtitle: "アンロック", caption: "複数猫対応・PDF レポート\nカスタムリマインダーなど" },
+    { tagline: "もしかして、", subtitle: "体調悪い？", caption: "1日10秒で\n愛猫の異変に気づく" },
+    { tagline: "記録は", subtitle: "10秒", caption: "スマート初期値\n入力いらず" },
+    { tagline: "変化を", subtitle: "いち早く", caption: "体重・食欲・気分\nすべて見える化" },
+    { tagline: "獣医さんに", subtitle: "ワンタップ共有", caption: "PDF出力\nアカウント不要" },
+    { tagline: "全ての猫を", subtitle: "1つのアプリで", caption: "多頭飼い対応\nワクチン通知" },
   ],
   ko: [
-    { tagline: "고양이의", subtitle: "건강 일기", caption: "매일 식사, 수분, 기분\n화장실 기록을 추적하세요" },
-    { tagline: "몇 초 만에", subtitle: "기록 완료", caption: "스마트 기본값으로 빠른 입력\n오늘 데이터 자동 채우기" },
-    { tagline: "변화를", subtitle: "조기 발견", caption: "주간 건강 인사이트\n문제가 되기 전에 파악" },
-    { tagline: "고양이를", subtitle: "더 잘 알기", caption: "완전한 건강 프로필\n체중 변화 한눈에 확인" },
-    { tagline: "모든 기능", subtitle: "잠금 해제", caption: "다묘 지원, PDF 보고서\n맞춤 알림 등" },
+    { tagline: "우리 고양이", subtitle: "어딘가 이상해?", caption: "하루 10초로\n건강 이상 포착" },
+    { tagline: "10초면", subtitle: "기록 끝", caption: "스마트 기본값\n타이핑 불필요" },
+    { tagline: "변화를", subtitle: "빠르게 포착", caption: "체중·식욕·기분\n한눈에 시각화" },
+    { tagline: "수의사에게", subtitle: "원탭 공유", caption: "PDF 내보내기\n계정 가입 불필요" },
+    { tagline: "한 앱으로", subtitle: "모든 고양이", caption: "다묘 지원\n예방접종 알림" },
   ],
   de: [
-    { tagline: "Das Gesundheits-", subtitle: "tagebuch", caption: "Mahlzeiten, Trinken, Stimmung\nund Toilettenbesuche erfassen" },
-    { tagline: "In Sekunden", subtitle: "erfassen", caption: "Schnelle Eingabe mit Standardwerten\nHeutige Daten vorausgefullt" },
-    { tagline: "Trends", subtitle: "fruh erkennen", caption: "Wochentliche Einblicke\nVeranderungen rechtzeitig bemerken" },
-    { tagline: "Kenne deine", subtitle: "Katze besser", caption: "Vollstandiges Gesundheitsprofil\nGewichtsverlauf auf einen Blick" },
-    { tagline: "Alles", subtitle: "freischalten", caption: "Mehrere Katzen, PDF-Berichte\nErinnerungen & mehr" },
+    { tagline: "Ist deine Katze", subtitle: "komisch?", caption: "Gesundheits-\nveränderungen in 10 Sek" },
+    { tagline: "In 10 Sek", subtitle: "erfasst", caption: "Smarte Vorgaben.\nKein Tippen nötig." },
+    { tagline: "Muster", subtitle: "früh erkennen", caption: "Gewicht, Appetit, Stimmung —\nalles visuell" },
+    { tagline: "Bericht für", subtitle: "den Tierarzt", caption: "PDF per Tap.\nKein Login nötig." },
+    { tagline: "Eine App,", subtitle: "alle Katzen", caption: "Multi-Katzen-Support.\nImpferinnerungen." },
   ],
   fr: [
-    { tagline: "Le journal", subtitle: "sante de votre chat", caption: "Suivez repas, hydratation\nhumeur et toilettes chaque jour" },
-    { tagline: "Notez en", subtitle: "quelques secondes", caption: "Saisie rapide avec valeurs par defaut\nDonnees du jour pre-remplies" },
-    { tagline: "Reperer les", subtitle: "tendances tot", caption: "Apercu hebdomadaire\nDetectez les changements a temps" },
-    { tagline: "Mieux connaitre", subtitle: "votre chat", caption: "Profil sante complet\nHistorique de poids en un clin d'oeil" },
-    { tagline: "Tout", subtitle: "debloquer", caption: "Multi-chats, rapports PDF\nRappels personnalises & plus" },
+    { tagline: "Votre chat", subtitle: "semble bizarre ?", caption: "Repérez les changements\nen 10 secondes par jour" },
+    { tagline: "Notez en", subtitle: "10 secondes", caption: "Valeurs intelligentes.\nAucune saisie." },
+    { tagline: "Détectez", subtitle: "les tendances", caption: "Poids, appétit, humeur —\ntout visualisé" },
+    { tagline: "Partagez avec", subtitle: "le vétérinaire", caption: "Export PDF en un tap.\nSans compte." },
+    { tagline: "Une app,", subtitle: "tous vos chats", caption: "Multi-chats.\nRappels vaccins." },
   ],
   es: [
-    { tagline: "El diario de", subtitle: "salud de tu gato", caption: "Registra comidas, hidratacion\nhumor y visitas al bano" },
-    { tagline: "Registra en", subtitle: "segundos", caption: "Entrada rapida con valores predeterminados\nDatos de hoy prellenados" },
-    { tagline: "Detecta", subtitle: "tendencias", caption: "Informes semanales\nCapta cambios a tiempo" },
-    { tagline: "Conoce mejor", subtitle: "a tu gato", caption: "Perfil de salud completo\nHistorial de peso de un vistazo" },
-    { tagline: "Desbloquea", subtitle: "todo", caption: "Multi-gato, informes PDF\nRecordatorios y mas" },
+    { tagline: "¿Tu gato", subtitle: "actúa raro?", caption: "Detecta cambios de salud\nen 10 segundos al día" },
+    { tagline: "Registra en", subtitle: "10 segundos", caption: "Valores inteligentes.\nSin teclear." },
+    { tagline: "Detecta", subtitle: "patrones antes", caption: "Peso, apetito, humor —\ntodo visualizado" },
+    { tagline: "Informe para", subtitle: "el veterinario", caption: "PDF con un toque.\nSin cuenta." },
+    { tagline: "Una app,", subtitle: "todos tus gatos", caption: "Multi-gato.\nRecordatorios de vacunas." },
   ],
   ru: [
-    { tagline: "Дневник", subtitle: "здоровья кота", caption: "Питание, гидратация, настроение\nи туалет — каждый день" },
-    { tagline: "Запись за", subtitle: "секунды", caption: "Быстрый ввод с умными значениями\nДанные за сегодня предзаполнены" },
-    { tagline: "Замечай", subtitle: "тренды рано", caption: "Недельные отчёты\nЗамечай изменения вовремя" },
-    { tagline: "Знай своего", subtitle: "кота лучше", caption: "Полный профиль здоровья\nИстория веса на одном экране" },
-    { tagline: "Разблокируй", subtitle: "всё", caption: "Несколько котов, PDF-отчёты\nНапоминания и другое" },
+    { tagline: "Ваш кот", subtitle: "странно себя ведёт?", caption: "Замечайте изменения\nза 10 секунд в день" },
+    { tagline: "Запись за", subtitle: "10 секунд", caption: "Умные значения.\nБез набора." },
+    { tagline: "Замечайте", subtitle: "тренды раньше", caption: "Вес, аппетит, настроение —\nвсё визуально" },
+    { tagline: "Отчёт", subtitle: "для ветеринара", caption: "PDF в один тап.\nБез аккаунта." },
+    { tagline: "Одно app,", subtitle: "все ваши коты", caption: "Несколько котов.\nНапоминания о прививках." },
   ],
   it: [
-    { tagline: "Il diario", subtitle: "salute del gatto", caption: "Pasti, idratazione, umore\ne visite alla lettiera ogni giorno" },
-    { tagline: "Registra in", subtitle: "pochi secondi", caption: "Inserimento rapido con valori predefiniti\nDati di oggi precompilati" },
-    { tagline: "Individua", subtitle: "le tendenze", caption: "Report settimanali\nCogli i cambiamenti per tempo" },
-    { tagline: "Conosci meglio", subtitle: "il tuo gatto", caption: "Profilo salute completo\nStorico peso a colpo d'occhio" },
-    { tagline: "Sblocca", subtitle: "tutto", caption: "Multi-gatto, report PDF\nPromemoria personalizzati & altro" },
+    { tagline: "Il tuo gatto", subtitle: "fa cose strane?", caption: "Individua cambi di salute\nin 10 secondi al giorno" },
+    { tagline: "Registra in", subtitle: "10 secondi", caption: "Valori intelligenti.\nNiente digitazione." },
+    { tagline: "Cogli i pattern", subtitle: "in anticipo", caption: "Peso, appetito, umore —\ntutto visualizzato" },
+    { tagline: "Report per", subtitle: "il veterinario", caption: "PDF con un tap.\nSenza account." },
+    { tagline: "Un'app,", subtitle: "tutti i tuoi gatti", caption: "Multi-gatto.\nPromemoria vaccini." },
   ],
   ar: [
-    { tagline: "مذكرة صحة", subtitle: "قطتك", caption: "تتبع الوجبات والماء والمزاج\nوزيارات الحمام يومياً" },
-    { tagline: "سجل في", subtitle: "ثوانٍ", caption: "إدخال سريع بقيم ذكية\nبيانات اليوم معبأة مسبقاً" },
-    { tagline: "اكتشف", subtitle: "التغييرات مبكراً", caption: "تقارير أسبوعية\nالتقط التغييرات قبل أن تهم" },
-    { tagline: "اعرف قطتك", subtitle: "بشكل أفضل", caption: "ملف صحي كامل\nتاريخ الوزن في لمحة" },
-    { tagline: "افتح", subtitle: "كل شيء", caption: "دعم عدة قطط، تقارير PDF\nتذكيرات مخصصة والمزيد" },
+    { tagline: "هل قطتك", subtitle: "تتصرف بغرابة؟", caption: "اكتشف تغيرات الصحة\nفي 10 ثوانٍ يومياً" },
+    { tagline: "سجّل في", subtitle: "10 ثوانٍ", caption: "قيم ذكية افتراضية.\nدون كتابة." },
+    { tagline: "اكتشف الأنماط", subtitle: "مبكراً", caption: "الوزن، الشهية، المزاج —\nالكل مرئي" },
+    { tagline: "شارك التقرير", subtitle: "مع الطبيب", caption: "تصدير PDF بضغطة.\nدون حساب." },
+    { tagline: "تطبيق واحد،", subtitle: "كل قططك", caption: "دعم عدة قطط.\nتذكير بالتطعيمات." },
   ],
   id: [
-    { tagline: "Buku Harian", subtitle: "Kesehatan Kucing", caption: "Catat makan, minum, mood\ndan kunjungan toilet harian" },
-    { tagline: "Catat dalam", subtitle: "Hitungan Detik", caption: "Input cepat dengan nilai default\nData hari ini otomatis terisi" },
-    { tagline: "Deteksi Tren", subtitle: "Lebih Awal", caption: "Wawasan kesehatan mingguan\nTangkap perubahan sebelum terlambat" },
-    { tagline: "Kenali Kucing", subtitle: "Anda Lebih Baik", caption: "Profil kesehatan lengkap\nRiwayat berat badan sekilas" },
-    { tagline: "Buka Semua", subtitle: "Fitur", caption: "Multi-kucing, laporan PDF\nPengingat kustom & lainnya" },
+    { tagline: "Kucingmu", subtitle: "aneh belakangan?", caption: "Deteksi perubahan kesehatan\ndalam 10 detik sehari" },
+    { tagline: "Catat dalam", subtitle: "10 detik", caption: "Nilai cerdas default.\nTanpa mengetik." },
+    { tagline: "Tangkap pola", subtitle: "lebih awal", caption: "Berat, nafsu makan, mood —\nsemua tervisualisasi" },
+    { tagline: "Bagikan ke", subtitle: "dokter hewan", caption: "Ekspor PDF satu tap.\nTanpa akun." },
+    { tagline: "Satu app,", subtitle: "semua kucingmu", caption: "Multi-kucing.\nPengingat vaksin." },
+  ],
+  tr: [
+    { tagline: "Kedin", subtitle: "garip mi?", caption: "Günde 10 saniyede\nsağlık değişikliklerini yakala" },
+    { tagline: "10 saniyede", subtitle: "kaydet", caption: "Akıllı varsayılanlar.\nYazmaya gerek yok." },
+    { tagline: "Örüntüleri", subtitle: "erken yakala", caption: "Kilo, iştah, ruh hâli —\nhepsi görsel" },
+    { tagline: "Veterinerle", subtitle: "paylaş", caption: "Tek dokunuşla PDF.\nHesap gerekmez." },
+    { tagline: "Tek app,", subtitle: "tüm kedilerin", caption: "Çok kedi desteği.\nAşı hatırlatmaları." },
+  ],
+  nl: [
+    { tagline: "Doet je kat", subtitle: "vreemd?", caption: "Ontdek gezondheids-\nveranderingen in 10 sec per dag" },
+    { tagline: "Log in", subtitle: "10 seconden", caption: "Slimme standaardwaarden.\nGeen typen nodig." },
+    { tagline: "Herken patronen", subtitle: "vroeg", caption: "Gewicht, eetlust, humeur —\nalles in beeld" },
+    { tagline: "Deel met", subtitle: "je dierenarts", caption: "PDF in één tik.\nGeen account nodig." },
+    { tagline: "Eén app,", subtitle: "al je katten", caption: "Multi-kat ondersteuning.\nVaccinherinneringen." },
+  ],
+  "pt-BR": [
+    { tagline: "Seu gato", subtitle: "está estranho?", caption: "Detecte mudanças de saúde\nem 10 segundos por dia" },
+    { tagline: "Registre em", subtitle: "10 segundos", caption: "Valores inteligentes.\nSem digitar." },
+    { tagline: "Perceba padrões", subtitle: "cedo", caption: "Peso, apetite, humor —\ntudo visualizado" },
+    { tagline: "Compartilhe com", subtitle: "o veterinário", caption: "PDF em um toque.\nSem conta." },
+    { tagline: "Um app,", subtitle: "todos seus gatos", caption: "Multi-gato.\nLembretes de vacina." },
+  ],
+  pl: [
+    { tagline: "Twój kot", subtitle: "dziwnie się zachowuje?", caption: "Wyłap zmiany zdrowia\nw 10 sekund dziennie" },
+    { tagline: "Zapis w", subtitle: "10 sekund", caption: "Inteligentne wartości.\nBez pisania." },
+    { tagline: "Zauważ wzorce", subtitle: "wcześnie", caption: "Waga, apetyt, nastrój —\nwszystko na wykresie" },
+    { tagline: "Udostępnij", subtitle: "weterynarzowi", caption: "PDF jednym dotknięciem.\nBez konta." },
+    { tagline: "Jedna apka,", subtitle: "wszystkie koty", caption: "Obsługa wielu kotów.\nPrzypomnienia o szczepieniach." },
+  ],
+  sv: [
+    { tagline: "Beter sig din katt", subtitle: "konstigt?", caption: "Upptäck hälsoförändringar\npå 10 sekunder per dag" },
+    { tagline: "Logga på", subtitle: "10 sekunder", caption: "Smarta förval.\nIngen skrivning." },
+    { tagline: "Upptäck mönster", subtitle: "tidigt", caption: "Vikt, aptit, humör —\nallt visualiserat" },
+    { tagline: "Dela med", subtitle: "veterinären", caption: "PDF med ett tryck.\nIngen inloggning." },
+    { tagline: "En app,", subtitle: "alla dina katter", caption: "Stöd för flera katter.\nVaccinpåminnelser." },
+  ],
+  no: [
+    { tagline: "Oppfører katten", subtitle: "seg rart?", caption: "Oppdag helseendringer\npå 10 sekunder daglig" },
+    { tagline: "Logg på", subtitle: "10 sekunder", caption: "Smarte standarder.\nIngen skriving." },
+    { tagline: "Oppdag mønstre", subtitle: "tidlig", caption: "Vekt, appetitt, humør —\nalt visualisert" },
+    { tagline: "Del med", subtitle: "veterinæren", caption: "PDF med ett trykk.\nIngen konto." },
+    { tagline: "Én app,", subtitle: "alle kattene", caption: "Støtte for flere katter.\nVaksinepåminnelser." },
+  ],
+  da: [
+    { tagline: "Opfører din kat", subtitle: "sig underligt?", caption: "Opdag helbreds-\nændringer på 10 sek dagligt" },
+    { tagline: "Log på", subtitle: "10 sekunder", caption: "Smarte standarder.\nIngen skrivning." },
+    { tagline: "Opdag mønstre", subtitle: "tidligt", caption: "Vægt, appetit, humør —\nalt visualiseret" },
+    { tagline: "Del med", subtitle: "dyrlægen", caption: "PDF med ét tryk.\nIngen konto." },
+    { tagline: "Én app,", subtitle: "alle dine katte", caption: "Flere-katte-support.\nVaccine-påmindelser." },
+  ],
+  th: [
+    { tagline: "แมวคุณ", subtitle: "ดูแปลกๆ?", caption: "จับความเปลี่ยนแปลงสุขภาพ\nใน 10 วินาทีต่อวัน" },
+    { tagline: "บันทึกใน", subtitle: "10 วินาที", caption: "ค่าตั้งต้นอัจฉริยะ\nไม่ต้องพิมพ์" },
+    { tagline: "จับรูปแบบ", subtitle: "ได้แต่เนิ่นๆ", caption: "น้ำหนัก ความอยากอาหาร อารมณ์\nเห็นทุกอย่าง" },
+    { tagline: "ส่งรายงาน", subtitle: "ให้สัตวแพทย์", caption: "ส่งออก PDF แตะครั้งเดียว\nไม่ต้องสมัครบัญชี" },
+    { tagline: "แอปเดียว", subtitle: "ทุกตัว", caption: "รองรับหลายแมว\nแจ้งเตือนวัคซีน" },
   ],
 };
 
-const slideConfigs = [
-  { id: 1, bg: "linear-gradient(160deg, #F97316 0%, #EA580C 50%, #C2410C 100%)", screenSlide: "dashboard" },
-  { id: 2, bg: "linear-gradient(160deg, #D97706 0%, #B45309 50%, #92400E 100%)", screenSlide: "log" },
-  { id: 3, bg: "linear-gradient(160deg, #059669 0%, #047857 50%, #065F46 100%)", screenSlide: "timeline" },
-  { id: 4, bg: "linear-gradient(160deg, #7C3AED 0%, #6D28D9 50%, #5B21B6 100%)", screenSlide: "profile" },
-  { id: 5, bg: "linear-gradient(160deg, #1E293B 0%, #0F172A 50%, #020617 100%)", screenSlide: "settings" },
+type SlideConfig = {
+  id: number;
+  bg: string;
+  screenSlide: string;
+  catImage: string | null;
+  darkText?: boolean;
+};
+
+const slideConfigs: SlideConfig[] = [
+  { id: 1, bg: "linear-gradient(160deg, #F97316 0%, #EA580C 50%, #C2410C 100%)", screenSlide: "dashboard", catImage: "/cats/cat-hero-front.jpg" },
+  { id: 2, bg: "linear-gradient(180deg, #FFF8F0 0%, #FED7AA 100%)", screenSlide: "log", catImage: null, darkText: true },
+  { id: 3, bg: "linear-gradient(160deg, #FDBA74 0%, #F97316 50%, #EA580C 100%)", screenSlide: "timeline", catImage: "/cats/cat-relaxed-side.jpg" },
+  { id: 4, bg: "linear-gradient(160deg, #C2410C 0%, #9A3412 50%, #7C2D12 100%)", screenSlide: "settings", catImage: "/cats/cat-blissful-closeup.jpg" },
+  { id: 5, bg: "linear-gradient(160deg, #F97316 0%, #EA580C 50%, #C2410C 100%)", screenSlide: "profile", catImage: "/cats/cat-pair.jpg" },
 ];
 
 function getSlides(lang: string) {
@@ -161,7 +226,167 @@ function SlideContent({ slideId, lang }: { slideId: number; lang: string }) {
   if (!slide) return <div>Slide not found</div>;
 
   const isHeroSlide = slideId === 1;
+  const darkText = slide.darkText === true;
 
+  // Extract first hex color from bg gradient for fade-out blend
+  const firstHex = slide.bg.match(/#[A-F0-9]{6}/i)?.[0] || "#EA580C";
+
+  // Text colors
+  const primaryTextColor = darkText ? "#1A1A2E" : "white";
+  const secondaryTextColor = darkText ? "#6B6B70" : "rgba(255,255,255,0.70)";
+  const subtitleAccentColor = darkText
+    ? "#EA580C"
+    : isHeroSlide
+    ? "#FED7AA"
+    : slideId === 3
+    ? "#FFF8F0"
+    : slideId === 4
+    ? "#FED7AA"
+    : "#FDE68A";
+  const headingShadow = darkText ? "none" : "0 4px 24px rgba(0,0,0,0.3)";
+
+  // Caption shadow: only when caption overlays cat image (not on light-bg slide #2)
+  const captionShadow = darkText
+    ? "none"
+    : "0 2px 16px rgba(0,0,0,0.7), 0 0 8px rgba(0,0,0,0.4)";
+
+  // Hero (slide #1) — phone mockup is the main actor, cat is atmospheric,
+  // icon is branding. Layout: icon → cat head/shoulders → headline → phone.
+  if (isHeroSlide) {
+    return (
+      <div
+        style={{
+          width: W,
+          height: H,
+          background: slide.bg,
+          position: "relative",
+          overflow: "hidden",
+        }}
+      >
+        {/* Decorative circles */}
+        <div style={{ position: "absolute", top: -200, right: -200, width: 600, height: 600, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none", zIndex: 1 }} />
+        <div style={{ position: "absolute", bottom: -100, left: -100, width: 400, height: 400, borderRadius: "50%", background: "rgba(255,255,255,0.04)", pointerEvents: "none", zIndex: 1 }} />
+
+        {/* App Icon — top, centered */}
+        <div
+          style={{
+            position: "absolute",
+            top: 80,
+            left: "50%",
+            transform: "translateX(-50%)",
+            width: 80,
+            height: 80,
+            borderRadius: 18,
+            overflow: "hidden",
+            boxShadow: "0 6px 20px rgba(0,0,0,0.25)",
+            zIndex: 3,
+          }}
+        >
+          <img
+            src="/icon.png"
+            alt="App icon"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          />
+        </div>
+
+        {/* Cat image — head/shoulders only, clean full display */}
+        {slide.catImage && (
+          <div
+            style={{
+              position: "absolute",
+              top: 180,
+              left: 0,
+              right: 0,
+              height: 620,
+              overflow: "hidden",
+              zIndex: 0,
+            }}
+          >
+            <img
+              src={slide.catImage}
+              alt="cat"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+                objectPosition: "center 20%",
+                filter: "brightness(1.0)",
+              }}
+            />
+          </div>
+        )}
+
+        {/* Translucent orange reading band — full-width, hosts headline + caption */}
+        <div
+          style={{
+            position: "absolute",
+            top: 800,
+            left: 0,
+            right: 0,
+            height: 460,
+            background: "rgba(234, 88, 12, 0.85)",
+            backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
+            zIndex: 2,
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            padding: "0 80px",
+          }}
+        >
+          <div
+            style={{
+              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif',
+              fontSize: 116,
+              fontWeight: 900,
+              color: "#FFFFFF",
+              textAlign: "center",
+              lineHeight: 1.05,
+              letterSpacing: "-2px",
+              marginBottom: 20,
+            }}
+          >
+            {slide.tagline}
+            <br />
+            <span style={{ color: subtitleAccentColor }}>
+              {slide.subtitle}
+            </span>
+          </div>
+
+          <div
+            style={{
+              fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif',
+              fontSize: 48,
+              color: "rgba(255,255,255,0.92)",
+              textAlign: "center",
+              lineHeight: 1.5,
+              whiteSpace: "pre-line",
+            }}
+          >
+            {slide.caption}
+          </div>
+        </div>
+
+        {/* Phone mockup — below the band */}
+        <div
+          style={{
+            position: "absolute",
+            top: 1300,
+            left: "50%",
+            transform: "translateX(-50%) scale(3)",
+            transformOrigin: "top center",
+            filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))",
+            zIndex: 2,
+          }}
+        >
+          <PhoneMockup screenSlide={slide.screenSlide} lang={lang} />
+        </div>
+      </div>
+    );
+  }
+
+  // Slides #2–#5 keep the original layout (icon + heading + caption + mockup).
   return (
     <div
       style={{
@@ -170,69 +395,110 @@ function SlideContent({ slideId, lang }: { slideId: number; lang: string }) {
         background: slide.bg,
         position: "relative",
         overflow: "hidden",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "flex-start",
-        padding: "100px 80px 0",
       }}
     >
-      {/* Decorative circles */}
-      <div style={{ position: "absolute", top: -200, right: -200, width: 600, height: 600, borderRadius: "50%", background: "rgba(255,255,255,0.06)", pointerEvents: "none" }} />
-      <div style={{ position: "absolute", bottom: -100, left: -100, width: 400, height: 400, borderRadius: "50%", background: "rgba(255,255,255,0.04)", pointerEvents: "none" }} />
-
-      {/* App icon (hero only) */}
-      {isHeroSlide && (
-        <div style={{ width: 140, height: 140, borderRadius: 32, overflow: "hidden", marginBottom: 32, boxShadow: "0 20px 60px rgba(0,0,0,0.4)" }}>
-          <img src="/icon.png" alt="CatTracker" style={{ width: 140, height: 140, objectFit: "cover" }} />
+      {/* Cat image overlay (top half) */}
+      {slide.catImage && (
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            left: 0,
+            right: 0,
+            height: 1400,
+            overflow: "hidden",
+            zIndex: 0,
+          }}
+        >
+          <img
+            src={slide.catImage}
+            alt="cat"
+            style={{
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              filter: "brightness(0.85)",
+            }}
+          />
+          <div
+            style={{
+              position: "absolute",
+              bottom: 0,
+              left: 0,
+              right: 0,
+              height: 300,
+              background: `linear-gradient(to bottom, transparent, ${firstHex})`,
+            }}
+          />
         </div>
       )}
 
-      {/* Heading */}
-      <div
-        style={{
-          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif',
-          fontSize: 116,
-          fontWeight: 900,
-          color: "white",
-          textAlign: "center",
-          lineHeight: 1.05,
-          letterSpacing: "-2px",
-          marginBottom: 16,
-          textShadow: "0 4px 24px rgba(0,0,0,0.3)",
-        }}
-      >
-        {slide.tagline}
-        <br />
-        <span style={{ color: isHeroSlide ? "#FED7AA" : slideId === 3 ? "#A7F3D0" : slideId === 4 ? "#DDD6FE" : "#FDE68A" }}>
-          {slide.subtitle}
-        </span>
-      </div>
+      {/* Decorative circles */}
+      <div style={{ position: "absolute", top: -200, right: -200, width: 600, height: 600, borderRadius: "50%", background: darkText ? "rgba(234,88,12,0.08)" : "rgba(255,255,255,0.06)", pointerEvents: "none", zIndex: 1 }} />
+      <div style={{ position: "absolute", bottom: -100, left: -100, width: 400, height: 400, borderRadius: "50%", background: darkText ? "rgba(234,88,12,0.06)" : "rgba(255,255,255,0.04)", pointerEvents: "none", zIndex: 1 }} />
 
-      {/* Caption */}
+      {/* Content wrapper */}
       <div
         style={{
-          fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif',
-          fontSize: 48,
-          color: "rgba(255,255,255,0.70)",
-          textAlign: "center",
-          lineHeight: 1.5,
-          marginBottom: 48,
-          whiteSpace: "pre-line",
+          position: "relative",
+          zIndex: 2,
+          width: "100%",
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "flex-start",
+          padding: "100px 80px 0",
         }}
       >
-        {slide.caption}
-      </div>
+        {/* Heading */}
+        <div
+          style={{
+            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif',
+            fontSize: 116,
+            fontWeight: 900,
+            color: primaryTextColor,
+            textAlign: "center",
+            lineHeight: 1.05,
+            letterSpacing: "-2px",
+            marginBottom: 16,
+            textShadow: headingShadow,
+          }}
+        >
+          {slide.tagline}
+          <br />
+          <span style={{ color: subtitleAccentColor }}>
+            {slide.subtitle}
+          </span>
+        </div>
 
-      {/* Phone mockup */}
-      <div
-        style={{
-          transform: "scale(2.4)",
-          transformOrigin: "top center",
-          filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))",
-        }}
-      >
-        <PhoneMockup screenSlide={slide.screenSlide} lang={lang} />
+        {/* Caption */}
+        <div
+          style={{
+            fontFamily: '-apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", sans-serif',
+            fontSize: 48,
+            color: secondaryTextColor,
+            textAlign: "center",
+            lineHeight: 1.5,
+            marginBottom: 48,
+            whiteSpace: "pre-line",
+            textShadow: captionShadow,
+          }}
+        >
+          {slide.caption}
+        </div>
+
+        {/* Phone mockup */}
+        <div
+          style={{
+            transform: "scale(2.4)",
+            transformOrigin: "top center",
+            filter: "drop-shadow(0 40px 80px rgba(0,0,0,0.5))",
+          }}
+        >
+          <PhoneMockup screenSlide={slide.screenSlide} lang={lang} />
+        </div>
       </div>
     </div>
   );

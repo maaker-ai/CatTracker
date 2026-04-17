@@ -31,11 +31,9 @@ interface Reminder {
 }
 
 interface AppState {
-  isPro: boolean;
   activeCatId: number | null;
   reminders: Reminder[];
 
-  setIsPro: (val: boolean) => void;
   setActiveCatId: (id: number) => void;
   toggleReminder: (id: string) => void;
   setReminders: (reminders: Reminder[]) => void;
@@ -45,14 +43,12 @@ interface AppState {
 export const useAppStore = create<AppState>()(
   persist(
     (set, get) => ({
-      isPro: false,
       activeCatId: null,
       reminders: [
         { id: 'feeding', title: 'Feeding Reminder', date: '', enabled: true },
         { id: 'waterChange', title: 'Water Change Reminder', date: '', enabled: false },
       ],
 
-      setIsPro: (val) => set({ isPro: val }),
       setActiveCatId: (id) => set({ activeCatId: id }),
       toggleReminder: (id) => {
         const reminders = get().reminders.map((r) =>
@@ -70,10 +66,9 @@ export const useAppStore = create<AppState>()(
     }),
     {
       name: 'cattracker-app-store',
-      version: 1,
+      version: 2,
       storage: createJSONStorage(() => getSafeStorage()),
       partialize: (state) => ({
-        isPro: state.isPro,
         activeCatId: state.activeCatId,
         reminders: state.reminders,
       }),
@@ -85,6 +80,10 @@ export const useAppStore = create<AppState>()(
             { id: 'feeding', title: 'Feeding Reminder', date: '', enabled: true },
             { id: 'waterChange', title: 'Water Change Reminder', date: '', enabled: false },
           ];
+        }
+        if (version < 2) {
+          // v1 → v2: removed isPro (paid app model, all features unlocked)
+          delete state.isPro;
         }
         return state as unknown as AppState;
       },

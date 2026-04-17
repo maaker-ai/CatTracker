@@ -1,50 +1,42 @@
 {
-  "checked_at": "2026-04-07T12:00:00Z",
-  "monetization": "freemium_subscription",
+  "checked_at": "2026-04-17T00:00:00Z",
+  "monetization": "paid_app",
+  "status": "model_changed_to_paid_app",
   "bundle_id": "top.dramavision.cattracker",
+  "paid_app_price_tier_usd": "4.99",
+  "note": "Switched from freemium_subscription to paid app ($4.99) after Apple rejection (Guideline 3.1.2(c) EULA missing + 1.1.6 misleading 'Start Free Trial' CTA). Per sales data, ElderEase/Smart Cards both ship as $4.99 paid apps. All IAP / RevenueCat / Paywall code removed from the app binary.",
   "apple": {
     "app_id": "6761513507",
     "subscription_group_id": "22011101",
     "subscription_group_name": "CatTracker Pro",
+    "products_status": "will_be_archived",
     "products": [
       {
         "product_id": "cattracker.pro.monthly",
         "asc_id": "6761586093",
         "period": "ONE_MONTH",
-        "state": "READY_TO_SUBMIT",
-        "review_screenshot": "uploaded",
-        "prices_configured": true
+        "state": "will_be_archived"
       },
       {
         "product_id": "cattracker.pro.yearly",
         "asc_id": "6761586033",
         "period": "ONE_YEAR",
-        "state": "READY_TO_SUBMIT",
-        "review_screenshot": "uploaded",
-        "prices_configured": true
+        "state": "will_be_archived"
       }
     ]
   },
   "revenuecat": {
+    "status": "no_longer_used",
     "project_id": "projd2b2b9d8",
     "ios_app_id": "appfb13b19d36",
     "ios_api_key": "appl_fAyuyQCPeIYprMEauuaNyzAixYV",
     "android_api_key": "goog_wkyTrMhPGEJeBYsrnvWbwoXLNTu",
     "test_api_key": "test_qQHCXaEhwzQVXUGavJULVewEETk",
     "entitlement_id": "pro",
-    "offering_ready": true,
-    "packages": ["$rc_monthly", "$rc_annual"],
-    "app_store_connect_api_key_configured": true,
-    "subscription_key_configured": true,
-    "entitlement_products_fixed": true,
-    "note": "Attached cattracker.pro.* products to entitlement (were missing, only top.dramavision.cattracker.pro.* were attached)"
+    "note": "RevenueCat no longer invoked — SDK removed from package.json, initPurchases/Paywall deleted from codebase."
   },
   "paywall": {
-    "monthly_price": "$3.99",
-    "yearly_price": "$29.99",
-    "yearly_discount": "37%",
-    "cta_text": "Upgrade to Pro",
-    "price_matches_notion": true
-  },
-  "status": "pass"
+    "status": "removed",
+    "note": "app/paywall.tsx deleted. src/utils/purchases.ts deleted. All isPro gating removed; every feature is unlocked for all paid users."
+  }
 }

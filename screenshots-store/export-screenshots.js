@@ -11,6 +11,7 @@ const PORT = 3099;
 
 const ALL_LOCALES = [
   "en", "zh-Hans", "zh-Hant", "ja", "ko", "de", "fr", "es", "ru", "it", "ar", "id",
+  "tr", "nl", "pt-BR", "pl", "sv", "no", "da", "th",
 ];
 
 const slides = [

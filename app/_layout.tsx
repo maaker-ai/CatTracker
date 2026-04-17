@@ -5,7 +5,6 @@ import * as SplashScreen from 'expo-splash-screen';
 import { Platform } from 'react-native';
 import { seedDefaultCat } from '@/utils/database';
 import { useAppStore } from '@/stores/appStore';
-import { initPurchases, refreshProStatus } from '@/utils/purchases';
 import { setupNotificationHandler } from '@/utils/notifications';
 import AnimatedSplash from '@/components/AnimatedSplash';
 import '@/i18n';
@@ -38,13 +37,6 @@ export default function RootLayout() {
         console.warn('DB seed error:', e);
       }
 
-      try {
-        await initPurchases();
-        await refreshProStatus();
-      } catch (e) {
-        console.warn('RevenueCat init failed:', (e as Error).message);
-      }
-
       setAppReady(true);
     }
     prepare();
@@ -73,13 +65,6 @@ export default function RootLayout() {
             presentation: 'transparentModal',
             gestureEnabled: true,
             animation: 'slide_from_bottom',
-          }}
-        />
-        <Stack.Screen
-          name="paywall"
-          options={{
-            presentation: 'modal',
-            gestureEnabled: true,
           }}
         />
       </Stack>
