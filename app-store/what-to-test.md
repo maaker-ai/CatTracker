@@ -1,12 +1,11 @@
-# What to Test — CatTracker v1.0.0 (Build 15)
+# What to Test — CatTracker v1.0.0 (Build 17)
 
-## Build 15 Changes
-- **Design alignment**: 10 visual fixes across all pages to match v1.1 design spec
-- **IAP UX**: Purchase and restore buttons now show loading spinner
-- **Store migration**: Existing users' reminder data auto-migrated to new format
-- **Dependencies**: Expo SDK 55 packages updated to latest patches
+## Build 17 Changes
+- **App Store resubmission**: Build 15 was rejected; Build 17 is a clean rebuild with no source code changes
+- Built with manual xcodebuild + automatic signing (not EAS cloud)
+- buildNumber bumped from 15 → 17 to replace the rejected build in ASC
 
-## Please Verify (Build 15 specific)
+## Please Verify (Build 17 — same checklist as Build 15)
 - [ ] Tab Bar shows cat icon (3rd tab), not person icon
 - [ ] Settings → Reminders: "Feeding Reminder" + "Water Change Reminder" (2 items, no dates)
 - [ ] Settings → MORE: "Rate App" and "Contact Support" visible with icons
